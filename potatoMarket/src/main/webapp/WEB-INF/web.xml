@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>project</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>login_page</servlet-name>
+		<jsp-file>/user/login.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>login_page</servlet-name>
+		<url-pattern>/login_page</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>join_page</servlet-name>
+		<jsp-file>/user/join.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>join_page</servlet-name>
+		<url-pattern>/join_page</url-pattern>
+	</servlet-mapping>
+	
+	
+
+</web-app>

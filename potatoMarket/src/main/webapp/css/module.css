@@ -1,0 +1,41 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    border-bottom: double #1d1d1d;
+    background-color: bisque;
+    color: #fff;
+}
+
+#button{
+    width: 100px;
+    height: 40px;
+}
+
+.contents_wrap{
+    margin-top: 150px;
+    margin-bottom: 50px;
+    height: auto;
+    min-height: 80vh;
+}
+
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: bisque;
+}
+
+
+
+.project {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+}
