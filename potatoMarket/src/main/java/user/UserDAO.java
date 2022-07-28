@@ -3,7 +3,6 @@ package user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import util.Code; 
@@ -70,7 +69,7 @@ public class UserDAO {
 		conn = DbManager.getConnection("potatoMarket"); // ssm db에 접속
 		int code = 0;
 		try {
-			String sql = "select * from users where code = ?";
+			String sql = "select * from users where user_code = ?";
 			code = co.rCode(); // code 생성
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, code);
@@ -103,7 +102,7 @@ public class UserDAO {
 		conn = DbManager.getConnection("potatoMarket");
 
 		try {
-			String sql = "select * from users where  id = ? and password = ?";
+			String sql = "select * from users where  user_id = ? and user_pw = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
@@ -134,18 +133,30 @@ public class UserDAO {
 		}
 		return user;
 	}
-
-	public boolean checkId(String id) {
+	
+	// login member
+	public UserDTO getUser(int code) {
+		UserDTO user = null;
 		conn = DbManager.getConnection("potatoMarket");
+		
 		try {
-			String sql = "select * from users where user_id = ?";
+			String sql = "select * from users where user_code = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, code);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				return true;
+			while (rs.next()) {
+				int user_code = rs.getInt(1);
+				String id = rs.getString(2);
+				String pw = rs.getString(3);
+				String name = rs.getString(4);
+				String address = rs.getString(5);
+				String phone = rs.getString(8);
+				
+				user = new UserDTO(user_code, id, pw, name, address, phone);
+				
+				log = user_code;
+				return user;
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -157,7 +168,34 @@ public class UserDAO {
 				e2.printStackTrace();
 			}
 		}
-		return false;
+		return user;
+	}
+
+	
+	// ajax 확인용
+	public String checkId(String id) {
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			
+			String sql = "select * from users where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return null;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return id;
 	}
 
 }

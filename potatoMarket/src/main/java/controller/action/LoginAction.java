@@ -24,11 +24,11 @@ public class LoginAction implements Action {
 		String url = "";
 
 		if (dto != null) {
-			request.getSession().setAttribute("members", dto);
+			request.getSession().setAttribute("log", dto);
 			url = "index.jsp";
 			request.getRequestDispatcher(url).forward(request, response);
 		} else {
-			url = "./login_page?check=check";
+			url = "./login_page";
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}
