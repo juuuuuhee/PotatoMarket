@@ -14,7 +14,9 @@
     <div class="contents_wrap">
         <div id="join_box">
             <h1>회원가입</h1>
+            
             <form class="join_form" method="post" action="">
+            <input type="hidden" name="command" value="join">
                 <div class="input">
                     <label>ID</label><br>
                     <input type="text" id="id" placeholder="id" name="id"
@@ -55,7 +57,7 @@
                 </div>
                 <div class="form_submit">
                     <input type="submit" value="회원 가입">
-                </div>
+                </div>	
             </form>
         </div>
     </div>

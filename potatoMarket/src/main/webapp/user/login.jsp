@@ -11,7 +11,7 @@
 	<div class="contents_wrap">
 		<div class="">
 			<div>
-				<form method="post" action="/loginUser">
+				<form method="post" action="">
 					<h2>
 						아이디<span>*</span>
 					</h2>

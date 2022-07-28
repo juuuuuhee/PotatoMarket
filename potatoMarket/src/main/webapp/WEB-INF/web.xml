@@ -12,7 +12,17 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
+
+	<servlet>
+		<servlet-name>ajaxCon</servlet-name>
+		<servlet-class>myServlet.joinDupl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ajaxCon</servlet-name>
+		<url-pattern>/ajaxCon</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>login_page</servlet-name>
 		<jsp-file>/user/login.jsp</jsp-file>
@@ -21,7 +31,7 @@
 		<servlet-name>login_page</servlet-name>
 		<url-pattern>/login_page</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>join_page</servlet-name>
 		<jsp-file>/user/join.jsp</jsp-file>
@@ -30,7 +40,7 @@
 		<servlet-name>join_page</servlet-name>
 		<url-pattern>/join_page</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 
 </web-app>
