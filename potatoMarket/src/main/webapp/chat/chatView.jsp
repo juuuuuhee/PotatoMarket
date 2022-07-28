@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<title>Insert title here</title>
+<title>Insert itle here</title>
 </head>
 <body>
 	<div class="template" style="display: none">
