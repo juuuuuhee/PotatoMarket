@@ -42,8 +42,6 @@ public class chatRoomServer {
 		// 만약 리스트에 존재하면 해당 배열 안에 저장한다
 		System.out.println("서버는 브라우저와 연결했다");
 		
-//		chatRoom_code = Integer.parseInt(request.getParameter("chatRoom_code"));
-//		System.out.println("채팅방코드 : " +chatRoom_code);
 	}
 	
 	@OnMessage
@@ -74,42 +72,5 @@ public class chatRoomServer {
 		
 	}
 	
-	
-	// 운영자 유저로 메시지를 보내는 함수
-	private static void send(String message) {
-		if (admin != null) {
-			try {
-				admin.getBasicRemote().sendText(message);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	// 일반 유저가 접속했을 때, 운영자 유저에게 알리는 함수
-	public static void visit(String key) {
-		// json 구조로 status는 visit이고 key는 유저 키 정보이다.(javascript와 맞추는 프로토콜)
-		send("{\"status\":\"visit\", \"key\":\"" + key + "\"}");
-		// { "status" : "visit",
-		// "key" : key }
-	}
-
-	// 일반 유저가 메시지를 보낼 때, 운영자 유저에게 알리는 함수
-	public static void sendMessage(String key, String message) {
-		// json 구조로 status는 message이고 key는 유저 키 정보이다.(javascript와 맞추는 프로토콜) message는 보내는
-		// 메시지이다.
-		send("{\"status\":\"message\", \"key\":\"" + key + "\", \"message\":\"" + message + "\"}");
-		// { "status" : "message",
-		// "key" : key
-		// "message" : message }
-	}
-
-	// 일반 유저가 접속을 끊을 때, 운영자 유저에게 알리는 함수
-	public static void bye(String key) {
-		// json 구조로 status는 bye이고 key는 유저 키 정보이다.(javascript와 맞추는 프로토콜)
-		send("{\"status\":\"bye\", \"key\":\"" + key + "\"}");
-		// { "status" : "bye",
-		// "key" : key }
-	}
 	
 }

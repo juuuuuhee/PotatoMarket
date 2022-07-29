@@ -36,13 +36,14 @@
 		
 		const socket = new WebSocket("ws://localhost:8080/potatoMarket/chatRoom");
 		const messageTextArea = document.getElementById("messageTextArea");
-
+		let message = document.getElementById("textmessage");
+		
 		// 내가 처음 채팅방에 접속했을때
 		socket.onopen = function() {
 			messageTextArea.value += "Server connect ... \n";
 			console.log("브라우저는 서버와 연결했다");
 			// 첫 연결일때 
-			socket.send(chatCode)
+			makeMessage("",);
 			
 			// TODO 데이터베이스에서 읽은 채팅내역을 뿌려줘야한다
 		}
@@ -82,6 +83,14 @@
 			}
 			return true;
 		}
+		
+		// JSON 채팅을 String타입으로 바꾼다
+		function makeMessage(type, message) {
+			const msg = {type, message}
+			return JSON.string(msg);
+		}
+		
+		
 	
 	</script>
 
