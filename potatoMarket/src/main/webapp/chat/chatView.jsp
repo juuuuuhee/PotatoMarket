@@ -12,7 +12,15 @@
 </head>
 <body>
 	<%
-		int chatRoom_code = Integer.parseInt(request.getParameter("chatRoom_code"));
+		// 파라미터로 받은 값을 session에 저장한다
+		Object chatRoom_codeParam = request.getParameter("chatRoom_code");
+		if (chatRoom_codeParam != null) {
+			String code = (String) chatRoom_codeParam;
+			session.setAttribute("chatRoom_code", code);			
+		}
+	
+		// session에 저장된 값을 읽어온다
+		int chatRoom_code = Integer.parseInt((String) session.getAttribute("chatRoom_code"));
 		System.out.println(chatRoom_code);
 	%>
 	<!--  채팅 영역 -->
@@ -43,7 +51,6 @@
 			messageTextArea.value += "Server connect ... \n";
 			console.log("브라우저는 서버와 연결했다");
 			// 첫 연결일때 
-			makeMessage("",);
 			
 			// TODO 데이터베이스에서 읽은 채팅내역을 뿌려줘야한다
 		}
@@ -64,10 +71,17 @@
 			messageTextArea.value += "상대방 : " + message.data + "\n";
 		};
 		
+		// 내가 메시지를 보낼때
 		function sendMessage() {
-			var message = document.getElementById("textMessage");
+			let message = document.getElementById("textMessage");
 			messageTextArea.value += "  나 : " + message.value + "\n";
-			socket.send(message.value);
+			const msg = makeMessage("new_message", message.value, chatCode); 
+			// { "type" : "new_message" ,"message" : message.value, "chatRoom_code" : chatCode } 이 타입이 String으로 반환되서 돌아온다
+			socket.send(msg);
+			
+			// test
+			console.log(msg);
+			
 			message.value = "";
 		}
 		
@@ -85,9 +99,9 @@
 		}
 		
 		// JSON 채팅을 String타입으로 바꾼다
-		function makeMessage(type, message) {
-			const msg = {type, message}
-			return JSON.string(msg);
+		function makeMessage(type, message, chatRoom_code) {
+			const msg = {type, message, chatRoom_code}
+			return JSON.stringify(msg);
 		}
 		
 		
