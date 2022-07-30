@@ -2,16 +2,12 @@
 <%@page import="user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-<link rel="stylesheet" href="../css/chatView.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="../css/chatView.css">
 <title>채팅방</title>
 </head>
 <body>
@@ -35,18 +31,25 @@
 	// 채팅 상대방의 정보(코드)를 가져온다
 	int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chatRoom_code, loginCode);
 	%>
+	
 	<div id=chatRoom_name>
-		<h1>판매자님의 대화방</h1> <br> <br>
+		<h1>채팅방</h1> 
+		<br><br>
 	</div>
 	<!--  채팅 영역 -->
 	<div id="chat">
 		<form>
-			<textarea id="messageTextArea" rows="10" cols="50" disabled="disabled"></textarea>
+			
+			<ul id="chatBlock">
+			</ul>
+			
 			<br>
-			<input id="textMessage" type="text" onkeydown="return enter()">
-			<!-- 서버로 메시지를 전송하는 버튼 -->
-			<input id="sendMessage" onclick=chkTextBlank() value="Send" type="button">
-			<input type="hidden" class="chatRoomCode" value=<%=chatRoom_code%>>
+			<div id="inputText">
+				<input id="textMessage" type="text" onkeydown="return enter()">
+				<!-- 서버로 메시지를 전송하는 버튼 -->
+				<input id="sendMessage" onclick=chkTextBlank() value="Send" type="button">
+				<input type="hidden" class="chatRoomCode" value=<%=chatRoom_code%>>
+			</div>
 			<span id="check">채팅을 입력해주세요</span>
 		</form>
 
@@ -57,75 +60,61 @@
 		// 해당 경로는 고유한 페이지를 가져야하나? ㄴㄴ
 		let chatCode = '<%=chatRoom_code%>';
 		let logCode = '<%=loginCode%>';
-		console.log("chatCode : ", chatCode);
-		console.log("loginCode : ", logCode);
 		
 		const socket = new WebSocket("ws://localhost:8080/potatoMarket/chatRoom");
-		const messageTextArea = document.getElementById("messageTextArea");
-		let message = document.getElementById("textmessage");
-
+		const chatBlock = document.getElementById("chatBlock");
+		let message = document.getElementById("textMessage");
 		  
-		// 내가 처음 채팅방에 접속했을때
+		// OPEN 내가 처음 채팅방에 접속했을때
 		socket.onopen = function() {
-			messageTextArea.value += "Server connect ... \n";
-			console.log("브라우저는 서버와 연결했다");
+			addMyMsg("서버와 연결됐습니다");
 			// 첫 연결일때 
-			const openMsg = makeMessage("open", "첫 접속", chatCode, logCode);
+			const openMsg = makeMessage("open", "접속성공", chatCode, logCode);
 			socket.send(openMsg);
-
-			// TODO 데이터베이스에서 읽은 채팅내역을 뿌려줘야한다
 		}
 	
-		// 애러가 났을때
-		socket.onerror = function() {
-			messageTextArea.value += "error ... \n";
-		}
-		
 		// 닫혔을때		
 		socket.onclose = function() {
 			console.log("브라우저는 서버와 연결이 끊겼다");
+			alert("닫혔다!");
 		}
 		
-		// 상대방이 메시지를 보냈을때
 		// 메시지를 받았을 때
+		// 상대방이 메시지를 보냈을때
 		socket.onmessage = function(message) {
-			
-			// test
-			console.log("message : ", message);
-			
 			// 메시지를 JSON화 시킨다
 			let msg = JSON.parse(message.data);
 			console.log(msg)
 			console.log(msg.sendUserCode);
 			if (msg.sendUserCode == logCode) {
 				console.log('받아온 메시지는 로그인된 정보와 똑같습니다');
-				messageTextArea.value += "  나  : " + msg.chatContents + "\n";
-				
+				addMyMsg(msg.chatContents);
 			} else {
 				console.log("받아온 메시지는 로그인된 정보와 다릅니다");
-				messageTextArea.value += " 상대방  : " + msg.chatContents + "\n";
+				addYourMsg(msg.chatContents);
 			}
-			
+
 			// 스크롤을 항상 아래로 옮긴다
-			const top = $('#messageTextArea').prop('scrollHeight');
-			$('#messageTextArea').scrollTop(top);
+			const top = $('#chatBlock').prop('scrollHeight');
+			$('#chatBlock').scrollTop(top);
 		};
 		
 		// 내가 메시지를 보낼때
 		function sendMessage() {
 			let message = document.getElementById("textMessage");
-			messageTextArea.value += "  나   : " + message.value + "\n";
 			const msg = makeMessage("new_message", message.value, chatCode, logCode); 
 			// { "type" : "new_message" ,"message" : message.value, "chatRoom_code" : chatCode, "logCode" : logCode } 이 타입이 String으로 반환되서 돌아온다
+			
+			addMyMsg(message.value);
+			
 			socket.send(msg);
 			
 			message.value = "";
 
 			// 스크롤을 항상 아래로 옮긴다
-			const top = $('#messageTextArea').prop('scrollHeight');
-			$('#messageTextArea').scrollTop(top);
+			const top = $('#chatBlock').prop('scrollHeight');
+			$('#chatBlock').scrollTop(top);
 		}
-		
 		
 		// 텍스트 박스에서 엔터를 누르면
 		// keyCode 13은 엔터이다.
@@ -146,7 +135,7 @@
 			return JSON.stringify(msg);
 		}
 		
-
+		// 텍스트를 입력 안하고 보내려고 하면 막는다
 		function chkTextBlank() {
 			event.preventDefault();
 			let essential = $('#textMessage').val();
@@ -160,8 +149,34 @@
 			}else{
 				$('#check').css('display', 'block');
 			}
-			
-			
+		}
+		
+		function addMyMsg(message) {
+			let tmp = `
+				<li class="me"> 
+					<div class="name">
+						<h2>나</h2>
+					</div>
+					<div class="message">
+						` + message + `
+					</div>
+				</li>`;
+			console.log(tmp);
+			$("#chatBlock").append(tmp);
+		}
+		
+		function addYourMsg(message) {
+			let tmp = `
+				<li class="you"> 
+					<div class="name">
+						<h2>상대방</h2>
+					</div>
+					<div class="message">
+						` + message + `
+					</div>
+				</li>`;
+			console.log(tmp);
+			$("#chatBlock").append(tmp);
 		}
 
 		

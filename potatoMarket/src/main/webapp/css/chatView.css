@@ -6,12 +6,65 @@
 body {
 	display: flex;
 	flex-direction: column;
-   	height: 60vh;
-    justify-content: center;
-    align-items: center;
+	height: 90vh;
+	justify-content: center;
+	align-items: center;
 }
 
 span#check {
 	display: none;
 	color: red;
+}
+
+/* 점 없애기 */
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
+
+#chatBlock {
+	padding: 30px 30px 20px;
+	border-bottom: 2px solid white;
+	overflow-y: scroll;
+	height: 575px;
+	width: 30vw;
+}
+
+.you {
+	border-radius: 20px;
+	text-align: right;
+}
+
+.me {
+	border-radius: 20px;
+	text-align: left;
+}
+
+div.message {
+	background: #94C2ED;
+	color: white;
+	padding: 18px 20px;
+	line-height: 26px;
+	font-size: 16px;
+	border-radius: 7px;
+	margin-bottom: 30px;
+	width: 90%;
+	position: relative;
+}
+
+#sendMessage {
+    height: 64px;
+    width: 8vw;
+    background-color: #94C2ED;
+}
+
+#textMessage {
+    width: 24vw;
+    height: 60px;
+	font-size: inherit;
+}
+
+#inputText {
+	display: flex;
+	justify-content: space-evenly;
 }
