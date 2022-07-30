@@ -1,2 +1,17 @@
-@charset "UTF-8";
+* {
+	padding: 0;
+	margin: 0;
+}
 
+body {
+	display: flex;
+	flex-direction: column;
+   	height: 60vh;
+    justify-content: center;
+    align-items: center;
+}
+
+span#check {
+	display: none;
+	color: red;
+}

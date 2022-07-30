@@ -29,15 +29,12 @@ public class chatRoomServer {
 		// 채팅룸 코드. 맨 처음 접속했을때 파라미터로 받은 chatRoom_code를 이용해서(chatRoom_code는 데이터베이스에서 뽑아낸
 		// 코드이다)
 		// List에 저장된 채팅방 정보를 읽는다
-		Session buyerSocket;
-		int buyer_code;
-		Session sellerSocket;
-		int seller_code;
+		Session user1Socket;
+		int user1Code;
+		Session user2Socket;
+		int user2Code;
 		int chatRoom_code;
 	}
-
-	// ws:/chatRoom으로 넘어올때 데이터를 함께 넘기는 방법?
-	int chatRoom_code;
 
 	@OnOpen
 	// 새로운 유저가 서버를 열었을때
@@ -73,26 +70,28 @@ public class chatRoomServer {
 //		JSONObject jsonObject = (JSONObject) parser.parse(message);
 //
 //		// JSON 객체의 값 읽어서 출력하기
+
+
 		try {
-			JSONObject jsonObject = new JSONObject(message); // String을 JSON화 시키기
-
-			// test
-			System.out.println("OBJECT : " + jsonObject.toString()); // JSON화 된 것을 String화 시키기
-
 			// 받아온 메시지의 값을 추출한다
+			JSONObject jsonObject = new JSONObject(message); // String을 JSON화 시키기
 			String type = jsonObject.getString("type");
 			String chatRoom_code = jsonObject.getString("chatRoom_code");
 			int logCode = jsonObject.getInt("logCode");
 			String msg = jsonObject.getString("message");
+
+			// test
+			System.out.println("OBJECT : " + jsonObject.toString()); // JSON화 된 것을 String화 시키기
 
 			if (type.equals("new_message")) {
 				// 해당 메시지를 채팅하고 있는 상대방에게 건낸다
 				// 만약 상대방이 접속중이라면 메시지를 발송한다
 				Session partnerSocket = findPartnerSocket(userSocket, chatRoom_code);
 				if (partnerSocket != null) {
-					userSocket.getBasicRemote().sendText(msg); // Object 타입으로 브라우저로 보낸다
-					// TODO msg형태도 userCode를 같이 보내야한다. 그래야지 브라우저에서 해당 코드를 읽어서 받아들일 수 있다.
-
+					System.out.println("이거 실행되ㅐㅆ니?");
+					JSONObject obj = new JSONObject(
+							"{ \"sendUserCode\" : " + logCode + ", \"chatContents\" : " + msg + "}");
+					partnerSocket.getBasicRemote().sendText(obj.toString()); // Object 타입으로 브라우저로 보낸다
 				}
 
 				// 메시지를 데이터베이스에 저장한다
@@ -114,11 +113,55 @@ public class chatRoomServer {
 
 				}
 
+				// chatRoomInfos에 소켓정보를 입력한다.
+				// 먼저 해당 방이 존재하는지 확인하고 없다면 새로운 요소로 추가한다
+				// 만약 존재한다면 소켓을 해당 방에 저장한다
+
+				int chatRoomIdx = findRoomIdx(Integer.parseInt(chatRoom_code));
+				if (chatRoomIdx == -1) {
+					// 아직 만들어진 채팅방이 없다
+					// chatRoomInfos에 새롭게 방을 추가한다
+					chatRoomInfo room = new chatRoomInfo();
+					room.user1Socket = userSocket;
+					room.user1Code = logCode;
+					room.chatRoom_code = Integer.parseInt(chatRoom_code);
+
+					chatRoomInfos.add(room);
+					System.out.println("list에 새로운 방을 추가함");
+
+				} else { // 상대방이 접속중이다
+					// 해당 chatRoom에 접속한다
+					chatRoomInfo room = chatRoomInfos.get(chatRoomIdx);
+					if (room.user1Socket == null) {
+						room.user1Socket = userSocket;
+						room.user1Code = logCode;
+
+					} else {
+						room.user2Socket = userSocket;
+						room.user2Code = logCode;
+
+					}
+					System.out.println("list에 방정보를 수정함");
+
+				}
+
 			}
 		} catch (Exception err) {
 			System.out.println("Exception : " + err.toString());
 		}
 
+	}
+
+	// 채팅방에 접속했을때 해당하는 채팅방이 존재하는지 여부 판단하여 반환함
+	private int findRoomIdx(int chatRoom_code) {
+		int chatRoomIdx = -1;
+		for (int i = 0; i < chatRoomInfos.size(); i++) {
+			chatRoomInfo room = chatRoomInfos.get(i);
+			if (chatRoom_code == room.chatRoom_code) {
+				chatRoomIdx = i;
+			}
+		}
+		return chatRoomIdx;
 	}
 
 	// 메시지를 보냈을때 상대방의 소켓을 읽는 작업
@@ -130,15 +173,15 @@ public class chatRoomServer {
 		for (int i = 0; i < chatRoomInfos.size(); i++) {
 			chatRoomInfo chatRoom = chatRoomInfos.get(i);
 			if (chatRoom.chatRoom_code == roomCode) {
-				Session partnerSocket = userSocket == chatRoom.buyerSocket ? chatRoom.sellerSocket
-						: chatRoom.buyerSocket;
+				Session partnerSocket = userSocket == chatRoom.user1Socket ? chatRoom.user2Socket
+						: chatRoom.user1Socket;
 				if (partnerSocket != null) {
 					return partnerSocket;
 				}
 				return null;
 			}
 		}
-		return userSocket;
+		return null;
 	}
 
 	@OnClose

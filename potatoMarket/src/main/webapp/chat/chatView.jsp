@@ -1,48 +1,57 @@
+<%@page import="chat.ChatRoomDAO"%>
 <%@page import="user.UserDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../css/chatView.css">
+
 <title>채팅방</title>
 </head>
 <body>
 	<%
-		// 파라미터로 받은 값을 session에 저장한다
-		Object chatRoom_codeParam = request.getParameter("chatRoom_code");
-		if (chatRoom_codeParam != null) {
-			String code = (String) chatRoom_codeParam;
-			session.setAttribute("chatRoom_code", code);			
-		}
-	
-		// session에 저장된 값을 읽어온다
-		int chatRoom_code = Integer.parseInt((String) session.getAttribute("chatRoom_code"));
-		System.out.println("chatRoom_code : " + chatRoom_code);
-		
-		// session에 저장된 로그인된 유저 정보를 가져온다
-		UserDTO loginUser = (UserDTO) session.getAttribute("log");
-		int loginCode = loginUser.getCode();
-		System.out.println("loginCode : " + loginCode);
-		
+	// 파라미터로 받은 값을 session에 저장한다
+	Object chatRoom_codeParam = request.getParameter("chatRoom_code");
+	if (chatRoom_codeParam != null) {
+		String code = (String) chatRoom_codeParam;
+		session.setAttribute("chatRoom_code", code);
+	}
+
+	// session에 저장된 값을 읽어온다
+	int chatRoom_code = Integer.parseInt((String) session.getAttribute("chatRoom_code"));
+	System.out.println("chatRoom_code : " + chatRoom_code);
+
+	// session에 저장된 로그인된 유저 정보를 가져온다
+	UserDTO loginUser = (UserDTO) session.getAttribute("log");
+	int loginCode = loginUser.getCode();
+	System.out.println("loginCode : " + loginCode);
+
+	// 채팅 상대방의 정보(코드)를 가져온다
+	int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chatRoom_code, loginCode);
 	%>
+	<div id=chatRoom_name>
+		<h1>판매자님의 대화방</h1> <br> <br>
+	</div>
 	<!--  채팅 영역 -->
-	<textarea id="messageTextArea" rows="10" cols="50" disabled="disabled"></textarea>
-	<form>
-		<!-- 텍스트 박스에 채팅의 내용을 작성한다. -->
-		<input id="textMessage" type="text" onkeydown="return enter()">
-		<!-- 서버로 메시지를 전송하는 버튼 -->
-		<input onclick="sendMessage()" value="Send" type="button">
-		<input type="hidden" class="chatRoomCode" value=<%=chatRoom_code %>>
-	</form>
-	<br/>
-	<!-- 서버와 메시지를 주고 받는 콘솔 텍스트 영역 -->
-	
-	
+	<div id="chat">
+		<form>
+			<textarea id="messageTextArea" rows="10" cols="50" disabled="disabled"></textarea>
+			<br>
+			<input id="textMessage" type="text" onkeydown="return enter()">
+			<!-- 서버로 메시지를 전송하는 버튼 -->
+			<input id="sendMessage" onclick=chkTextBlank() value="Send" type="button">
+			<input type="hidden" class="chatRoomCode" value=<%=chatRoom_code%>>
+			<span id="check">채팅을 입력해주세요</span>
+		</form>
+
+	</div>
+
 	<script type="text/javascript">
 		// 해당 경로는 파라미터 값으로 넘겨야하나? 채팅방 코드를 파라미터로 넘긴다
 		// 해당 경로는 고유한 페이지를 가져야하나? ㄴㄴ
@@ -77,7 +86,8 @@
 			console.log("브라우저는 서버와 연결이 끊겼다");
 		}
 		
-		// 상대방이 메시지를 보냈을때(메시지를 받았을 때)
+		// 상대방이 메시지를 보냈을때
+		// 메시지를 받았을 때
 		socket.onmessage = function(message) {
 			
 			// test
@@ -89,7 +99,7 @@
 			console.log(msg.sendUserCode);
 			if (msg.sendUserCode == logCode) {
 				console.log('받아온 메시지는 로그인된 정보와 똑같습니다');
-				messageTextArea.value += "  나   : " + msg.chatContents + "\n";
+				messageTextArea.value += "  나  : " + msg.chatContents + "\n";
 				
 			} else {
 				console.log("받아온 메시지는 로그인된 정보와 다릅니다");
@@ -122,7 +132,8 @@
 		function enter() {
 			if (event.keyCode === 13) {
 				// 서버로 메시지 전송
-				sendMessage();
+				// sendMessage();
+				chkTextBlank();
 				// form에 의해 자동 submit을 막는다.
 				return false;
 			}
@@ -135,6 +146,24 @@
 			return JSON.stringify(msg);
 		}
 		
+
+		function chkTextBlank() {
+			event.preventDefault();
+			let essential = $('#textMessage').val();
+			console.log(essential);
+			console.log(typeof essential);
+			
+			if(essential){
+				console.log("여기가 실행됨");
+				$('#check').css('display', 'none');
+				sendMessage();
+			}else{
+				$('#check').css('display', 'block');
+			}
+			
+			
+		}
+
 		
 	
 	</script>
