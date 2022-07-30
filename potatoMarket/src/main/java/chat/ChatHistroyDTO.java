@@ -3,25 +3,25 @@ package chat;
 import java.sql.Date;
 
 public class ChatHistroyDTO {
-	private int chat_code;
+	private int chatRoom_code;
 	private int addUser;
 	private String chat_contents;
 	private Date created_at;
 	private Date modified_at;
 
-	public ChatHistroyDTO(int chat_code, int addUser, String chat_contents) {
+	public ChatHistroyDTO(int chatRoom_code, int addUser, String chat_contents) {
 		super();
-		this.chat_code = chat_code;
+		this.chatRoom_code = chatRoom_code;
 		this.addUser = addUser;
 		this.chat_contents = chat_contents;
 	}
 
-	public int getChat_code() {
-		return chat_code;
+	public int getChatRoom_code() {
+		return chatRoom_code;
 	}
 
-	public void setChat_code(int chat_code) {
-		this.chat_code = chat_code;
+	public void setChatRoom_code(int chat_code) {
+		this.chatRoom_code = chat_code;
 	}
 
 	public int getAddUser() {

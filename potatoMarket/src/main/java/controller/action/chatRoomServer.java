@@ -75,31 +75,33 @@ public class chatRoomServer {
 //		// JSON 객체의 값 읽어서 출력하기
 		try {
 			JSONObject jsonObject = new JSONObject(message); // String을 JSON화 시키기
-			
+
 			// test
 			System.out.println("OBJECT : " + jsonObject.toString()); // JSON화 된 것을 String화 시키기
 
 			// 받아온 메시지의 값을 추출한다
 			String type = jsonObject.getString("type");
 			String chatRoom_code = jsonObject.getString("chatRoom_code");
+			int logCode = jsonObject.getInt("logCode");
+			String msg = jsonObject.getString("message");
 
 			if (type.equals("new_message")) {
 				// 해당 메시지를 채팅하고 있는 상대방에게 건낸다
 				// 만약 상대방이 접속중이라면 메시지를 발송한다
 				Session partnerSocket = findPartnerSocket(userSocket, chatRoom_code);
 				if (partnerSocket != null) {
-					String msg = jsonObject.getString("message");
 					userSocket.getBasicRemote().sendText(msg); // Object 타입으로 브라우저로 보낸다
+					// TODO msg형태도 userCode를 같이 보내야한다. 그래야지 브라우저에서 해당 코드를 읽어서 받아들일 수 있다.
+
 				}
 
 				// 메시지를 데이터베이스에 저장한다
+				ChatHistroyDTO chat = new ChatHistroyDTO(Integer.parseInt(chatRoom_code), logCode, msg);
+				ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
+				chatHistoryDAO.saveChatHistory(chat);
 
 			} else if (type.equals("open")) {
-				// TODO 데이터베이스에서 채팅이력을 불러온다
-				
-				// test
-				System.out.println("불러오기 시작");
-				
+				// 처음으로 채팅창을 열었을때 DB에서 채팅내역을 불러와서 저장한다
 				ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
 				List<ChatHistroyDTO> history = chatHistoryDAO.bringHistroy(jsonObject.getInt("chatRoom_code"));
 				for (int i = 0; i < history.size(); i++) {
@@ -107,10 +109,9 @@ public class chatRoomServer {
 					int sendUserCode = history.get(i).getAddUser();
 					String chatContents = history.get(i).getChat_contents();
 					JSONObject obj = new JSONObject(
-							"{ \"sendUserCode\" : " + sendUserCode+ ", \"chatContents\" : " + chatContents + "}"
-							);
+							"{ \"sendUserCode\" : " + sendUserCode + ", \"chatContents\" : " + chatContents + "}");
 					userSocket.getBasicRemote().sendText(obj.toString()); // Object 타입으로 브라우저로 보낸다
-					
+
 				}
 
 			}

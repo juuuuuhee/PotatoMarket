@@ -31,6 +31,7 @@
 		
 	%>
 	<!--  채팅 영역 -->
+	<textarea id="messageTextArea" rows="10" cols="50" disabled="disabled"></textarea>
 	<form>
 		<!-- 텍스트 박스에 채팅의 내용을 작성한다. -->
 		<input id="textMessage" type="text" onkeydown="return enter()">
@@ -40,7 +41,6 @@
 	</form>
 	<br/>
 	<!-- 서버와 메시지를 주고 받는 콘솔 텍스트 영역 -->
-	<textarea id="messageTextArea" rows="10" cols="50" disabled="disabled"></textarea>
 	
 	
 	<script type="text/javascript">
@@ -54,7 +54,8 @@
 		const socket = new WebSocket("ws://localhost:8080/potatoMarket/chatRoom");
 		const messageTextArea = document.getElementById("messageTextArea");
 		let message = document.getElementById("textmessage");
-		
+
+		  
 		// 내가 처음 채팅방에 접속했을때
 		socket.onopen = function() {
 			messageTextArea.value += "Server connect ... \n";
@@ -93,9 +94,11 @@
 			} else {
 				console.log("받아온 메시지는 로그인된 정보와 다릅니다");
 				messageTextArea.value += " 상대방  : " + msg.chatContents + "\n";
-				
 			}
 			
+			// 스크롤을 항상 아래로 옮긴다
+			const top = $('#messageTextArea').prop('scrollHeight');
+			$('#messageTextArea').scrollTop(top);
 		};
 		
 		// 내가 메시지를 보낼때
@@ -107,6 +110,10 @@
 			socket.send(msg);
 			
 			message.value = "";
+
+			// 스크롤을 항상 아래로 옮긴다
+			const top = $('#messageTextArea').prop('scrollHeight');
+			$('#messageTextArea').scrollTop(top);
 		}
 		
 		

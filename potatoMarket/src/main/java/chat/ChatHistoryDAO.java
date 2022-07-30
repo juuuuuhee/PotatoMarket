@@ -36,7 +36,7 @@ public class ChatHistoryDAO {
 			System.out.println("채팅기록 반환 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("채팅기록 반환 성공");
+			System.out.println("채팅기록 반환 실패");
 
 		} finally {
 			rs = null;
@@ -45,6 +45,34 @@ public class ChatHistoryDAO {
 		}
 
 		return history;
+	}
+	
+	public boolean saveChatHistory(ChatHistroyDTO chat) {
+		conn = DbManager.getConnection("potatoMarket");
+		String sql = "insert into chatHistory values (0, ? , ?, ?, sysdate(),sysdate())";
+		boolean chk = false;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, chat.getChatRoom_code());
+			pstmt.setInt(2, chat.getAddUser());
+			pstmt.setString(3, chat.getChat_contents());
+
+			if (pstmt.executeUpdate() != 0) {
+				chk = true;
+			}
+
+			System.out.println("채팅기록 저장 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("채팅기록 저장 실패");
+
+		} finally {
+			rs = null;
+			pstmt = null;
+			conn = null;
+		}
+
+		return chk;
 	}
 
 }
