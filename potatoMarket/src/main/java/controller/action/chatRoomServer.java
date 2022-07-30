@@ -10,10 +10,10 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import chat.ChatHistoryDAO;
+import chat.ChatHistroyDTO;
 
 @ServerEndpoint(value = "/chatRoom")
 public class chatRoomServer {
@@ -74,44 +74,69 @@ public class chatRoomServer {
 //
 //		// JSON 객체의 값 읽어서 출력하기
 		try {
-            JSONObject jsonObject = new JSONObject(message);
-            System.out.println("OBJECT : "+jsonObject.toString());
+			JSONObject jsonObject = new JSONObject(message); // String을 JSON화 시키기
+			
+			// test
+			System.out.println("OBJECT : " + jsonObject.toString()); // JSON화 된 것을 String화 시키기
 
-            String type = jsonObject.getString("type");
-            String chatRoom_code = jsonObject.getString("chatRoom_code");
-            
-            if (type.equals("new_message")) {
-            	// 해당 메시지를 채팅하고 있는 상대방에게 건낸다
-            	Session partnerSocket = findPartnerSocket(userSocket, chatRoom_code);
-            	// 만약 상대방이 접속중이라면 메시지를 발송한다
-            	if (partnerSocket != null) {
-            		String msg = jsonObject.getString("message");
-            		
-            		// test
-            		System.out.println(msg);
-            		
-            		userSocket.getBasicRemote().sendText(msg);
+			// 받아온 메시지의 값을 추출한다
+			String type = jsonObject.getString("type");
+			String chatRoom_code = jsonObject.getString("chatRoom_code");
 
-            		// test
-            		System.out.println(jsonObject);
-            	}
-            	
-            } else if (type.equals("open")) {
-            	// 데이터베이스에서 채팅이력을 로드한다 
-            }
-        } catch (Exception err) {
-            System.out.println("Exception : "+err.toString());
-        }
-        
-        
+			if (type.equals("new_message")) {
+				// 해당 메시지를 채팅하고 있는 상대방에게 건낸다
+				// 만약 상대방이 접속중이라면 메시지를 발송한다
+				Session partnerSocket = findPartnerSocket(userSocket, chatRoom_code);
+				if (partnerSocket != null) {
+					String msg = jsonObject.getString("message");
+					userSocket.getBasicRemote().sendText(msg); // Object 타입으로 브라우저로 보낸다
+				}
+
+				// 메시지를 데이터베이스에 저장한다
+
+			} else if (type.equals("open")) {
+				// TODO 데이터베이스에서 채팅이력을 불러온다
+				
+				// test
+				System.out.println("불러오기 시작");
+				
+				ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
+				List<ChatHistroyDTO> history = chatHistoryDAO.bringHistroy(jsonObject.getInt("chatRoom_code"));
+				for (int i = 0; i < history.size(); i++) {
+					// 만약 보내는 사람의 코드를 ...
+					int sendUserCode = history.get(i).getAddUser();
+					String chatContents = history.get(i).getChat_contents();
+					JSONObject obj = new JSONObject(
+							"{ \"sendUserCode\" : " + sendUserCode+ ", \"chatContents\" : " + chatContents + "}"
+							);
+					userSocket.getBasicRemote().sendText(obj.toString()); // Object 타입으로 브라우저로 보낸다
+					
+				}
+
+			}
+		} catch (Exception err) {
+			System.out.println("Exception : " + err.toString());
+		}
+
 	}
-	
+
 	// 메시지를 보냈을때 상대방의 소켓을 읽는 작업
-	private Session findPartnerSocket(Session userSocket, String chatRoom_code2) {
-		// TODO Auto-generated method stub
+	private Session findPartnerSocket(Session userSocket, String chatRoom_code) {
 		// 채팅방코드를 통해서 chatRoomInfos에서 검색한다
 		// userSocket과 일치하지 않는 상대방 소켓을 검색하고, 해당 소켓이 만약 존재한다면 그것을 반환한다
 		// 만약 존재하지 않는다면 null을 반환한다
+		int roomCode = Integer.parseInt(chatRoom_code);
+		for (int i = 0; i < chatRoomInfos.size(); i++) {
+			chatRoomInfo chatRoom = chatRoomInfos.get(i);
+			if (chatRoom.chatRoom_code == roomCode) {
+				Session partnerSocket = userSocket == chatRoom.buyerSocket ? chatRoom.sellerSocket
+						: chatRoom.buyerSocket;
+				if (partnerSocket != null) {
+					return partnerSocket;
+				}
+				return null;
+			}
+		}
 		return userSocket;
 	}
 
