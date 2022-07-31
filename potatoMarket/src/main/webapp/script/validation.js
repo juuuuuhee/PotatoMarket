@@ -10,13 +10,13 @@ $('#id').change(e => {
 			console.log(data);
 			// alert(data.check);
 			if (data.check === 1) {
-				$('#msg_error').hide();
-				$('#msg_ok').show();
-			} else if(data.check === 2) {
-				$('#msg_error').show();
-				$('#msg_ok').hide();
-			}else if(data.check === 3){
-				$('#check').html("")
+				$('#msg_').css('color', '#4ae182')
+				$('#msg_').html("사용 가능한 아이디 입니다.");
+			} else if (data.check === 2) {
+				$('#msg_').css('color', 'red')
+				$('#msg_').html("중복 된 아이디입니다.");
+			} else {
+				$('#msg_').html("")
 			}
 		}
 	})
@@ -28,24 +28,41 @@ $('#password2').keyup(e => {
 	let password2 = $('#password2').val();
 	console.log(password1);
 	console.log(password2);
-	
-	if(password1 !== password2){
-		$('#pwcheck').css('color','red')
-        $('#pwcheck').html("비밀번호가 일치하지않습니다.")
-	}else{
-		 $('#pwcheck').html("")
+
+	if (password1 !== password2) {
+		$('#pwcheck').css('color', 'red')
+		$('#pwcheck').html("비밀번호가 일치하지않습니다.")
+	} else {
+		$('#pwcheck').html("")
 	}
 
 })
+
 
 $('#bnt').click(e => {
-	let essential = $('.essntial').val();
+	e.preventDefault();
 
-	
-	if(essential === null){
-		$('#check').css('color','red')
-		$('#check').html("필수 정보입니다.")
-	}else{
-		$('#check').html("")
+	let $ess = $('.essential');
+		if ($ess !== "") {
+			e.preventDefault();
+		}
+	for (let i = 0; i < $ess.length; i++) {
+		if ($($ess.get(i)).val() === "") {
+			$('.check').css('color', 'red')
+			$($ess.get(i)).siblings('.check').text("필수 정보입니다.")
+		} else {
+			$($ess.get(i)).siblings('.check').text("?")
+		}
 	}
 })
+
+
+
+
+
+
+
+
+
+
+

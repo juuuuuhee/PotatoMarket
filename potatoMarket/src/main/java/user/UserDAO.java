@@ -35,7 +35,7 @@ public class UserDAO {
 		try {
 			userDto.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-			String sql = "insert into users values(?,?,?,?,?,?,?)";
+			String sql = "insert into users(user_code,user_id,user_pw,user_name, user_address,created_At,user_phone) values(?,?,?,?,?,?,?)";
 			this.pstmt = conn.prepareStatement(sql);
 			// code, id, pw, name, add, create, modifi, phone
 			pstmt.setInt(1, userDto.getCode());
@@ -44,7 +44,7 @@ public class UserDAO {
 			pstmt.setString(4, userDto.getName());
 			pstmt.setString(5, userDto.getAddress());
 			pstmt.setTimestamp(6, userDto.getCreatedAt());
-			pstmt.setString(8, userDto.getPhone());
+			pstmt.setString(7, userDto.getPhone());
 
 			this.pstmt.execute();
 			System.out.println("joinMember complite");
@@ -116,7 +116,7 @@ public class UserDAO {
 				String phone = rs.getString(8);
 
 				user = new UserDTO(user_code, id, password, name, address, phone);
-
+				System.out.println(user);
 				log = user_code;
 				return user;
 			}
@@ -133,12 +133,12 @@ public class UserDAO {
 		}
 		return user;
 	}
-	
+
 	// login member
 	public UserDTO getUser(int code) {
 		UserDTO user = null;
 		conn = DbManager.getConnection("potatoMarket");
-		
+
 		try {
 			String sql = "select * from users where user_code = ?";
 			pstmt = conn.prepareStatement(sql);
@@ -151,9 +151,9 @@ public class UserDAO {
 				String name = rs.getString(4);
 				String address = rs.getString(5);
 				String phone = rs.getString(8);
-				
+
 				user = new UserDTO(user_code, id, pw, name, address, phone);
-				
+
 				log = user_code;
 				return user;
 			}
@@ -171,19 +171,18 @@ public class UserDAO {
 		return user;
 	}
 
-	
 	// ajax 확인용
 	public String checkId(String id) {
 		conn = DbManager.getConnection("potatoMarket");
 		try {
-			
+
 			String sql = "select * from users where user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				return null;
-			}			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
