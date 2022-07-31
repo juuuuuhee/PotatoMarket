@@ -11,7 +11,8 @@
 	<div class="contents_wrap">
 		<div class="">
 			<div>
-				<form method="post" action="">
+				<form method="post" action="action">
+				<input type="hidden" name="command" value="login">
 					<h2>
 						아이디<span>*</span>
 					</h2>
