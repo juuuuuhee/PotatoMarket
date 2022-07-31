@@ -1,5 +1,7 @@
 package controller;
 
+import controller.action.JoinAction;
+
 public class ActionFactory {
 	private ActionFactory() {} ; 
 	private static ActionFactory instance = new ActionFactory();
@@ -10,7 +12,7 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action action = null;
 		
-		if(command.equals("join")) action = null;
+		if(command.equals("join")) action = new JoinAction();
 		
 		return action;
 	}

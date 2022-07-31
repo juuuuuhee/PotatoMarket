@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: juhee
-  Date: 2022/07/26
-  Time: 4:58 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@page import="item.ItemDTO"%>
 <%@page import="favo.FavoriteDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -51,10 +45,6 @@ ArrayList<FavoriteDTO> list = fdao.getFavoData(usercode);
  
     <% }%>
     </div>
-
-    
-    
-    
     
    <div class="footer">
         <%@include file="../modules/footer.jsp"%>

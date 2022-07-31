@@ -1,10 +1,14 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
 <link rel="stylesheet" href="css/module.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
-<% String log=(String) session.getAttribute("log"); %>
+<%-- <% String log=(String) session.getAttribute("log"); %> --%>
+
+<c:set var="log" value="${sessionScope.log}"/>
+
 <div class="header">
 	<div>
 		<a class="log" href="index.jsp">
@@ -18,11 +22,14 @@
 		</form>
 	</div>
 	<div>
-		<% if(log == null){ %>
-		<button id="button" onclick="location.href='./login_page'">로그인</button>
-		<% }else{ %>
-		<button id="button">로그아웃</button>
-		<% }%>
-		<button id="button">회원가입</button>
+		<c:choose>
+			<c:when test="${empty log}">
+				<button id="button" onclick="location.href='./login_page'">로그인</button>
+			</c:when>
+			<c:otherwise>
+				<button id="button">로그아웃</button>
+			</c:otherwise>
+		</c:choose>
+		<button id="button" onclick="location.href='./join_page'">회원가입</button>
 	</div>
 </div>
