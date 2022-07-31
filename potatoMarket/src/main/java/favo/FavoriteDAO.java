@@ -3,6 +3,7 @@ package favo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import util.DbManager;
 
@@ -21,14 +22,23 @@ private static FavoriteDAO instance = new FavoriteDAO();
 	
 	
 	// 관심 목록 가져오기 (mypage) 배열형태로 가져가야함
-	public FavoriteDTO getFavoData(int usercode) {
+	public ArrayList<FavoriteDTO>  getFavoData(int usercode) {
 		String sql ="select * from favo where user_code =?";
+		ArrayList<FavoriteDTO> list = new ArrayList<FavoriteDTO>();
 		conn= DbManager.getConnection("potatoMarket");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, usercode);
 			rs=pstmt.executeQuery();
-			
+			while(rs.next()) {
+				int fcode = rs.getInt(1);
+				int icode = rs.getInt(2);
+				int ucode = rs.getInt(3);
+				
+				FavoriteDTO dto = new FavoriteDTO(fcode, icode, ucode);
+				list.add(dto);
+			}
+			return list;
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
