@@ -1,4 +1,7 @@
+
+
 $('#id').change(e => {
+
 	let check = $('#id').val();
 	console.log(check);
 	$.ajax({
@@ -8,19 +11,37 @@ $('#id').change(e => {
 
 		success: function(data) {
 			console.log(data);
-			// alert(data.check);
-			if (data.check === 1) {
-				$('#msg_').css('color', '#26652e')
-				$('#msg_').html("사용 가능한 아이디 입니다.");
-			} else if (data.check === 2) {
-				$('#msg_').css('color', 'red')
-				$('#msg_').html("중복 된 아이디입니다.");
+			let idPattern = /^[A-Za-z0-9_\-]{5,20}$/;
+
+			if (!idPattern.test($('#id').val())) {
+				$('.id_check').html("5~20자 영문 대,소문자 숫자를 사용하세요<br>특수문자 사용불가");
+				$('.id_check').css('color', 'red')
+				$('#msg_').html("");
 			} else {
-				$('#msg_').html("")
+				$('.id_check').html("");
+				if (data.check == 1) {
+					$('#msg_').css('color', '#26652e');
+					
+					$('#msg_').html("사용 가능한 아이디 입니다.");
+				} else if (data.check == 2) {
+					$('#msg_').css('color', 'red')
+					$('#msg_').html("중복 된 아이디입니다.");
+				}
 			}
 		}
 	})
+})
 
+
+$('#password1').change(e => {
+	let pwPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/;
+
+	if (!pwPattern.test($('#password1').val())) {		
+		$('#pwd1_check').css('color','red');
+		$('#pwd1_check').html("<br>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+	} else {
+		$('#pwd1_check').html("");
+	}
 })
 
 $('#password2').keyup(e => {
@@ -40,21 +61,22 @@ $('#password2').keyup(e => {
 
 
 $('#bnt').click(e => {
-	//	e.preventDefault();
 
 	let $ess = $('.essential');
-	if ($ess !== "") {
-		e.preventDefault();
-	} else {
-
-		for (let i = 0; i < $ess.length; i++) {
-			if ($($ess.get(i)).val() === "") {
-				$('.check').css('color', 'red')
-				$($ess.get(i)).siblings('.check').text("필수 정보입니다.")
-			} else {
-				$($ess.get(i)).siblings('.check').text("")
-			}
+	let check = true;
+	for (let i = 0; i < $ess.length; i++) {
+		if ($($ess.get(i)).val() === "") {
+			$('.check').css('color', 'red');
+			$($ess.get(i)).siblings('.check').text("필수 정보입니다.");
+			check = false;
+			console.log(check + $($ess.get(i)).val());
+		} else {
+			$($ess.get(i)).siblings('.check').text("");
 		}
+	}
+	console.log(check);
+	if (check === false) {
+		e.preventDefault();
 	}
 })
 
