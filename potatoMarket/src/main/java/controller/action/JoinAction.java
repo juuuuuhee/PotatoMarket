@@ -39,6 +39,7 @@ public class JoinAction implements Action {
 			System.out.print("ddddddddd");
 			url="./join_page";
 		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
 }
