@@ -66,7 +66,7 @@ public class UserDAO {
 	}
 
 	public int userCode() {
-		conn = DbManager.getConnection("potatoMarket"); // ssm db에 접속
+		conn = DbManager.getConnection("potatoMarket");
 		int code = 0;
 		try {
 			String sql = "select * from users where user_code = ?";

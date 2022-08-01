@@ -10,7 +10,7 @@ $('#id').change(e => {
 			console.log(data);
 			// alert(data.check);
 			if (data.check === 1) {
-				$('#msg_').css('color', '#4ae182')
+				$('#msg_').css('color', '#26652e')
 				$('#msg_').html("사용 가능한 아이디 입니다.");
 			} else if (data.check === 2) {
 				$('#msg_').css('color', 'red')
@@ -40,18 +40,20 @@ $('#password2').keyup(e => {
 
 
 $('#bnt').click(e => {
-	e.preventDefault();
+	//	e.preventDefault();
 
 	let $ess = $('.essential');
-		if ($ess !== "") {
-			e.preventDefault();
-		}
-	for (let i = 0; i < $ess.length; i++) {
-		if ($($ess.get(i)).val() === "") {
-			$('.check').css('color', 'red')
-			$($ess.get(i)).siblings('.check').text("필수 정보입니다.")
-		} else {
-			$($ess.get(i)).siblings('.check').text("?")
+	if ($ess !== "") {
+		e.preventDefault();
+	} else {
+
+		for (let i = 0; i < $ess.length; i++) {
+			if ($($ess.get(i)).val() === "") {
+				$('.check').css('color', 'red')
+				$($ess.get(i)).siblings('.check').text("필수 정보입니다.")
+			} else {
+				$($ess.get(i)).siblings('.check').text("")
+			}
 		}
 	}
 })
