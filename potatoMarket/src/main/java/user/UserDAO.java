@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
-import util.Code; 
+import util.Code;
 import util.DbManager;
 
 public class UserDAO {
@@ -35,7 +35,7 @@ public class UserDAO {
 		try {
 			userDto.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-			String sql = "insert into users values(?,?,?,?,?,?,?)";
+			String sql = "insert into users(user_code,user_id,user_pw,user_name, user_address,created_At,user_phone) values(?,?,?,?,?,?,?)";
 			this.pstmt = conn.prepareStatement(sql);
 			// code, id, pw, name, add, create, modifi, phone
 			pstmt.setInt(1, userDto.getCode());
@@ -44,7 +44,7 @@ public class UserDAO {
 			pstmt.setString(4, userDto.getName());
 			pstmt.setString(5, userDto.getAddress());
 			pstmt.setTimestamp(6, userDto.getCreatedAt());
-			pstmt.setString(8, userDto.getPhone());
+			pstmt.setString(7, userDto.getPhone());
 
 			this.pstmt.execute();
 			System.out.println("joinMember complite");
@@ -66,7 +66,7 @@ public class UserDAO {
 	}
 
 	public int userCode() {
-		conn = DbManager.getConnection("potatoMarket"); // ssm db에 접속
+		conn = DbManager.getConnection("potatoMarket");
 		int code = 0;
 		try {
 			String sql = "select * from users where user_code = ?";
@@ -116,7 +116,7 @@ public class UserDAO {
 				String phone = rs.getString(8);
 
 				user = new UserDTO(user_code, id, password, name, address, phone);
-
+				System.out.println(user);
 				log = user_code;
 				return user;
 			}
@@ -133,12 +133,12 @@ public class UserDAO {
 		}
 		return user;
 	}
-	
+
 	// login member
 	public UserDTO getUser(int code) {
 		UserDTO user = null;
 		conn = DbManager.getConnection("potatoMarket");
-		
+
 		try {
 			String sql = "select * from users where user_code = ?";
 			pstmt = conn.prepareStatement(sql);
@@ -151,9 +151,9 @@ public class UserDAO {
 				String name = rs.getString(4);
 				String address = rs.getString(5);
 				String phone = rs.getString(8);
-				
+
 				user = new UserDTO(user_code, id, pw, name, address, phone);
-				
+
 				log = user_code;
 				return user;
 			}
@@ -171,19 +171,18 @@ public class UserDAO {
 		return user;
 	}
 
-	
 	// ajax 확인용
 	public String checkId(String id) {
 		conn = DbManager.getConnection("potatoMarket");
 		try {
-			
+
 			String sql = "select * from users where user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				return null;
-			}			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -198,4 +197,44 @@ public class UserDAO {
 		return id;
 	}
 
+	
+	//유저의 정보 가져오기(mypage)
+	public UserDTO getUserData(int code) {
+		String sql = "select * from users where user_code =?";
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				int ucode = rs.getInt(1);
+				String id = rs.getString(2);
+				//String pw = rs.getString(3);
+				String name = rs.getString(4);
+				String add = rs.getString(5);
+				//String time = rs.getString(6);
+				//String time2 = rs.getString(7);
+				String phone = rs.getString(8);
+				
+				UserDTO dto = new UserDTO(ucode, id, name,add,phone);
+				return dto;
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("실패");
+		}
+		finally {
+			
+		}try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
 }
