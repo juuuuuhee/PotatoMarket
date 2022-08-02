@@ -94,4 +94,41 @@ public class ChatRoomDAO {
 
 	}
 
+	// 입력한 유저코드와 연관이 있는 모든 채팅방 리스트를 불러온다
+	public ArrayList<ChatRoomDTO> bringAllChatRoom(int userCode) {
+		System.out.println("시작" + userCode);
+		ArrayList<ChatRoomDTO> rooms = new ArrayList<>();
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			String sql = "select * from chatRoom where buyer_code = ? or seller_code = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userCode);
+			pstmt.setInt(2, userCode);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				System.out.println("한번");
+				int chat_code = rs.getInt(1);
+				int seller_code = rs.getInt(2);
+				int buyer_code = rs.getInt(3);
+				int item_code = rs.getInt(4);
+
+				ChatRoomDTO room = new ChatRoomDTO(chat_code, seller_code, buyer_code, item_code);
+				rooms.add(room);
+			}
+
+			System.out.println("채팅방들 반환 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("채팅방들 반환 실패");
+
+		} finally {
+			rs = null;
+			pstmt = null;
+			conn = null;
+		}
+		System.out.println(rooms.size());
+		return rooms;
+	}
+
 }

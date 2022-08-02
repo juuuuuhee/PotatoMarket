@@ -41,6 +41,22 @@
 		<url-pattern>/join_page</url-pattern>
 	</servlet-mapping>
 
-
+	<servlet>
+		<servlet-name>chatView</servlet-name>
+		<jsp-file>/chat/chatView.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>chatView</servlet-name>
+		<url-pattern>/chatView</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>chatList</servlet-name>
+		<jsp-file>/chat/chatList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>chatList</servlet-name>
+		<url-pattern>/chatList</url-pattern>
+	</servlet-mapping>
 
 </web-app>
