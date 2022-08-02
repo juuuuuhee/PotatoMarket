@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<link rel="stylesheet" href="../css/chatView.css">
+	<link rel="stylesheet" href="./css/chatView.css">
 <title>채팅방</title>
 </head>
 <body>
@@ -31,30 +31,39 @@
 	// 채팅 상대방의 정보(코드)를 가져온다
 	int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chatRoom_code, loginCode);
 	%>
+	<jsp:include page="/modules/header.jsp"></jsp:include>
 	
-	<div id=chatRoom_name>
-		<h1>채팅방</h1> 
-		<br><br>
+	<main>
+		<br>
+		<div id=chatRoom_name>
+			<h1>채팅방</h1> 
+			<input type="button" value="뒤로가기" onclick="location.href=`./chatList`">
+		</div>
+		<br>
+		<!--  채팅 영역 -->
+		<div id="chat">
+			<form>
+				<ul id="chatBlock">
+				</ul>
+				
+				<br>
+				<div id="inputText">
+					<input id="textMessage" type="text" onkeydown="return enter()">
+					<!-- 서버로 메시지를 전송하는 버튼 -->
+					<input id="sendMessage" onclick=chkTextBlank() value="Send" type="button">
+					<input type="hidden" class="chatRoomCode" value=<%=chatRoom_code%>>
+				</div>
+				<span id="check">채팅을 입력해주세요</span>
+			</form>
+	
+		</div>
+		
+	
+	</main>
+	<div class="footer">
+		<jsp:include page="/modules/footer.jsp"></jsp:include>
 	</div>
-	<!--  채팅 영역 -->
-	<div id="chat">
-		<form>
-			
-			<ul id="chatBlock">
-			</ul>
-			
-			<br>
-			<div id="inputText">
-				<input id="textMessage" type="text" onkeydown="return enter()">
-				<!-- 서버로 메시지를 전송하는 버튼 -->
-				<input id="sendMessage" onclick=chkTextBlank() value="Send" type="button">
-				<input type="hidden" class="chatRoomCode" value=<%=chatRoom_code%>>
-			</div>
-			<span id="check">채팅을 입력해주세요</span>
-		</form>
-
-	</div>
-
+	
 	<script type="text/javascript">
 		// 해당 경로는 파라미터 값으로 넘겨야하나? 채팅방 코드를 파라미터로 넘긴다
 		// 해당 경로는 고유한 페이지를 가져야하나? ㄴㄴ
@@ -75,8 +84,13 @@
 	
 		// 닫혔을때		
 		socket.onclose = function() {
+			socket["chatRoom_code"] = chatRoom_code;
 			console.log("브라우저는 서버와 연결이 끊겼다");
 			alert("닫혔다!");
+			
+			// test
+			console.log(socket.chatRoom_code);
+			
 		}
 		
 		// 메시지를 받았을 때

@@ -17,7 +17,7 @@
 
 	%>
 
-	<input type="button" value="예약하기" onclick='location.href="./chatView.jsp?chatRoom_code=1111"'>
+	<input type="button" value="예약하기" onclick='location.href="../chatView?chatRoom_code=1111"'>
 
 </body>
 </html>

@@ -71,7 +71,6 @@ public class chatRoomServer {
 //
 //		// JSON 객체의 값 읽어서 출력하기
 
-
 		try {
 			// 받아온 메시지의 값을 추출한다
 			JSONObject jsonObject = new JSONObject(message); // String을 JSON화 시키기
@@ -88,7 +87,7 @@ public class chatRoomServer {
 				// 만약 상대방이 접속중이라면 메시지를 발송한다
 				Session partnerSocket = findPartnerSocket(userSocket, chatRoom_code);
 				if (partnerSocket != null) {
-					System.out.println("이거 실행되ㅐㅆ니?");
+					System.out.println("이거 실행됐니?");
 					JSONObject obj = new JSONObject(
 							"{ \"sendUserCode\" : " + logCode + ", \"chatContents\" : " + msg + "}");
 					partnerSocket.getBasicRemote().sendText(obj.toString()); // Object 타입으로 브라우저로 보낸다
@@ -132,16 +131,21 @@ public class chatRoomServer {
 				} else { // 상대방이 접속중이다
 					// 해당 chatRoom에 접속한다
 					chatRoomInfo room = chatRoomInfos.get(chatRoomIdx);
-					if (room.user1Socket == null) {
+					if (room.user1Code == logCode) {
+						room.user1Socket = userSocket;
+						System.out.println("새로고침했네?");
+					} else if (room.user2Code == logCode) {
+						room.user2Socket = userSocket;
+						System.out.println("새로고침했네?");
+					} else if (room.user1Code == 0) {
 						room.user1Socket = userSocket;
 						room.user1Code = logCode;
-
-					} else {
+						System.out.println("새로운놈 들어옴");
+					} else if (room.user2Code == 0) {
 						room.user2Socket = userSocket;
 						room.user2Code = logCode;
-
+						System.out.println("새로운놈 들어옴");
 					}
-					System.out.println("list에 방정보를 수정함");
 
 				}
 
@@ -187,10 +191,32 @@ public class chatRoomServer {
 	@OnClose
 	// 해당 유저가 소켓을 닫았을때
 	public void handleClose(Session userSocket) {
-		System.out.println("서버는 브라저와 연결이 끊겼다");
+		System.out.println("서버는 브라우저와 연결이 끊겼다");
 		// chatRoomInfos에서 해당 소켓 정보를 지운다
 		// 소켓정보다 둘다 없으면 배열에서 삭제한다
+		int idx = -1;
+		for (int i = 0; i < chatRoomInfos.size(); i++) {
+			if (userSocket == chatRoomInfos.get(i).user1Socket || userSocket == chatRoomInfos.get(i).user2Socket) {
+				idx = i;
+			}
+		}
+		System.out.println("chatRoomInfos.get(idx)" + idx);
+		chatRoomInfo room = chatRoomInfos.get(idx);
+		if (room.user1Socket != null && room.user2Socket != null) {
+			if (room.user1Socket == userSocket) {
+				room.user1Socket = null;
+				room.user1Code = 0;
 
+			} else {
+				room.user2Socket = null;
+				room.user2Code = 0;
+			}
+			System.out.println("소켓리스트 채팅방 2명 중 한명만 나감");
+
+		} else { // 채팅방에 둘중 한명만 접속중이다
+			chatRoomInfos.remove(idx);
+			System.out.println("소켓리스트에서 채팅방을 제거함");
+		}
 	}
 
 }

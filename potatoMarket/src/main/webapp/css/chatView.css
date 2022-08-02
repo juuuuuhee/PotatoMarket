@@ -6,7 +6,6 @@
 body {
 	display: flex;
 	flex-direction: column;
-	height: 90vh;
 	justify-content: center;
 	align-items: center;
 }
@@ -23,11 +22,15 @@ ul {
 }
 
 #chatBlock {
+	display: flex;
+	flex-direction: column;
 	padding: 30px 30px 20px;
 	border-bottom: 2px solid white;
 	overflow-y: scroll;
 	height: 575px;
 	width: 30vw;
+	min-width: 500px;
+	background: #d8b57a;
 }
 
 .you {
@@ -47,24 +50,47 @@ div.message {
 	line-height: 26px;
 	font-size: 16px;
 	border-radius: 7px;
-	margin-bottom: 30px;
-	width: 90%;
+	margin-bottom: 10px;
 	position: relative;
+	clear: both;
+	float: left;
 }
 
 #sendMessage {
-    height: 64px;
-    width: 8vw;
-    background-color: #94C2ED;
+	height: 64px;
+	width: 8vw;
+	background-color: #d8b57a;
 }
 
 #textMessage {
-    width: 24vw;
-    height: 60px;
+	min-width: 450px;
+	width: 24vw;
+	height: 60px;
 	font-size: inherit;
+	width: 24vw;
 }
 
 #inputText {
 	display: flex;
 	justify-content: space-evenly;
+}
+
+.you div.message {
+	color: black;
+	background: yellow;
+	float: right;
+}
+
+main {
+	height: 1000px;
+}
+
+#chatRoom_name {
+	display: flex;
+	justify-content: space-between;
+}
+
+input[type="button"] {
+	width: 8vw;
+	background-color: #d8b57a;
 }
