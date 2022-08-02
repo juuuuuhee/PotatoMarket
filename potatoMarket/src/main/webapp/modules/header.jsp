@@ -28,7 +28,7 @@
 					<button id="button" onclick="location.href='./join_page'">회원가입</button>
 				</c:when>
 				<c:otherwise>
-					
+					<button>마이페이지</button>
 					<button id="button" onclick="location.href='./action?command=logout'">로그아웃</button>
 				</c:otherwise>
 			</c:choose>

@@ -13,20 +13,23 @@ $('#id').change(e => {
 			console.log(data);
 			let idPattern = /^[A-Za-z0-9_\-]{5,20}$/;
 
-			if (!idPattern.test($('#id').val())) {
+			if (!idPattern.test($('#id').val()) && $('#id').val() !== "") {
 				$('.id_check').html("5~20자 영문 대,소문자 숫자를 사용하세요<br>특수문자 사용불가");
 				$('.id_check').css('color', 'red')
 				$('#msg_').html("");
 			} else {
 				$('.id_check').html("");
-				if (data.check == 1) {
+				if (data.check == 1 && $('#id').val() !== "") {
 					$('#msg_').css('color', '#26652e');
-					
+
 					$('#msg_').html("사용 가능한 아이디 입니다.");
-				} else if (data.check == 2) {
+				} else if (data.check == 2 && $('#id').val() !=="") {
 					$('#msg_').css('color', 'red')
 					$('#msg_').html("중복 된 아이디입니다.");
+				} else {
+					$('#msg_').html("");
 				}
+
 			}
 		}
 	})
@@ -36,8 +39,8 @@ $('#id').change(e => {
 $('#password1').change(e => {
 	let pwPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/;
 
-	if (!pwPattern.test($('#password1').val())) {		
-		$('#pwd1_check').css('color','red');
+	if (!pwPattern.test($('#password1').val())) {
+		$('#pwd1_check').css('color', 'red');
 		$('#pwd1_check').html("<br>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
 	} else {
 		$('#pwd1_check').html("");
@@ -58,6 +61,8 @@ $('#password2').keyup(e => {
 	}
 
 })
+
+
 
 
 $('#bnt').click(e => {
@@ -81,6 +86,22 @@ $('#bnt').click(e => {
 })
 
 
+
+$('.phonePattern').focusout(e => {
+	let phonePattern = /^\d{4}/;
+
+	if (!phonePattern.test($('#phone_2').val()) && $('#phone_2').val() !=="") {
+		$('#phone_check').css('color', 'red');
+		$('#phone_check').html("숫자 4자리 입력해주세요.");
+	}else if(!phonePattern.test($('#phone_3').val()) && $('#phone_3').val() !==""){
+		$('#phone_check').css('color', 'red');
+		$('#phone_check').html("숫자 4자리 입력해주세요.");		
+	}else {
+		$('#phone_check').html("");
+		
+	}
+
+})
 
 
 

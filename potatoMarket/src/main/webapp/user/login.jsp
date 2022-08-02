@@ -37,6 +37,11 @@
 							</div>
 						</div>
 					</div>
+					<div>
+						<a href="javascript:kakaoLogin();"><img
+							src="resource/kakao_login.png" alt="카카오계정 로그인"
+							style="height: 60px;" /></a>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -44,6 +49,40 @@
 	<div class="footer">
 		<%@include file="../modules/footer.jsp"%>
 	</div>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+    function saveToDos(token) { //item을 localStorage에 저장합니다. 
+        typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+    };
+    
+        window.Kakao.init('c0c7d97ba874ef5115ea0b140bedc728');
+
+        function kakaoLogin() {
+            window.Kakao.Auth.login({
+                scope: 'profile_nickname,account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+                success: function(response) {
+                	saveToDos(response.access_token)
+                    window.Kakao.API.request({ // 사용자 정보 가져오기 
+                        url: '/v2/user/me',
+                        success: (res) => {
+                            const kakao_account = res.kakao_account;
+                            console.log(kakao_account)
+                            console.log(JSON.stringify(kakao_account.profile)+"여기야~~");
+                            
+                            window.location.href='/potatoMarket/join_page?k_id='+JSON.stringify(res.id)+'&k_name='+JSON.stringify(res.profile_nickname); //리다이렉트 되는 코드
+                        	
+                        }
+                    });
+                   
+                },
+                fail: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+/*         const login = document.querySelector('#kakaoLogin');
+        login.addEventListener('click', kakaoLogin); */
+    </script>
 	<script>
 		const naverLogin = new naver.LoginWithNaverId({
 			clientId : "Qc5AuIfVqlnmCqi8oeYe",

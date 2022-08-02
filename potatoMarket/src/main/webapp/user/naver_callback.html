@@ -13,7 +13,7 @@
 
 	<!-- (2) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
 	<script>
-      var naverLogin = new naver.LoginWithNaverId({
+      const naverLogin = new naver.LoginWithNaverId({
         clientId: 'Qc5AuIfVqlnmCqi8oeYe',
         callbackUrl: 'http://localhost:8082/potatoMarket/user/naver_callback.html',
         isPopup: true,
@@ -27,7 +27,7 @@
       /* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
       window.addEventListener('load', function () {
         naverLogin.getLoginStatus(function (status) {
-          if (status) {
+          if (status) { 
             /* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
             const email = naverLogin.user.getEmail();
             const name = naverLogin.user.getName();

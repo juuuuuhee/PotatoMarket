@@ -10,6 +10,9 @@
 <body>
 	<%String nid = request.getParameter("n_id");
 	String nname = request.getParameter("n_name");
+	String kid = request.getParameter("k_id");
+	String kname = request.getParameter("k_name");
+	
 %>
 
 	<div class="wrap">
@@ -33,6 +36,8 @@
 							System.out.print(nid+": naver");							
 						%>
 						<input type="text" id="n_id" value='<%=nid%>' readonly>
+						<%}else if(kid != null){ %>
+							<input type="text" id="k_id" value='<%=kid %>' readonly>
 						<%}else{ %>
 						<input type="text" class="essential" id="id" placeholder="id"
 							name="id">
@@ -59,6 +64,8 @@
 							System.out.print(nname);
 						%>
 						<input type="text" id="n_name" value="<%=nname%>" readonly>
+						<%}else if(kname != null){%>
+							<input type="text" id="k_name" value="<%=kname%>" readonly>
 						<%}else{ %>
 						<input type="text" class="essential" placeholder="name" name="name"><br>
 						<%} %>
@@ -82,12 +89,13 @@
 							<option value="010">010</option>
 							<option value="010">011</option>
 							<option value="010">017</option>
-						</select> <span>-</span> <input type="number" class="essential"
-							placeholder="0000" name="contact_2" id="phone_2" pattern=".{3,4}"
-							title="전화번호를 3자리에서 4자리 입력해주세요"> <span>-</span> <input
-							type="number" class="essential" placeholder="0000"
-							name="contact_3" id="phone_3" pattern=".{4,4}"
-							title="전화번호를 4자리 입력해주세요"><br> <span class="check"></span>
+						</select>
+						<span>-</span>
+						<input type="number" class="essential phonePattern"  placeholder="0000" name="contact_2" id="phone_2">
+						<span>-</span>
+						<input type="number" class="essential phonePattern" placeholder="0000" name="contact_3" id="phone_3">
+							<br><span class="check"></span>
+						<span id="phone_check"></span>
 					</div>
 
 					<div class="title_submit">
