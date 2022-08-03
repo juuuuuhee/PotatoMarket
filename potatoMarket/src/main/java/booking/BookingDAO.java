@@ -21,10 +21,10 @@ private static BookingDAO instance = new BookingDAO();
 	private PreparedStatement pstmt = null;
 	
 	
-	// 판매 목록
+	// 구매 목록
 	public ArrayList<BookingDTO> getBookingList(int user_codeA){
 		ArrayList<BookingDTO> bookingList = new ArrayList<BookingDTO>();
-		String sql = "select * from booking where user_codeA = ?";
+		String sql = "select * from booking where user_codeB = ?";
 		conn = DbManager.getConnection("potatoMarket");
 		try {
 			pstmt=conn.prepareStatement(sql);
