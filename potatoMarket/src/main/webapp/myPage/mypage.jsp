@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: juhee
-  Date: 2022/07/26
-  Time: 4:57 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@page import="user.UserDTO"%>
 <%@page import="user.UserDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -31,9 +24,8 @@
 		%>
 		<div class="contents_wrap">
 			<div>
-				<a class="mydetail" id="name">이름 :<%=name %></a>
-				<a class="mydetail" id="id">아이디 : <%=id %></a>
-				<a class="mydetail" id="add">주소 : <%=add %></a>
+				<a class="mydetail" id="name">이름 :<%=name %></a> <a class="mydetail"
+					id="id">아이디 : <%=id %></a> <a class="mydetail" id="add">주소 : <%=add %></a>
 				<a class="mydetail" id="phone">전화 번호 : <%=ph %></a>
 			</div>
 			<button onclick="location='./profileUpdate'">내 정보 수정</button>

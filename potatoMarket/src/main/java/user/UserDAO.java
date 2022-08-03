@@ -211,7 +211,7 @@ public class UserDAO {
 			while (rs.next()) {
 				int ucode = rs.getInt(1);
 				String id = rs.getString(2);
-				// String pw = rs.getString(3);
+				String pw = rs.getString(3);
 				String name = rs.getString(4);
 				String add = rs.getString(5);
 				// String time = rs.getString(6);
@@ -219,7 +219,7 @@ public class UserDAO {
 				String phone = rs.getString(8);
 				
 				System.out.println(add);
-				UserDTO dto = new UserDTO(ucode, id, name, add, phone);
+				UserDTO dto = new UserDTO(ucode, id, pw, name, add, phone);
 				System.out.println(dto.getAddress());
 				return dto;
 			}
@@ -239,6 +239,41 @@ public class UserDAO {
 			// TODO: handle exception
 		}
 		return null;
+	}
+	
+	public boolean updateUserData(UserDTO userdto) {
+		String sql = "update users set user_pw =? ,user_address =?, user_phone =?"
+				+ " where user_code = ? ";
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userdto.getPw());
+			pstmt.setString(2,userdto.getAddress());
+			pstmt.setString(3, userdto.getPhone());
+			pstmt.setInt(4,userdto.getCode());
+			int chk =pstmt.executeUpdate();
+			System.out.println(chk);
+			if(chk!=0) {
+				System.out.println("변경");
+				return true;
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("실패");
+		}finally {
+
+		}
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return false;
+		
 	}
 
 }
