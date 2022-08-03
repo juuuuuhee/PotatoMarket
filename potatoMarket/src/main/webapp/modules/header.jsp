@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-	<link rel="stylesheet" href="./css/module.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<link rel="stylesheet" href="../css/module.css">
 </head>
 <%-- <% String log=(String) session.getAttribute("log"); %> --%>
 

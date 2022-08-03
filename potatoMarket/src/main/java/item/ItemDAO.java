@@ -26,7 +26,6 @@ public class ItemDAO {
 	private ResultSet rs = null;
 
 	public ArrayList<ItemDTO> getAllItemList() {
-
 		ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 		ItemDTO item;
 
@@ -53,12 +52,54 @@ public class ItemDAO {
 
 				item = new ItemDTO(item_code, booking_code, cate_code, item_price, item_seiling, user_code, item_title,
 						item_contents, item_pic, created_At, modified_At);
-
+				System.out.print(item.getCate_code()+"????");
 				itemList.add(item);
 			}
 			return itemList;
 		} catch (Exception e) {
 			System.out.println("?");
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public ItemDTO getItem(int itemcode) {
+		ItemDTO item = null;
+		conn = DbManager.getConnection("potatoMarket");
+		
+		try {
+			String sql = "select * from items where item_code = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, itemcode);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				itemcode = rs.getInt(1);
+				int booking_code = rs.getInt(2);
+				int user_code = rs.getInt(3);
+				String item_title = rs.getString(4);
+				String item_contents = rs.getString(5);
+				int item_price = rs.getInt(6);
+				Timestamp created_At = rs.getTimestamp(7);
+				Timestamp modified_At = rs.getTimestamp(8);
+				int item_seiling = rs.getInt(9);
+				String item_pic = rs.getString(10);
+				int cate_code = rs.getInt(11);
+				
+				item = new ItemDTO(itemcode, booking_code, cate_code, item_price, item_seiling, user_code, item_title,
+						item_contents, item_pic, created_At, modified_At);
+				}
+			
+			return item;
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {

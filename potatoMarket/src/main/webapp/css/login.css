@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.log_font_fir{
+	font-size: 28px;
+}
+
+#login_box {
+	display: flex;
+    margin: 10%;
+    background-color: #d8b57a;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log_font{
+	font-size: 18px;
+	color:black;
+}
+
+#essential{
+	color: red;
+}
+
+
+#bnt_login{
+	width:250px;
+	height: 40px;
+}
+
+.bnt_size{
+	width:120px;
+	height:40px;
+}

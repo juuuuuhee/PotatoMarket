@@ -104,4 +104,42 @@
 		<url-pattern>/profileUpdate</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>itemList</servlet-name>
+		<jsp-file>/item/itemlist.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>itemList</servlet-name>
+		<url-pattern>/itemList</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>itemView</servlet-name>
+		<jsp-file>/item/itemView.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>itemView</servlet-name>
+		<url-pattern>/itemView</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>itemUpdate</servlet-name>
+		<jsp-file>/item/itemUpdate.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>itemUpdate</servlet-name>
+		<url-pattern>/itemUpdate</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>itemWirte</servlet-name>
+		<jsp-file>/item/itemWirte.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>itemWirte</servlet-name>
+		<url-pattern>/itemWirte</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 </web-app>

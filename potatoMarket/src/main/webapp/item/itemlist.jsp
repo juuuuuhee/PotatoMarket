@@ -6,12 +6,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
+<link rel="stylesheet" href="./css/itemList.css">
 <title>Main</title>
 </head>
 <body>
 	<%
 	ArrayList<ItemDTO> list;
-
 	if (request.getParameter("keyword") == null) {
 		list = ItemDAO.getInstance().getAllItemList();
 	} else {
@@ -19,48 +19,52 @@
 		list = ItemDAO.getInstance().getSearchResult(keyword);
 	}
 	%>
-
 	<c:set var="itemList" value="<%=list%>" />
+	<div>
+		<%@include file="../modules/header.jsp"%>
+	</div>
 	<div class="wrap">
-		<div>
-			<%@include file="../modules/header.jsp"%>
-		</div>
 		<div class="contents_wrap">
-			<div class="ItemBorad">
+			<div class="cards_wrap">
 				<c:choose>
 					<c:when test="${!empty list}">
-						<table border="1">
-							<tr>
-								<th>글번호</th>
-								<th>작성자</th>
-								<th>제목</th>
-								<th>작성일</th>
-								<th>거래유무</th>
-							</tr>
-							<%
-							for (ItemDTO i : list) {
-							%>
-							<tr>
-								<th><%= i.getItem_code() %></th>
-								<th><%= UserDAO.getInstance().getUser(i.getUser_code()).getId() %></th>
-								<th><%= i.getItem_tilte() %></th>
-								<th><%= i.getItem_contents() %></th>
-								<th><%= i.getItem_seiling() %></th>
-							</tr>
-							<%
-							};
-							%>
-						</table>
+						<h3>해당 판매글이 존재하지 않습니다</h3>
 					</c:when>
 					<c:otherwise>
-						<h3>해당 판매글이 존재하지 않습니다</h3>
+						<%
+						for (ItemDTO i : list) {
+						%>
+						<div class="card-top">
+							<a href="./itemView?code=<%=i.getItem_code()%>">
+								<div class="card-photo">
+									<img id="img_size" src="<%=i.getItem_pic()%>">
+								</div>
+								<div id="item_contents">
+									<div><%=i.getItem_tilte() %></div>
+									<div><%=i.getItem_price() %></div>
+									<%
+									if(i.getItem_seiling() == 0){%>
+									<div>판매중</div>
+									<%}else if(i.getItem_seiling() == 1){%>
+									<div>예약중</div>
+									<%}else{%>
+									<div>판매완료</div>
+									<%
+									}
+									%>
+								</div>
+							</a>
+						</div>
+						<%
+						};
+						%>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
-		<div class="footer">
-			<%@include file="../modules/footer.jsp"%>
-		</div>
+	</div>
+	<div class="footer">
+		<%@include file="../modules/footer.jsp"%>
 	</div>
 </body>
 </html>
