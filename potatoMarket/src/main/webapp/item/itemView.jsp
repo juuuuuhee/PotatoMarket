@@ -1,19 +1,6 @@
-<<<<<<< HEAD
 <%@page import="item.ItemDTO"%>
 <%@page import="item.ItemDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-=======
-<%--
-  Created by IntelliJ IDEA.
-  User: juhee
-  Date: 2022/07/26
-  Time: 4:47 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@page import="user.UserDAO"%>
-<%@page import="user.UserDTO"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
->>>>>>> refs/remotes/origin/Lee2
 <html>
 <head>
 <title>Title</title>
