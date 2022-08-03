@@ -9,6 +9,7 @@
 <head>
 <title>Title</title>
 <link rel="stylesheet" href="css/orderdList.css">
+<link rel="stylesheet" href="css/mypage.css">
 </head>
 <body>
 	<%
@@ -25,10 +26,11 @@
 
 	<div class="contents_wrap">
 		<div>
-			<button onclick="location='./profileUpdate'">내 정보 수정</button>
-			<button onclick="location='./bookingList'">나의 예약 목록</button>
-			<button onclick="location='./favoList'">나의 찜 목록</button>
+			<button class="mypage" onclick="location='./profileUpdate'">내 정보 수정</button>
+			<button class="mypage" onclick="location='./bookingList'">나의 예약 목록</button>
+			<button class="mypage" onclick="location='./favoList'">나의 찜 목록</button>
 		</div>
+		<p class="title logo">나의 판매 목록</p>
 		<div class="orderds_wrap">
 			<%
 			for (int i = 0; i < list.size(); i++) {

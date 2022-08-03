@@ -91,7 +91,7 @@
 					<div class="title_submit">
 						<div class="form_submit">
 							<input type="submit" id="bnt" value="정보 수정"> 
-							<input type="button" onclick="location.href='./mypage?loginCode=<%=loginCode %>'" value="뒤로가기">
+							<input type="button" onclick="location.href='./myPage?loginCode=<%=loginCode %>'" value="뒤로가기">
 						</div>
 					</div>
 				</form>

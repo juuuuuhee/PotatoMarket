@@ -7,25 +7,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+	<link rel="stylesheet" href="css/orderdList.css">
+	<link rel="stylesheet" href="css/mypage.css">
+	<link rel="stylesheet" href="css/favolist.css">
     <title>Title</title>
 </head>
 <body>
-<div>
+	<div>
 		<%@include file="../modules/header.jsp"%>
     </div>
-<%
-//유저 코드 가져오기
-UserDTO loginUser = (UserDTO) session.getAttribute("log");
-int loginCode = loginUser.getCode();
-//arraylist로 저장
-FavoriteDAO fdao = FavoriteDAO.getInstance();
-ItemDAO idao = ItemDAO.getInstance();
-
-ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
-%>    
+	<%
+	//유저 코드 가져오기
+	UserDTO loginUser = (UserDTO) session.getAttribute("log");
+	int loginCode = loginUser.getCode();
+	//arraylist로 저장
+	FavoriteDAO fdao = FavoriteDAO.getInstance();
+	ItemDAO idao = ItemDAO.getInstance();
+	
+	ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
+	%>    
 
     <div class="contents_wrap">
-		<h1>관심 아이템</h1>
 		<%
 		for (int i = 0; i < list.size(); i++) {
 			FavoriteDTO favorite = list.get(i);
@@ -37,10 +39,11 @@ ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
 			int sellchk = item.getItem_seiling();
 		%>
 
-		<article>
 		<button class="mypage" onclick="location='./profileUpdate'">내 정보 수정</button>
 		<button class="mypage" onclick="location='./orderdList'">나의 판매 목록</button>
 		<button class="mypage" onclick="location='./bookingList'">나의 예약 목록</button>
+		<p class="title logo">관심 아이템</p>
+		<article>
 			<form id="favo<%=i + 1%>" method="post" action="./action">
 				<input type="hidden" name="command" value="delfavo">
 				<div>

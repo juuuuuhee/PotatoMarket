@@ -27,7 +27,7 @@
 
 
 	<div class="main">
-		<h1>채팅방 목록</h1>
+		<p class="logo title">채팅방 목록</p>
 		<div class="chatList">
 	<%	// 로그인 된 유저의 모든 채팅방을 불러온다
 		ArrayList<ChatRoomDTO> rooms = ChatRoomDAO.getInstance().bringAllChatRoom(loginCode);
