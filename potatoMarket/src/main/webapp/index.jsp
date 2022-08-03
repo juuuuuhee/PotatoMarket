@@ -17,9 +17,6 @@
 				<img src="./resource/indexDOCHAT.jpg">
 				<img src="./resource/indexDOMYINFO.jpg">
 			</div>
-			<div class="banner_image_sec">
-				<div></div>
-			</div>
 		</div>
 		<div class="footer">
 			<%@include file="modules/footer.jsp" %>
