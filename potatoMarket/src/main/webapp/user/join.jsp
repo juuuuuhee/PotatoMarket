@@ -8,12 +8,12 @@
 <title>Title</title>
 </head>
 <body>
-	<%String nid = request.getParameter("n_id");
+	<%
+	String nid = request.getParameter("n_id");
 	String nname = request.getParameter("n_name");
 	String kid = request.getParameter("k_id");
 	String kname = request.getParameter("k_name");
-	
-%>
+	%>
 
 	<div class="wrap">
 		<div>
@@ -31,20 +31,25 @@
 					<div class="input">
 						<label>ID</label><br>
 						<%
-						if(nid != null){	
-							nid = nid.substring(1, nid.length()-11);
-							System.out.print(nid+": naver");							
+						if (nid != null) {
+							nid = nid.substring(1, nid.length() - 11);
+							System.out.print(nid + ": naver");
 						%>
 						<input type="text" id="n_id" value='<%=nid%>' readonly>
-						<%}else if(kid != null){ %>
-							<input type="text" id="k_id" value='<%=kid %>' readonly>
-						<%}else{ %>
+						<%
+						} else if (kid != null) {
+						%>
+						<input type="text" id="k_id" value='<%=kid%>' readonly>
+						<%
+						} else {
+						%>
 						<input type="text" class="essential" id="id" placeholder="id"
 							name="id">
-						<%} %>
-						<br>
-						<span class="id_check"></span> <span class="check"></span> <span
-							id="msg_"></span>
+						<%
+						}
+						%>
+						<br> <span class="id_check"></span> <span class="check"></span>
+						<span id="msg_"></span>
 					</div>
 
 					<div class="input">
@@ -59,16 +64,25 @@
 					<div class="input">
 						<label>Name</label><br>
 						<%
-						if(nname != null){
-							nname = nname.substring(1, nname.length()-1);
+						if (nname != null) {
+							nname = nname.substring(1, nname.length() - 1);
 							System.out.print(nname);
 						%>
 						<input type="text" id="n_name" value="<%=nname%>" readonly>
-						<%}else if(kname != null){%>
-							<input type="text" id="k_name" value="<%=kname%>" readonly>
-						<%}else{ %>
-						<input type="text" class="essential" placeholder="name" name="name"><br>
-						<%} %>
+						<%
+						} else if (kname != null) {
+						kname = kname.substring(1, kname.length() - 1);
+						%>
+
+						<input type="text" id="k_name" value="<%=kname%>" readonly>
+						<%
+						} else {
+						%>
+						<input type="text" class="essential" placeholder="name"
+							name="name"><br>
+						<%
+						}
+						%>
 						<span class="check"></span>
 					</div>
 
@@ -89,13 +103,12 @@
 							<option value="010">010</option>
 							<option value="010">011</option>
 							<option value="010">017</option>
-						</select>
-						<span>-</span>
-						<input type="number" class="essential phonePattern"  placeholder="0000" name="contact_2" id="phone_2">
-						<span>-</span>
-						<input type="number" class="essential phonePattern" placeholder="0000" name="contact_3" id="phone_3">
-							<br><span class="check"></span>
-						<span id="phone_check"></span>
+						</select> <span>-</span> <input type="number"
+							class="essential phonePattern" placeholder="0000"
+							name="contact_2" id="phone_2"> <span>-</span> <input
+							type="number" class="essential phonePattern" placeholder="0000"
+							name="contact_3" id="phone_3"> <br> <span
+							class="check"></span> <span id="phone_check"></span>
 					</div>
 
 					<div class="title_submit">
@@ -114,15 +127,15 @@
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-    function find_address() {
-        new daum.Postcode({
-            oncomplete: function (data) {
-                $('#address_1').val(data.zonecode);
-                $('#address_2').val(data.address);
-            }
-        }).open();
-    }
-</script>
+		function find_address() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					$('#address_1').val(data.zonecode);
+					$('#address_2').val(data.address);
+				}
+			}).open();
+		}
+	</script>
 	<script src="script/validation.js"></script>
 </body>
 </html>
