@@ -23,7 +23,6 @@
 	<div>
 		<%@include file="../modules/header.jsp"%>
 	</div>
-	<div class="wrap">
 		<div class="contents_wrap">
 			<div class="cards_wrap">
 				<c:choose>
@@ -57,13 +56,12 @@
 							</a>
 						</div>
 						<%
-						};
+						}
 						%>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
-	</div>
 	<div class="footer">
 		<%@include file="../modules/footer.jsp"%>
 	</div>

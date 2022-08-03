@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import booking.BookingDTO;
-import user.UserDTO;
 import util.DbManager;
 
 public class ItemDAO {
@@ -178,8 +176,6 @@ public class ItemDAO {
 					String title = rs.getString(4);
 					String contents = rs.getString(5);
 					int price = rs.getInt(6);
-					Timestamp ctime = rs.getTimestamp(7);
-					Timestamp mtime = rs.getTimestamp(8);
 					int sellchk = rs.getInt(9);
 					String picture = rs.getString(10);
 					int catecode = rs.getInt(11);
@@ -190,38 +186,58 @@ public class ItemDAO {
 				}
 				
 			}catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
+			}finally {
+				try {
+					conn.close();
+					pstmt.close();
+					rs.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
 			}
 			return null;
 		}
-		// 판매 목록 부킹테이블 말고 아이템테이블에서 정보 가졍ㅘ야함
-		public ArrayList<ItemDTO> getOrderList(int user_codeA){
-			ArrayList<ItemDTO> bookingList = new ArrayList<ItemDTO>();
+		
+		// user가 판매하는 아이템 목록 메소드
+		public ArrayList<ItemDTO> getOrderList(int user_code){
+			ArrayList<ItemDTO> orderItemList = new ArrayList<ItemDTO>();
 			String sql = "select * from items where user_code = ?";
 			conn = DbManager.getConnection("potatoMarket");
 			try {
 				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, user_codeA);
+				pstmt.setInt(1, user_code);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
-					int item_code = rs.getInt(1);
-					int bookingcode = rs.getInt(2);
-					int user_code = rs.getInt(3);
-					int y = rs.getInt(4);
-					int ucodeA =rs.getInt(5);
-					int ucodeB = rs.getInt(6);
-					Timestamp created_at = rs.getTimestamp(7);
-					Timestamp modified_at = rs.getTimestamp(8);
+					int code = rs.getInt(1);
+					int bcode = rs.getInt(2);
+					int usercode = rs.getInt(3);
+					String title = rs.getString(4);
+					String contents = rs.getString(5);
+					int price = rs.getInt(6);
+					int sellchk = rs.getInt(9);
+					String picture = rs.getString(10);
+					int catecode = rs.getInt(11);
 					
-					
-					
-					
+					ItemDTO dto = new ItemDTO(code, bcode, usercode, title, contents, price, sellchk, picture, catecode);
+				
+					orderItemList.add(dto);
 				}
-				return bookingList;
+				return orderItemList;
 			}catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
+			}finally {
+				try {
+					conn.close();
+					pstmt.close();
+					rs.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
 			}
 			return null;
 		}
+		
+
 
 }

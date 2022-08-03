@@ -29,6 +29,7 @@
 					</div>
 					
 					<div>
+					
 					<h2 class="log_font">
 						비밀번호<span id="essential">*</span>
 					</h2>
@@ -38,7 +39,7 @@
 					
 					<div class="buttons">
 						<input class="bnt_size" type="submit" value="로그인">
-						<input class="bnt_size" type="button" value="회원가입" onclick="location.href='/join'">
+						<input class="bnt_size" type="button" value="회원가입" onclick="location.href='./join_page'">
 					</div>
 					
 					<div>
