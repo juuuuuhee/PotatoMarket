@@ -16,7 +16,7 @@ public class ChatHistoryDAO {
 
 	// 채팅방에 접속했을때 해당 채팅방에 채팅기록을 데이터베이스에서 가져와서 반환한다
 	public List<ChatHistroyDTO> bringHistroy(int chatRoom_code) {
-		List<ChatHistroyDTO> history = new ArrayList<>(); 
+		List<ChatHistroyDTO> history = new ArrayList<>();
 		conn = DbManager.getConnection("potatoMarket");
 		String sql = "select * from chatHistory where chatRoom_code = ?";
 		try {
@@ -46,10 +46,11 @@ public class ChatHistoryDAO {
 
 		return history;
 	}
-	
+
+	// 메세지를 보내면 데이터베이스에 채팅기록을 저장한다
 	public boolean saveChatHistory(ChatHistroyDTO chat) {
 		conn = DbManager.getConnection("potatoMarket");
-		String sql = "insert into chatHistory values (0, ? , ?, ?, sysdate(),sysdate())";
+		String sql = "insert into chatHistory values (0, ?, ?, ?, sysdate(), sysdate())";
 		boolean chk = false;
 		try {
 			pstmt = conn.prepareStatement(sql);
