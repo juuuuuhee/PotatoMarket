@@ -24,7 +24,7 @@
 	<div>
 		<%@include file="../modules/header.jsp"%>
 	</div>
-	<div  class="contents_detail">
+	<div class="contents_detail">
 		<div class="contents_wrap">
 			<div>
 				<div class="detail_img">

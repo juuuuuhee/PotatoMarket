@@ -35,7 +35,7 @@
 						for (ItemDTO i : list) {
 						%>
 						<div class="card-top">
-							<a href="./itemView?code=<%=i.getItem_code()%>">
+							<a class="img_href" href="./itemView?code=<%=i.getItem_code()%>">
 								<div class="card-photo">
 									<img id="img_size" src="<%=i.getItem_pic()%>">
 								</div>
@@ -49,6 +49,7 @@
 									<div>예약중</div>	
 									<%}else if(i.getItem_seiling() == 2){%>
 									<div>판매완료</div>
+					
 									<%
 									}
 									%>
