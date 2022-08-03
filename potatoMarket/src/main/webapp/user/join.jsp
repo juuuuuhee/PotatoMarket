@@ -9,10 +9,10 @@
 </head>
 <body>
 	<%
-	String nid = request.getParameter("n_id");
-	String nname = request.getParameter("n_name");
+	String nid = request.getParameter("id");
+	String nname = request.getParameter("name");
 	String kid = request.getParameter("k_id");
-	String kname = request.getParameter("k_name");
+	String kname = request.getParameter("name");
 	%>
 
 	<div class="wrap">
@@ -35,11 +35,11 @@
 							nid = nid.substring(1, nid.length() - 11);
 							System.out.print(nid + ": naver");
 						%>
-						<input type="text" id="n_id" value='<%=nid%>' readonly>
+						<input type="text" id="id" name="id" value='<%=nid%>' readonly>
 						<%
 						} else if (kid != null) {
 						%>
-						<input type="text" id="k_id" value='<%=kid%>' readonly>
+						<input type="text" id="k_id" name="k_id" value='<%=kid%>' readonly>
 						<%
 						} else {
 						%>
@@ -68,13 +68,13 @@
 							nname = nname.substring(1, nname.length() - 1);
 							System.out.print(nname);
 						%>
-						<input type="text" id="n_name" value="<%=nname%>" readonly>
+						<input type="text" id="name" value="<%=nname%>" readonly>
 						<%
 						} else if (kname != null) {
 						kname = kname.substring(1, kname.length() - 1);
 						%>
 
-						<input type="text" id="k_name" value="<%=kname%>" readonly>
+						<input type="text" id="name" name="name" value="<%=kname%>" readonly>
 						<%
 						} else {
 						%>

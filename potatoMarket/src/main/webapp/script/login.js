@@ -16,7 +16,7 @@ function kakaoLogin() {
 					//console.log(kakao_account)
 					console.log(typeof JSON.stringify(kakao_account.profile.nickname) + "여기야~~");
 
-					window.location.href = '/potatoMarket/join_page?k_id=' + JSON.stringify(res.id) + '&k_name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
+					window.location.href = '/potatoMarket/join_page?k_id=' + JSON.stringify(res.id) + '&name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
 
 				}
 			});
@@ -31,7 +31,7 @@ function kakaoLogin() {
 
 const naverLogin = new naver.LoginWithNaverId({
 	clientId: "Qc5AuIfVqlnmCqi8oeYe",
-	callbackUrl: "http://localhost:8082/potatoMarket/user/naver_callback.html",
+	callbackUrl: "http://localhost:8080/potatoMarket/user/naver_callback.html",
 	loginButton: {
 		color: "green",
 		type: 3,
