@@ -243,18 +243,18 @@ public class UserDAO {
 	
 	public boolean updateUserData(UserDTO userdto) {
 		String sql = "update users set user_pw =? ,user_address =?, user_phone =?"
-				+ ", modified_At =? where user_code = ? ";
+				+ " where user_code = ? ";
 		conn = DbManager.getConnection("potatoMarket");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, userdto.getPw());
 			pstmt.setString(2,userdto.getAddress());
 			pstmt.setString(3, userdto.getPhone());
-			pstmt.setTimestamp(4, userdto.getModifiedA());
-			pstmt.setInt(5,userdto.getCode());
-			boolean chk = pstmt.execute();
-			if(!chk) {
-				System.out.println("변경 성공");
+			pstmt.setInt(4,userdto.getCode());
+			int chk =pstmt.executeUpdate();
+			System.out.println(chk);
+			if(chk!=0) {
+				System.out.println("변경");
 				return true;
 			}
 		}catch (Exception e) {

@@ -19,6 +19,7 @@
 	String id = dto.getId();
 	String add = dto.getAddress();
 	String ph = dto.getPhone();
+	String pw = dto.getPw();
 	//010/1234/1234
 	String ph1 =ph.substring(3,7);
 	String ph2 =ph.substring(7);
@@ -26,7 +27,6 @@
 	System.out.println(ph2);
 	//우편번호/도로명
 	String address[] = add.split("/");
-	System.out.println(add);
 	System.out.println(address[0]);
 	System.out.println(address[1]);
 	
@@ -45,6 +45,7 @@
 
 				<form class="updateform" method="post" action="./action" >
 					<input type="hidden" name="command" value="update">
+					<input type="hidden" name="code" value="<%=loginCode%>">
 
 					<div class="input">
 						<label>ID</label><br> <input type="text" id="n_id"

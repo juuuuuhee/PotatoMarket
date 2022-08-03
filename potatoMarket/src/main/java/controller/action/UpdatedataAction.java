@@ -17,7 +17,8 @@ public class UpdatedataAction implements Action {
 		// TODO Auto-generated method stub
 		UserDAO dao = UserDAO.getInstance();
 		UserDTO user = null;
-		
+		String codeS = request.getParameter("code");
+		int code =Integer.parseInt(codeS);
 		String phone_1=request.getParameter("contact_1");
 		String phone_2=request.getParameter("contact_2");
 		String phone_3=request.getParameter("contact_3");
@@ -30,10 +31,11 @@ public class UpdatedataAction implements Action {
 		String address_1=request.getParameter("address_1");
 		String address_2=request.getParameter("address_2");
 		String address=address_1+"/"+address_2;
-		user = new UserDTO(id, password, name, address,phone );
+		user = new UserDTO(code,id, password, name, address,phone );
 		
 		String url ="";
 		if(dao.updateUserData(user)) {
+			System.out.println("성공");
 			url="./mypage";
 		}else {
 			System.out.println("실패");
