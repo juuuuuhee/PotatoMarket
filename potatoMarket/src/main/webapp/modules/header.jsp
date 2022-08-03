@@ -16,18 +16,19 @@
 		</a>
 	</div>
 	<div>
-		<form class="main_form">
+		<form class="main_form" action="./itemList">
 			<input type="text" placeholder="물품을 검색해보세요.">
 			<input id="button" type="submit" value="검색">
 		</form>
 	</div>
 	<div class="log_join">
 		<c:choose>
-			<c:when test="${empty log}">
+			<c:when test="${log == null}">
 				<button id="button" onclick="location.href='./login_page'">로그인</button>
 				<button id="button" onclick="location.href='./join_page'">회원가입</button>
 			</c:when>
 			<c:otherwise>
+					<c:out value="${sessionScope.log.getId()}님 환영합니다!"/>
 				<button id="button" onclick="location.href='./myPage'">마이페이지</button>
 				<button id="button" onclick="location.href='./chatList'">채팅</button>
 				<button id="button" onclick="location.href='./action?command=logout'">로그아웃</button>
