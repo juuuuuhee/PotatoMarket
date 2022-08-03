@@ -49,10 +49,8 @@ ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
  </article>
     <% }%>
     </div>
-    
    <div class="footer">
         <%@include file="../modules/footer.jsp"%>
     </div>
-
 </body>
 </html>

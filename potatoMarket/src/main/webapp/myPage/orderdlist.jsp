@@ -57,8 +57,8 @@ ArrayList<BookingDTO> list = bdao.getOrderList(loginCode);
 		}
 		%>
 			<button onclick="location='./mypage.jsp'">내 정보</button>
-			<button onclick="location='./bookinglist.jsp'">판매 목록</button>
-			<button onclick="location='./favolist.jsp'">찜 목록</button>
+			<button onclick="location='./bookinglist.jsp'">나의 예약 목록</button>
+			<button onclick="location='./favolist.jsp'">나의 찜 목록</button>
         </div>
         <div class="footer">
         <%@include file="../modules/footer.jsp"%>
