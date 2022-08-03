@@ -47,7 +47,7 @@
 									<div>판매중</div>
 									<%}else if(i.getItem_seiling() == 1){%>
 									<div>예약중</div>	
-									<%}else{%>
+									<%}else if(i.getItem_seiling() == 2){%>
 									<div>판매완료</div>
 									<%
 									}

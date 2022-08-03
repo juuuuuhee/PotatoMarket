@@ -39,7 +39,7 @@
 					<%=thisItem.getItem_contents()%>
 				</div>
 				<div class="detail_item_name">
-					<h2><%=thisItem.getItem_tilte()%></h2>
+					<%=thisItem.getItem_tilte()%>
 				</div>
 				<div class="detail_item_price">
 					<span>₩<%=thisItem.getItem_price()%></span>
@@ -48,7 +48,7 @@
 			<%
 			System.out.println(loginCode);
 			System.out.println(user_code);
-			if (user_code != loginCode && loginCode != -1) {
+			if (user_code != loginCode && loginCode != -1 && thisItem.getItem_seiling() != 2) {
 			%>
 		<form action="./action" >
 			<input type="hidden" name="command" value="intoChatRoom"> <input
