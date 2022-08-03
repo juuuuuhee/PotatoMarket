@@ -139,7 +139,5 @@
 		<servlet-name>itemWirte</servlet-name>
 		<url-pattern>/itemWirte</url-pattern>
 	</servlet-mapping>
-	
-	
-	
+
 </web-app>
