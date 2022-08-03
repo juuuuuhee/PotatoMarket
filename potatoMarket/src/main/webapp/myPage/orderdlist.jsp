@@ -5,6 +5,7 @@
   Time: 4:59 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="user.UserDTO"%>
 <%@page import="item.ItemDTO"%>
 <%@page import="booking.BookingDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,12 +18,13 @@
 </head>
 <body>
 <%
-int usercode = 1234;
+UserDTO loginUser = (UserDTO) session.getAttribute("log");
+int loginCode = loginUser.getCode();
 
 ItemDAO idao = ItemDAO.getInstance();
 BookingDAO bdao = BookingDAO.getInstance();
 
-ArrayList<BookingDTO> list = bdao.getOrderList(usercode);
+ArrayList<BookingDTO> list = bdao.getOrderList(loginCode);
 
 
 

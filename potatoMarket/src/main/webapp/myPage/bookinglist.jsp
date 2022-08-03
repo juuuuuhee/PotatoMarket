@@ -1,3 +1,4 @@
+<%@page import="user.UserDTO"%>
 <%@page import="item.ItemDTO"%>
 <%@page import="booking.BookingDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,12 +11,13 @@
 </head>
 <body>
 <%
-int usercode = 1234;
+UserDTO loginUser = (UserDTO) session.getAttribute("log");
+int loginCode = loginUser.getCode();
 
 ItemDAO idao = ItemDAO.getInstance();
 BookingDAO bdao = BookingDAO.getInstance();
 
-ArrayList<BookingDTO> list = bdao.getBookingList(usercode);
+ArrayList<BookingDTO> list = bdao.getBookingList(loginCode);
 
 %>
 <div class="wrap">
@@ -50,12 +52,12 @@ ArrayList<BookingDTO> list = bdao.getBookingList(usercode);
 
 
 
-</div>	
-			<button onclick="location='./mypage.jsp'">내 정보</button>
-			<button onclick="location='./orderdlist.jsp'">구매 목록</button>
-			<button onclick="location='./favolist.jsp'">찜 목록</button>
-			</div>
-   <div class="footer">
+	</div>	
+			<button onclick="location='./myPage'">내 정보</button>
+			<button onclick="location='./orderdList'">구매 목록</button>
+			<button onclick="location='./favoList'">찜 목록</button>
+	</div>
+  		<div class="footer">
 			<%@include file="../modules/footer.jsp"%>
 		</div>
 	</div>

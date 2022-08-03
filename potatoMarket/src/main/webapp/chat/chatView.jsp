@@ -70,7 +70,7 @@
 		let chatCode = '<%=chatRoom_code%>';
 		let logCode = '<%=loginCode%>';
 		
-		const socket = new WebSocket("ws://localhost:8080/potatoMarket/chatRoom");
+		const socket = new WebSocket("ws://localhost:8082/potatoMarket/chatRoom");
 		const chatBlock = document.getElementById("chatBlock");
 		let message = document.getElementById("textMessage");
 		  

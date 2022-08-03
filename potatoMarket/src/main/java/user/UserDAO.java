@@ -217,8 +217,10 @@ public class UserDAO {
 				// String time = rs.getString(6);
 				// String time2 = rs.getString(7);
 				String phone = rs.getString(8);
-
+				
+				System.out.println(add);
 				UserDTO dto = new UserDTO(ucode, id, name, add, phone);
+				System.out.println(dto.getAddress());
 				return dto;
 			}
 

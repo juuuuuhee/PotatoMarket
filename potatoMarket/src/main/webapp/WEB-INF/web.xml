@@ -50,7 +50,7 @@
 		<url-pattern>/chatView</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>chatList</servlet-name>
 		<jsp-file>/chat/chatList.jsp</jsp-file>
 	</servlet>
@@ -58,5 +58,50 @@
 		<servlet-name>chatList</servlet-name>
 		<url-pattern>/chatList</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>myPage</servlet-name>
+		<jsp-file>/myPage/mypage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>myPage</servlet-name>
+		<url-pattern>/myPage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>bookingList</servlet-name>
+		<jsp-file>/myPage/bookinglist.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>bookingList</servlet-name>
+		<url-pattern>/bookingList</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>orderdList</servlet-name>
+		<jsp-file>/myPage/orderdlist.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>orderdList</servlet-name>
+		<url-pattern>/orderdList</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>favoList</servlet-name>
+		<jsp-file>/myPage/favolist.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>favoList</servlet-name>
+		<url-pattern>/favoList</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>profileUpdate</servlet-name>
+		<jsp-file>/myPage/profileUpdate.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profileUpdate</servlet-name>
+		<url-pattern>/profileUpdate</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

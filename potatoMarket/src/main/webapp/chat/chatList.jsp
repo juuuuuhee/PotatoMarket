@@ -41,7 +41,7 @@
 			int item_code = room.getItem_code();
 			
 			// 아이템 정보 가져오기
-			ItemDTO itemInfo = ItemDAO.getInstance().getItem(item_code);
+			ItemDTO itemInfo = ItemDAO.getInstance().getdata(item_code);
 			String item_title = itemInfo.getItem_tilte();
 			
 			// 채팅 상대 정보 가져오기

@@ -1,4 +1,5 @@
 
+<%@page import="user.UserDTO"%>
 <%@page import="item.ItemDTO"%>
 <%@page import="favo.FavoriteDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,12 +16,13 @@
     </div>
 <%
 //유저 코드 가져오기
-int usercode = 1234;
+UserDTO loginUser = (UserDTO) session.getAttribute("log");
+int loginCode = loginUser.getCode();
 //arraylist로 저장
 FavoriteDAO fdao = FavoriteDAO.getInstance();
 ItemDAO idao = ItemDAO.getInstance();
 
-ArrayList<FavoriteDTO> list = fdao.getFavoData(usercode);
+ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
 %>    
 
     <div>
