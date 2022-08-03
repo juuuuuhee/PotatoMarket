@@ -1,4 +1,3 @@
-
 <%@page import="user.UserDTO"%>
 <%@page import="item.ItemDTO"%>
 <%@page import="favo.FavoriteDTO"%>
