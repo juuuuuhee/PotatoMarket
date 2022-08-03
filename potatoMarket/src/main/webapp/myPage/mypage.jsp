@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
+<link rel="stylesheet" href="./css/mypage.css">
 <title>Title</title>
 </head>
 <body>
@@ -23,15 +24,16 @@
 		String ph = dto.getPhone();
 		%>
 		<div class="contents_wrap">
-			<div>
-				<a class="mydetail" id="name">이름 :<%=name %></a> <a class="mydetail"
-					id="id">아이디 : <%=id %></a> <a class="mydetail" id="add">주소 : <%=add %></a>
+			<div class="pagedetail">
+				<a class="mydetail" id="name">이름 :<%=name %></a>
+				<a class="mydetail"id="id">아이디 : <%=id %></a> 
+				<a class="mydetail" id="add">주소 : <%=add %></a>
 				<a class="mydetail" id="phone">전화 번호 : <%=ph %></a>
 			</div>
-			<button onclick="location='./profileUpdate'">내 정보 수정</button>
-			<button onclick="location='./bookingList'">판매 목록</button>
-			<button onclick="location='./orderdList'">구매 목록</button>
-			<button onclick="location='./favoList'">관심 카테고리</button>
+			<button class="mypage" onclick="location='./profileUpdate'">내 정보 수정</button>
+			<button class="mypage" onclick="location='./bookingList'">판매 목록</button>
+			<button class="mypage" onclick="location='./orderdList'">구매 목록</button>
+			<button class="mypage" onclick="location='./favoList'">관심 카테고리</button>
 		</div>
 		<div class="footer">
 			<%@include file="../modules/footer.jsp"%>

@@ -37,7 +37,8 @@ ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
     	%>
  
  <article>
- <form id="favo<%=i+1 %>" method="post" action=""> 
+ <form id="favo<%=i+1 %>" method="post" action="./action"> 
+ <input type="hidden" name="command" value="delfavo">
  <div><img src="<%=pic%>"></div>
  <div><%= title %></div>
  <div><%=price %>원</div>
