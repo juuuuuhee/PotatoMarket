@@ -245,4 +245,37 @@ public class ChatRoomDAO {
 
 	}
 
+	// 채팅방 코드를 이용해서 채팅방 데이터를 불러온다
+	public ChatRoomDTO getData(int chatRoom_code) {
+		ChatRoomDTO chatRoom = null;
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			String sql1 = "select * from chatRoom where chat_code = ?";
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setInt(1, chatRoom_code);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				int chat_code = rs.getInt(1);
+				int seller_code = rs.getInt(2);
+				int buyer_code = rs.getInt(3);
+				int item_code = rs.getInt(4);
+				
+				chatRoom = new ChatRoomDTO(chat_code, seller_code, buyer_code, item_code);
+			}
+
+			System.out.println("ChatRoomDTO getData - 채팅방 반환 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("ChatRoomDTO getData - 채팅방 반환 실패");
+
+		} finally {
+			rs = null;
+			pstmt = null;
+			conn = null;
+		}
+
+		return chatRoom;
+		
+	}
 }

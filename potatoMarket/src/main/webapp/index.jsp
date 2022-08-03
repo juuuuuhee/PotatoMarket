@@ -12,10 +12,10 @@
 		</div>
 		<div class="contents_wrap">
 			<div class="banner_image_fir">
-				<img src="./resource/login.jpg" >
-				<img src="./resource/mGc6nFyZYK.jpg">
-				<img src="./resource/TII7rPP24V.jpg">
-				<img src="./resource/aXksAxpD4D.jpg">
+				<img src="./resource/indexDOLOGIN.jpg" >
+				<img src="./resource/indexDOSEARCH.jpg">
+				<img src="./resource/indexDOCHAT.jpg">
+				<img src="./resource/indexDOMYINFO.jpg">
 			</div>
 			<div class="banner_image_sec">
 				<div></div>

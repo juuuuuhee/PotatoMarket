@@ -14,6 +14,7 @@
 		<a class="log" href="index.jsp">
 			<img src="resource/potato.png" width="60px" height="60px">
 		</a>
+		<a href="index.jsp"><p class="logo">감자마켓</p></a>
 	</div>
 	<div>
 		<form class="main_form" action="./itemList">

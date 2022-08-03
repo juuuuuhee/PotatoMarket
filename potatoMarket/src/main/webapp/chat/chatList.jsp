@@ -52,11 +52,11 @@
 			<a href="./chatView?chatRoom_code=<%=chat_code%>">
 				<div class="chatBlock">
 					<p class="itemTitle">
-						<h1>제목 : <%=item_title %></h1>
+						<h1><%=item_title %></h1>
 					</p>
 					<br>
 					<p class="userInfo">
-						유저 아이디 : <%=userId %>
+						상대ID : <%=userId %>
 					</p>
 				</div>
 			</a>
