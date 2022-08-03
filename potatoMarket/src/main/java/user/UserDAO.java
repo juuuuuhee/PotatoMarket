@@ -35,7 +35,7 @@ public class UserDAO {
 		try {
 			userDto.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-			String sql = "insert into users values(?,?,?,?,?,?,?)";
+			String sql = "insert into users(user_code,user_id,user_pw,user_name, user_address,created_At,user_phone) values(?,?,?,?,?,?,?)";
 			this.pstmt = conn.prepareStatement(sql);
 			// code, id, pw, name, add, create, modifi, phone
 			pstmt.setInt(1, userDto.getCode());
@@ -44,7 +44,7 @@ public class UserDAO {
 			pstmt.setString(4, userDto.getName());
 			pstmt.setString(5, userDto.getAddress());
 			pstmt.setTimestamp(6, userDto.getCreatedAt());
-			pstmt.setString(8, userDto.getPhone());
+			pstmt.setString(7, userDto.getPhone());
 
 			this.pstmt.execute();
 			System.out.println("joinMember complite");
@@ -66,7 +66,7 @@ public class UserDAO {
 	}
 
 	public int userCode() {
-		conn = DbManager.getConnection("potatoMarket"); // ssm db에 접속
+		conn = DbManager.getConnection("potatoMarket");
 		int code = 0;
 		try {
 			String sql = "select * from users where user_code = ?";
@@ -116,7 +116,7 @@ public class UserDAO {
 				String phone = rs.getString(8);
 
 				user = new UserDTO(user_code, id, password, name, address, phone);
-
+				System.out.println(user);
 				log = user_code;
 				return user;
 			}
@@ -197,7 +197,10 @@ public class UserDAO {
 		return id;
 	}
 
-	// 유저의 정보 가져오기(mypage)
+
+	
+	//유저의 정보 가져오기(mypage)
+
 	public UserDTO getUserData(int code) {
 		String sql = "select * from users where user_code =?";
 		conn = DbManager.getConnection("potatoMarket");

@@ -32,14 +32,14 @@ String ph = dto.getPhone();
 
  <div class="pagedetail"> 
         <div style="text-align : center;">
-		</div>
+		
 			<a class="mydetail" id="name">이름 :<%=name %>  </a>
 			<a class="mydetail" id="id">아이디 : <%=id %></a>
 			<a class="mydetail" id="add">주소 : <%=add %> </a>
 			<a class="mydetail" id="phone">전화 번호 : <%=ph %> </a>
-			
+			</div>
 			<form method="post" action="./profileUpdate.jsp">
-				<input type="submit" value="비밀번호 변경" class="mydetail" id="changePw" >
+				<input type="submit" value="정보 변경" class="mydetail" id="changePw" >
 			</form>
 			<button onclick="location='./bookinglist.jsp'">판매 목록</button>
 			<button onclick="location='./orderdlist.jsp'">구매 목록</button>
