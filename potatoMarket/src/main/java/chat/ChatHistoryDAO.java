@@ -46,10 +46,11 @@ public class ChatHistoryDAO {
 
 		return history;
 	}
-	
+
+	// 메세지를 보내면 데이터베이스에 채팅기록을 저장한다
 	public boolean saveChatHistory(ChatHistroyDTO chat) {
 		conn = DbManager.getConnection("potatoMarket");
-		String sql = "insert into chatHistory values (0, ? , ?, ?, sysdate(),sysdate())";
+		String sql = "insert into chatHistory values (0, ?, ?, ?, sysdate(), sysdate())";
 		boolean chk = false;
 		try {
 			pstmt = conn.prepareStatement(sql);

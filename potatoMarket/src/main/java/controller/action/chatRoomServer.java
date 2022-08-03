@@ -36,6 +36,7 @@ public class chatRoomServer {
 		int chatRoom_code;
 	}
 
+	// 소켓이 열렸을때
 	@OnOpen
 	// 새로운 유저가 서버를 열었을때
 	public void handleOpen(Session userSocket) {
@@ -46,6 +47,7 @@ public class chatRoomServer {
 
 	}
 
+	// 메세지를 서버가 받았을때
 	@OnMessage
 	// '서버'가 해당 유저로부터 메세지를 받았을때? 이게 맞다
 	// '유저'가 서버로부터 메세지를 받았을때? 이건 틀림
@@ -188,6 +190,7 @@ public class chatRoomServer {
 		return null;
 	}
 
+	// 소켓이 닫혔을때
 	@OnClose
 	// 해당 유저가 소켓을 닫았을때
 	public void handleClose(Session userSocket) {
