@@ -104,4 +104,12 @@
 		<url-pattern>/profileUpdate</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>itemView</servlet-name>
+		<jsp-file>/item/itemView.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>itemView</servlet-name>
+		<url-pattern>/itemView</url-pattern>
+	</servlet-mapping>
 </web-app>

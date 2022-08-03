@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Random;
 
+import item.ItemDAO;
+import item.ItemDTO;
 import util.DbManager;
 
 public class ChatRoomDAO {
@@ -105,7 +108,7 @@ public class ChatRoomDAO {
 			pstmt.setInt(1, userCode);
 			pstmt.setInt(2, userCode);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				System.out.println("한번");
 				int chat_code = rs.getInt(1);
@@ -129,6 +132,117 @@ public class ChatRoomDAO {
 		}
 		System.out.println(rooms.size());
 		return rooms;
+	}
+
+	// 채팅방 코드를 반환시킨다
+	// 만약 처음 대화를 나누는 상대라면 랜덤한 채팅방코드를 반환한다
+	// 만약 이미 대화를 나눈 상대라면 해당 채팅방코드를 반환한다
+	public int getChatRoomCode(int userCode, int itemCode) {
+		int chatRoomCode = -1;
+
+		// 해당 아이템 판매자 코드를 얻는다
+		ItemDTO item = ItemDAO.getInstance().getdata(itemCode);
+		int sellerCode = item.getUser_code();
+
+		chatRoomCode = findChatRoomCode(userCode, sellerCode, itemCode);
+		if (chatRoomCode == -1) {
+			System.out.println("처음으로 대화하는 상대입니다");
+			chatRoomCode = rChatRoomCode();
+			makeChatRoom(chatRoomCode, userCode, sellerCode, itemCode);
+		} else {
+			System.out.println("이미 대화를 나눈 상대입니다");
+		}
+
+		return chatRoomCode;
+	}
+
+	private void makeChatRoom(int chatRoomCode, int userCode, int sellerCode, int itemCode) {
+		String sql = "insert into chatRoom values (?, ?, ?, ?, sysdate(), sysdate())";
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, chatRoomCode);
+			pstmt.setInt(2, sellerCode);
+			pstmt.setInt(3, userCode);
+			pstmt.setInt(4, itemCode);
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("랜덤한 코드로 채팅방 생성 성공");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("랜덤한 코드로 채팅방 생성 성공");
+		} finally {
+			rs = null;
+			pstmt = null;
+			conn = null;
+		}
+
+	}
+
+	// 구매자코드, 판매자코드, 아이템 코드 세가지를 조합해서 채팅방이 존재하는지,
+	// 존재하면 해당 채팅방코드를 반환한다
+	private int findChatRoomCode(int userCode, int sellerCode, int itemCode) {
+		int chatRoomCode = -1;
+
+		String sql = "select * from chatRoom where seller_code = ? and buyer_code = ? and item_code = ?";
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sellerCode);
+			pstmt.setInt(2, userCode);
+			pstmt.setInt(3, itemCode);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("채팅코드가 발견되었습니다");
+				chatRoomCode = rs.getInt(1);
+			} else {
+				System.out.println("발견된 코딩값이 없습니다");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			rs = null;
+			pstmt = null;
+			conn = null;
+		}
+
+		return chatRoomCode;
+	}
+
+	// 채팅하기를 눌렀을때 랜덤한 4자리 채팅코드를 만든다
+	private int rChatRoomCode() {
+		int rCode = -1;
+		Random rand = new Random();
+		String sql = "select * from chatRoom where chat_code = ?";
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			while (true) {
+				rCode = rand.nextInt(8999) + 1000;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, rCode);
+				int cnt = pstmt.executeUpdate();
+				// 중복된 코드가 없다면 해당 코드를 가진채로 반환한다
+				if (cnt == 0) {
+					break;
+				}
+			}
+
+			System.out.println("rChatRoomCode - 랜덤채팅코드 반환 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("rChatRoomCode - 랜덤채팅코드 반환 실패");
+
+		} finally {
+			rs = null;
+			pstmt = null;
+			conn = null;
+		}
+
+		return rCode;
+
 	}
 
 }

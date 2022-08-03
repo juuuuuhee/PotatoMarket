@@ -28,7 +28,7 @@
 		<div class="contents_wrap">
 			<div class="ItemBorad">
 				<c:choose>
-					<c:when test="${!empty list}">
+					<c:when test="${empty list}">
 						<table border="1">
 							<tr>
 								<th>글번호</th>
