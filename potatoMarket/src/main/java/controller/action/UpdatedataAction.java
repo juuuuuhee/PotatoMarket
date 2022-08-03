@@ -36,7 +36,7 @@ public class UpdatedataAction implements Action {
 		String url ="";
 		if(dao.updateUserData(user)) {
 			System.out.println("성공");
-			url="./mypage";
+			url="./myPage";
 		}else {
 			System.out.println("실패");
 			url="./profileUpdate";

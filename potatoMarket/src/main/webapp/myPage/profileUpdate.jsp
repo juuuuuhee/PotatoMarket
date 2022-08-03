@@ -7,11 +7,10 @@
 <title>Title</title>
 </head>
 <body>
-	<%String nid = request.getParameter("n_id");
-	String nname = request.getParameter("n_name");
+	<%
 	// 로그인한 유저 코드
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");
-		int loginCode = loginUser.getCode();
+	int loginCode = loginUser.getCode();
 	// 정보 가져오기
 	UserDAO dao = UserDAO.getInstance();
 	UserDTO dto = dao.getUserData(loginCode);
@@ -23,13 +22,9 @@
 	//010/1234/1234
 	String ph1 =ph.substring(3,7);
 	String ph2 =ph.substring(7);
-	System.out.println(ph1);
-	System.out.println(ph2);
+	
 	//우편번호/도로명
 	String address[] = add.split("/");
-	System.out.println(address[0]);
-	System.out.println(address[1]);
-	
 
 	
 %>

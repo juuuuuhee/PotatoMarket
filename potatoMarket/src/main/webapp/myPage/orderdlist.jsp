@@ -11,13 +11,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="booking.BookingDAO"%>
 <%@page import="item.ItemDAO"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-    <title>Title</title>
+<title>Title</title>
 </head>
 <body>
-<%
+	<%
 UserDTO loginUser = (UserDTO) session.getAttribute("log");
 int loginCode = loginUser.getCode();
 
@@ -29,13 +29,15 @@ ArrayList<BookingDTO> list = bdao.getOrderList(loginCode);
 
 
 %>
-<div>
+	<div>
 		<%@include file="../modules/header.jsp"%>
-    </div>
+	</div>
 
- <div class="pagedetail"> 
-        <div style="text-align : center;">
-		</div>
+	<div class="contents_wrap">
+		<button onclick="location='./profileUpdate'">내 정보 수정</button>
+		<button onclick="location='./bookingList'">나의 예약 목록</button>
+		<button onclick="location='./favoList'">나의 찜 목록</button>
+		<div style="text-align: center;"></div>
 		<%for(int i =0; i<list.size(); i++){
 			BookingDTO bdto = list.get(i);
 			ItemDTO item = idao.getdata(bdto.getItem_code());
@@ -46,23 +48,22 @@ ArrayList<BookingDTO> list = bdao.getOrderList(loginCode);
 			int sellchk = item.getItem_seiling();
 			
 			%>
-		<article onclick="" >
-		<div id="pic"><img src="<%=pic %>"></div>
-		<div><%=title %></div>
-		<div><%=price %></div>
-		<div><%=sellchk %></div>
-		
+		<article onclick="">
+			<div id="pic">
+				<img src="<%=pic %>">
+			</div>
+			<div><%=title %></div>
+			<div><%=price %></div>
+			<div><%=sellchk %></div>
+
 		</article>
 		<% 
 		}
 		%>
-			<button onclick="location='./mypage.jsp'">내 정보</button>
-			<button onclick="location='./bookinglist.jsp'">판매 목록</button>
-			<button onclick="location='./favolist.jsp'">찜 목록</button>
-        </div>
-        <div class="footer">
-        <%@include file="../modules/footer.jsp"%>
-    </div>
+	</div>
+	<div class="footer">
+		<%@include file="../modules/footer.jsp"%>
+	</div>
 
 
 </body>

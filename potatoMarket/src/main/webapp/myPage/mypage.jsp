@@ -31,9 +31,10 @@
 				<a class="mydetail" id="phone">전화 번호 : <%=ph %></a>
 			</div>
 			<button class="mypage" onclick="location='./profileUpdate'">내 정보 수정</button>
-			<button class="mypage" onclick="location='./orderdList'">판매 목록</button>
-			<button class="mypage" onclick="location='./bookingList'">구매 목록</button>
-			<button class="mypage" onclick="location='./favoList'">관심 카테고리</button>
+			<button class="mypage" onclick="location='./orderdList'">나의 판매 목록</button>
+			<button class="mypage" onclick="location='./bookingList'">나의 예약 목록</button>
+			<button class="mypage" onclick="location='./favoList'">나의 찜 목록</button>
+
 		</div>
 		<div class="footer">
 			<%@include file="../modules/footer.jsp"%>
