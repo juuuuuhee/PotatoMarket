@@ -1,3 +1,7 @@
+<%@page import="user.UserDAO"%>
+<%@page import="chat.ChatRoomDTO"%>
+<%@page import="item.ItemDTO"%>
+<%@page import="item.ItemDAO"%>
 <%@page import="chat.ChatRoomDAO"%>
 <%@page import="user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -22,22 +26,31 @@
 	// session에 저장된 값을 읽어온다
 	int chatRoom_code = Integer.parseInt((String) session.getAttribute("chatRoom_code"));
 	System.out.println("chatRoom_code : " + chatRoom_code);
-
+	
+	// 채팅방 코드를 이용해서 아이템 코드를 불러온다. '상품으로' 버튼에 사용된다
+	ChatRoomDTO chatRoomInfo = ChatRoomDAO.getInstance().getData(chatRoom_code);
+	
 	// session에 저장된 로그인된 유저 정보를 가져온다
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");
 	int loginCode = loginUser.getCode();
 	System.out.println("loginCode : " + loginCode);
 
+	// 대화 상대방 이름을 뽑아서 상단에 표시한다
 	// 채팅 상대방의 정보(코드)를 가져온다
 	int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chatRoom_code, loginCode);
+	UserDTO partnerDTO = UserDAO.getInstance().getUserData(partnerCode);
+
 	%>
 	<jsp:include page="/modules/header.jsp"></jsp:include>
 	
 	<main>
 		<br>
 		<div id=chatRoom_name>
-			<h1>채팅방</h1> 
-			<input type="button" value="뒤로가기" onclick="location.href=`./chatList`">
+			<h1><%=partnerDTO.getId() %>님과의 채팅방</h1> 
+			<div>
+				<input type="button" value="상품으로" onclick="location.href='./itemView?code=<%=chatRoomInfo.getItem_code()%>'">
+				<input type="button" value="뒤로가기" onclick="location.href=`./chatList`">
+			</div>
 		</div>
 		<br>
 		<!--  채팅 영역 -->

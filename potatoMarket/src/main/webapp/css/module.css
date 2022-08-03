@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
+	;
+
 * {
 	margin: 0px;
 	padding: 0px;
-		text-decoration: none;
-    color: inherit;
+	text-decoration: none;
+	color: inherit;
+}
+
+p.logo {
+	font-family: 'Jua', sans-serif;
+	font-size: xx-large;
 }
 
 .wrap {
@@ -19,14 +27,14 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	font-size:20px;
+	font-size: 20px;
 }
 
-.potato_icon{
-margin-left: 20px;
+.potato_icon {
+	margin-left: 20px;
 }
 
-.main_form input[type="text" i]{
+.main_form input[type="text" i] {
 	width: 300px;
 	height: 40px;
 }
@@ -41,13 +49,13 @@ margin-left: 20px;
 	height: 40px;
 }
 
-.log_join{
+.log_join {
 	margin-right: 20px;
 }
 
 .contents_wrap {
 	margin-bottom: 50px;
-    min-height: 100vh;
+	min-height: 100vh;
 }
 
 .footer {
@@ -63,4 +71,9 @@ margin-left: 20px;
 	flex-direction: column;
 	height: 200px;
 	justify-content: center;
+}
+
+.potato_icon {
+	display: flex;
+	align-items: center;
 }

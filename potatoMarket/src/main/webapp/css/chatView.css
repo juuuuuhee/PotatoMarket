@@ -92,5 +92,6 @@ main {
 
 input[type="button"] {
 	width: 8vw;
+	height: 50px;
 	background-color: #d8b57a;
 }

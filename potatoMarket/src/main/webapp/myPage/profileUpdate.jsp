@@ -7,8 +7,7 @@
 <title>Title</title>
 </head>
 <body>
-	<%String nid = request.getParameter("n_id");
-	String nname = request.getParameter("n_name");
+	<%
 	// 로그인한 유저 코드
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");
 		int loginCode = loginUser.getCode();
