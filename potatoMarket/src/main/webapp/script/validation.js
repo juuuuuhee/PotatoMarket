@@ -6,7 +6,7 @@ $('#id').change(e => {
 	console.log(check);
 	$.ajax({
 
-		url: 'http://localhost:8082/potatoMarket/ajaxCon?id=' + check,
+		url: 'http://localhost:8080/potatoMarket/ajaxCon?id=' + check,
 		method: "POST",
 
 		success: function(data) {
@@ -14,14 +14,14 @@ $('#id').change(e => {
 			let idPattern = /^[A-Za-z0-9_\-]{5,20}$/;
 
 			if (!idPattern.test($('#id').val()) && $('#id').val() !== "") {
-				$('.id_check').html("5~20자 영문 대,소문자 숫자를 사용하세요<br>특수문자 사용불가");
+				$('.id_check').html("5~20자 영문 대,소문자 숫자만 사용가능합니다.<br>특수문자,한글 사용불가");
 				$('.id_check').css('color', 'red')
 				$('#msg_').html("");
 			} else {
 				$('.id_check').html("");
+				
 				if (data.check == 1 && $('#id').val() !== "") {
 					$('#msg_').css('color', '#26652e');
-
 					$('#msg_').html("사용 가능한 아이디 입니다.");
 				} else if (data.check == 2 && $('#id').val() !=="") {
 					$('#msg_').css('color', 'red')

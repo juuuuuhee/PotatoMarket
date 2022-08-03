@@ -43,8 +43,7 @@
 						<%
 						} else {
 						%>
-						<input type="text" class="essential" id="id" placeholder="id"
-							name="id">
+						<input type="text" class="essential" id="id" name="id" placeholder="id">
 						<%
 						}
 						%>
