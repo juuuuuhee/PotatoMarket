@@ -3,7 +3,7 @@
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<link rel="stylesheet" href="../css/module.css">
+	<link rel="stylesheet" href="./css/module.css">
 </head>
 <%-- <% String log=(String) session.getAttribute("log"); %> --%>
 

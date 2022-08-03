@@ -19,7 +19,7 @@ p.logo {
 }
 
 .header {
-	height: 100px;
+	height: 18vh;
 	width: 100%;
 	display: flex;
 	border-bottom: double #1d1d1d;
@@ -68,12 +68,25 @@ p.logo {
 
 .project {
 	display: flex;
-	flex-direction: column;
-	height: 200px;
-	justify-content: center;
+    flex-direction: column;
+    height: 37vh;
+    justify-content: center;
 }
 
 .potato_icon {
 	display: flex;
 	align-items: center;
+}
+
+#project_font{
+	font-size:20px;
+}
+
+#member{
+	font-size:17px;
+	font-weight:bold;
+}
+
+#part{
+	font-weight:bold;
 }
