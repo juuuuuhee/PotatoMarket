@@ -197,44 +197,46 @@ public class UserDAO {
 		return id;
 	}
 
+
 	
 	//유저의 정보 가져오기(mypage)
+
 	public UserDTO getUserData(int code) {
 		String sql = "select * from users where user_code =?";
 		conn = DbManager.getConnection("potatoMarket");
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, code);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				int ucode = rs.getInt(1);
 				String id = rs.getString(2);
-				//String pw = rs.getString(3);
+				// String pw = rs.getString(3);
 				String name = rs.getString(4);
 				String add = rs.getString(5);
-				//String time = rs.getString(6);
-				//String time2 = rs.getString(7);
+				// String time = rs.getString(6);
+				// String time2 = rs.getString(7);
 				String phone = rs.getString(8);
-				
-				UserDTO dto = new UserDTO(ucode, id, name,add,phone);
+
+				UserDTO dto = new UserDTO(ucode, id, name, add, phone);
 				return dto;
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			System.out.println("실패");
+		} finally {
+
 		}
-		finally {
-			
-		}try {
+		try {
 			conn.close();
 			pstmt.close();
 			rs.close();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return null;
 	}
-	
+
 }

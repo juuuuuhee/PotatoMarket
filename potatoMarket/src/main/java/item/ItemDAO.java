@@ -1,3 +1,4 @@
+
 package item;
 
 import java.sql.Connection;
@@ -120,6 +121,7 @@ public class ItemDAO {
 		return null;
 	}
 	
+<<<<<<< HEAD
 	// 아이템 코드를 이용해서 해당 아이템 정보 반환
 	public ItemDTO getItem(int itemCode) {
 		ItemDTO item = null;
@@ -167,5 +169,38 @@ public class ItemDAO {
 		
 		
 	}
+=======
+	// mypage 찜 아이템 보이기
+		public ItemDTO getdata(int itemcode) {
+			String sql = "select * from items where item_code = ?";
+			try {
+				conn=DbManager.getConnection("potatoMarket");
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, itemcode);
+				rs= pstmt.executeQuery();
+				while(rs.next()) {
+					int code = rs.getInt(1);
+					int bcode = rs.getInt(2);
+					int usercode = rs.getInt(3);
+					String title = rs.getString(4);
+					String contents = rs.getString(5);
+					int price = rs.getInt(6);
+					Timestamp ctime = rs.getTimestamp(7);
+					Timestamp mtime = rs.getTimestamp(8);
+					int sellchk = rs.getInt(9);
+					String picture = rs.getString(10);
+					int catecode = rs.getInt(11);
+					
+					ItemDTO dto = new ItemDTO(code, bcode, usercode, title, contents, price, sellchk, picture, catecode);
+					
+					return dto;
+				}
+				
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			return null;
+		}
+>>>>>>> refs/remotes/origin/#4_hyung
 
 }

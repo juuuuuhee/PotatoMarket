@@ -27,6 +27,7 @@
 						required>
 					<div class="buttons">
 						<input type="submit" value="로그인"> <input type="button"
+					
 							value="회원가입" onclick="location.href='/join'">
 					</div>
 					<div class="container">
