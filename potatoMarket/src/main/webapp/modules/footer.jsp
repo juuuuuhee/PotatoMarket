@@ -29,7 +29,7 @@
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 로그인, 회원가입, CSS</span></span>
         <br>
         <br>
-    	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">김준</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : jeps7682@gmail.com</span></span>
+    	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">김준</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : jeps7682@gmail.com</span></span>
     	<br>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 아이템(상세페이지)</span></span>
 		<br>
