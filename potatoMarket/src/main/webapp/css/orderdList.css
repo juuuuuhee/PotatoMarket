@@ -32,7 +32,7 @@
 #orderd_img_size {
 	width: inherit;
 	height: inherit;
-	/* object-fit: cover; */
+	object-fit: cover;
 }
 
 #orderd_contents {
