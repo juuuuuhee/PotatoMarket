@@ -19,16 +19,20 @@
     <br>
     <div class="project_team">
     	<h2>&nbsp;&nbsp;&nbsp;Team Members</h2>
-    	<br>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">박주희</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : pjh7660@gamil.com</span></span>
-        <br>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 로그인, 회원가입, 아이템(상세페이지), CSS</span></span>
-        <br>
-        <br>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">이정목</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : mearyne@gmail.com</span></span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">이정목(팀장)</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : mearyne@gmail.com</span></span>
         <br>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 채팅, 채팅리스트</span></span>
         <br>
+        <br>       
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">박주희</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : pjh7660@gamil.com</span></span>
+        <br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 로그인, 회원가입, CSS</span></span>
+        <br>
+        <br>
+    	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">김준</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : jeps7682@gmail.com</span></span>
+    	<br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 아이템(상세페이지)</span></span>
+		<br>
         <br>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">정의형</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : ahanggo@naver.com</span></span>
         <br>
