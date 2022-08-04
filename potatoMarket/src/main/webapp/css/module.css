@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap')
+	;
+
 * {
 	margin: 0px;
 	padding: 0px;
+	text-decoration: none;
+	color: inherit;
+}
+
+p.logo {
+	font-family: 'Jua', sans-serif;
+	font-size: xx-large;
 }
 
 .wrap {
@@ -9,22 +19,22 @@
 }
 
 .header {
-	height: 100px;
+	height: 18vh;
 	width: 100%;
 	display: flex;
 	border-bottom: double #1d1d1d;
 	background-color: #d8b57a;
-	color: #fff;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	font-size: 20px;
 }
 
-.potato_icon{
-margin-left: 20px;
+.potato_icon {
+	margin-left: 20px;
 }
 
-.main_form input[type="text" i]{
+.main_form input[type="text" i] {
 	width: 300px;
 	height: 40px;
 }
@@ -39,14 +49,13 @@ margin-left: 20px;
 	height: 40px;
 }
 
-.log_join{
+.log_join {
 	margin-right: 20px;
 }
 
 .contents_wrap {
 	margin-bottom: 50px;
-	height: auto;
-	min-height: 80vh;
+	min-height: 100vh;
 }
 
 .footer {
@@ -59,7 +68,25 @@ margin-left: 20px;
 
 .project {
 	display: flex;
-	flex-direction: column;
-	height: 200px;
-	justify-content: center;
+    flex-direction: column;
+    height: 40vh;
+    justify-content: center;
+}
+
+.potato_icon {
+	display: flex;
+	align-items: center;
+}
+
+#project_font{
+	font-size:20px;
+}
+
+#member{
+	font-size:17px;
+	font-weight:bold;
+}
+
+#part{
+	font-weight:bold;
 }

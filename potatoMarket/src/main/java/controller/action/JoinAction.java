@@ -23,6 +23,7 @@ public class JoinAction implements Action {
 		String phone=phone_1+phone_2+phone_3;
 		
 		String id=request.getParameter("id");
+		String kid= request.getParameter("k_id");
 		String password=request.getParameter("password");
 		String name=request.getParameter("name");
 		

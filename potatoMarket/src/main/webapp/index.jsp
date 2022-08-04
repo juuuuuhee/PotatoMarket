@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Main</title>
+	<link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
 	<div class="wrap">
@@ -11,10 +12,10 @@
 		</div>
 		<div class="contents_wrap">
 			<div class="banner_image_fir">
-				<div></div>
-			</div>
-			<div class="banner_image_sec">
-				<div></div>
+				<img src="./resource/indexDOLOGIN.jpg" >
+				<img src="./resource/indexDOSEARCH.jpg">
+				<img src="./resource/indexDOCHAT.jpg">
+				<img src="./resource/indexDOMYINFO.jpg">
 			</div>
 		</div>
 		<div class="footer">

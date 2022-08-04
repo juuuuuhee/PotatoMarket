@@ -1,0 +1,6 @@
+div.banner_image_fir {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}

@@ -1,3 +1,5 @@
+
+
 package item;
 
 import java.sql.Timestamp;
@@ -7,6 +9,20 @@ public class ItemDTO {
 	private int item_code, booking_code, cate_code, item_price, item_seiling, user_code;
 	private String item_tilte, item_contents, item_pic;
 	private Timestamp created_At, modified_At;
+
+	public ItemDTO(int item_code, int booking_code, int user_code, String item_tilte, String item_contents,
+			int item_price, int item_seiling, String item_pic, int cate_code) {
+		super();
+		this.item_code = item_code;
+		this.booking_code = booking_code;
+		this.user_code = user_code;
+		this.item_tilte = item_tilte;
+		this.item_contents = item_contents;
+		this.item_price = item_price;
+		this.item_seiling = item_seiling;
+		this.item_pic = item_pic;
+		this.cate_code = cate_code;
+	}
 
 	public ItemDTO(int item_code, int booking_code, int cate_code, int item_price, int item_seiling, int user_code,
 			String item_tilte, String item_contents, String item_pic, Timestamp created_At, Timestamp modified_At) {
@@ -68,3 +84,4 @@ public class ItemDTO {
 	}
 
 }
+

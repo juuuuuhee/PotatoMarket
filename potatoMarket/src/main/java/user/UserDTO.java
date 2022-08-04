@@ -4,12 +4,14 @@ import java.sql.Timestamp;
 
 public class UserDTO {
 
+
 	private UserDAO dao = UserDAO.getInstance();
 	private int code;
 	private String id, pw, name, address;
 	private Timestamp createdAt, modifiedA;
-	private String add;
+
 	private int year, month, day;
+
 	private String phone;
 
 	// join user 생성자
@@ -31,6 +33,32 @@ public class UserDTO {
 		this.address = address;
 		this.phone = phone;
 	}
+	
+
+	public UserDTO(int code, String id, String pw, String name, String address, int year, int month, int day,
+			String phone) {
+		this.code = code;
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.address = address;
+		this.year = year;
+		this.month = month;
+		this.day = day;
+		this.phone = phone;
+	}
+
+
+	public UserDTO(int code, String id, String name, String address, String phone) {
+		super();
+		this.code = code;
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+	}
+
+
 
 	public int getCode() {
 		return code;
@@ -96,14 +124,6 @@ public class UserDTO {
 		this.phone = phone;
 	}
 	
-	public String getAdd() {
-		return add;
-	}
-
-	public void setAdd(String add) {
-		this.add = add;
-	}
-
 	public int getYear() {
 		return year;
 	}
@@ -130,25 +150,5 @@ public class UserDTO {
 
 
 
-	public UserDTO(int code, String id, String pw, String name, String add, int year, int month, int day,
-			String phone) {
-		this.code = code;
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.add = add;
-		this.year = year;
-		this.month = month;
-		this.day = day;
-		this.phone = phone;
-	}
 
-	public UserDTO(int code, String id, String name, String add, String phone) {
-		super();
-		this.code = code;
-		this.id = id;
-		this.name = name;
-		this.add = add;
-		this.phone = phone;
-	}
 }

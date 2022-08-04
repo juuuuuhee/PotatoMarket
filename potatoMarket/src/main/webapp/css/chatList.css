@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.chatList {
+	display: flex;
+	flex-direction: column;
+	padding: 30px 30px 20px;
+	border-bottom: 2px solid white;
+	overflow-y: scroll;
+	height: 575px;
+	width: 30vw;
+	min-width: 500px;
+	background: #d8b57a;
+	margin-top: 30px;
+}
+
+.chatBlock {
+	background: #94C2ED;
+	padding: 18px 20px;
+	line-height: 26px;
+	font-size: 16px;
+	border-radius: 7px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.chatBlock:hover {
+	background-color: gold;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 90vh;
+	justify-content: center;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}

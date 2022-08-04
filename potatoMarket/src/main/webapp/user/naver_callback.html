@@ -13,9 +13,9 @@
 
 	<!-- (2) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
 	<script>
-      var naverLogin = new naver.LoginWithNaverId({
+      const naverLogin = new naver.LoginWithNaverId({
         clientId: 'Qc5AuIfVqlnmCqi8oeYe',
-        callbackUrl: 'http://localhost:8082/potatoMarket/user/naver_callback.html',
+        callbackUrl: 'http://localhost:8080/potatoMarket/user/naver_callback.html',
         isPopup: true,
         callbackHandle: true,
         /* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -27,7 +27,7 @@
       /* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
       window.addEventListener('load', function () {
         naverLogin.getLoginStatus(function (status) {
-          if (status) {
+          if (status) { 
             /* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
             const email = naverLogin.user.getEmail();
             const name = naverLogin.user.getName();
@@ -41,7 +41,7 @@
               naverLogin.reprompt();
               return;
             }
-            window.location.replace('http://' + window.location.hostname + (location.port == '' || location.port == undefined ? '' : ':' + location.port) + '/potatoMarket/join_page?n_id='+JSON.stringify(email)+'&n_name='+JSON.stringify(name));
+            window.location.replace('http://' + window.location.hostname + (location.port == '' || location.port == undefined ? '' : ':' + location.port) + '/potatoMarket/join_page?id='+JSON.stringify(email)+'&name='+JSON.stringify(name));
             
           } else {
             console.log('callback 처리에 실패하였습니다.');
