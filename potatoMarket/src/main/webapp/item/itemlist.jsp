@@ -26,7 +26,7 @@
 		<div class="contents_wrap">
 			<div class="cards_wrap">
 				<c:choose>
-					<c:when test="${!empty list}">
+					<c:when test="${empty itemList}">
 						<h3>해당 판매글이 존재하지 않습니다</h3>
 					</c:when>
 					<c:otherwise>
@@ -48,7 +48,6 @@
 									<div>예약중</div>	
 									<%}else if(i.getItem_seiling() == 2){%>
 									<div>판매완료</div>
-					
 									<%
 									}
 									%>
