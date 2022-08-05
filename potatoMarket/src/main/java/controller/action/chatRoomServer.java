@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import chat.ChatHistoryDAO;
 import chat.ChatHistroyDTO;
+import chat.ChatRoomDAO;
 
 @ServerEndpoint(value = "/chatRoom")
 public class chatRoomServer {
@@ -74,31 +75,59 @@ public class chatRoomServer {
 //		// JSON 객체의 값 읽어서 출력하기
 
 		try {
-			// 받아온 메시지의 값을 추출한다
-			JSONObject jsonObject = new JSONObject(message); // String을 JSON화 시키기
+			// String을 JSON화 시키기
+			JSONObject jsonObject = new JSONObject(message);
+
+			// 받아온 메시지로부터 값을 추출한다
 			String type = jsonObject.getString("type");
 			String chatRoom_code = jsonObject.getString("chatRoom_code");
 			int logCode = jsonObject.getInt("logCode");
 			String msg = jsonObject.getString("message");
 
-			// test
-			System.out.println("OBJECT : " + jsonObject.toString()); // JSON화 된 것을 String화 시키기
-
 			if (type.equals("new_message")) {
 				// 해당 메시지를 채팅하고 있는 상대방에게 건낸다
 				// 만약 상대방이 접속중이라면 메시지를 발송한다
 				Session partnerSocket = findPartnerSocket(userSocket, chatRoom_code);
-				if (partnerSocket != null) {
+				if (partnerSocket != null) { // 상대방이 접속중일때
 					System.out.println("이거 실행됐니?");
 					JSONObject obj = new JSONObject(
 							"{ \"sendUserCode\" : " + logCode + ", \"chatContents\" : " + msg + "}");
 					partnerSocket.getBasicRemote().sendText(obj.toString()); // Object 타입으로 브라우저로 보낸다
+					
+					ChatHistroyDTO chat = new ChatHistroyDTO(Integer.parseInt(chatRoom_code), logCode, msg, 0);
+					ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
+					chatHistoryDAO.saveChatHistory(chat);
+				} else { // 상대방이 접속중이 아닐때
+					
+					ChatHistroyDTO chat = new ChatHistroyDTO(Integer.parseInt(chatRoom_code), logCode, msg, 1);
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println("안녕");
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getAddUser());
+					System.out.println(chat.getReadChat());
+					System.out.println(chat.getReadChat());
+					System.out.println(chat.getReadChat());
+					System.out.println(chat.getReadChat());
+					System.out.println(chat.getReadChat());
+					ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
+					chatHistoryDAO.saveChatHistory(chat);
 				}
 
 				// 메시지를 데이터베이스에 저장한다
-				ChatHistroyDTO chat = new ChatHistroyDTO(Integer.parseInt(chatRoom_code), logCode, msg);
-				ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
-				chatHistoryDAO.saveChatHistory(chat);
 
 			} else if (type.equals("open")) {
 				// 처음으로 채팅창을 열었을때 DB에서 채팅내역을 불러와서 저장한다
@@ -119,9 +148,11 @@ public class chatRoomServer {
 				// 만약 존재한다면 소켓을 해당 방에 저장한다
 
 				int chatRoomIdx = findRoomIdx(Integer.parseInt(chatRoom_code));
+
 				if (chatRoomIdx == -1) {
 					// 아직 만들어진 채팅방이 없다
 					// chatRoomInfos에 새롭게 방을 추가한다
+					
 					chatRoomInfo room = new chatRoomInfo();
 					room.user1Socket = userSocket;
 					room.user1Code = logCode;
@@ -130,8 +161,10 @@ public class chatRoomServer {
 					chatRoomInfos.add(room);
 					System.out.println("list에 새로운 방을 추가함");
 
-				} else { // 상대방이 접속중이다
+				} else {
+					// 상대방이 접속중이다
 					// 해당 chatRoom에 접속한다
+					
 					chatRoomInfo room = chatRoomInfos.get(chatRoomIdx);
 					if (room.user1Code == logCode) {
 						room.user1Socket = userSocket;
@@ -150,7 +183,12 @@ public class chatRoomServer {
 					}
 
 				}
-
+				
+				// 채팅방에 들어갈때 알림창을 바꾼다
+				int chat_code = Integer.parseInt(chatRoom_code);
+				int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chat_code, logCode);
+				chatHistoryDAO.changeReadChat(chat_code, partnerCode);
+				
 			}
 		} catch (Exception err) {
 			System.out.println("Exception : " + err.toString());

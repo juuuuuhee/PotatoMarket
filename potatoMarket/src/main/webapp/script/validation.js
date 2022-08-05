@@ -1,5 +1,3 @@
-
-
 $('#id').change(e => {
 
 	let check = $('#id').val();

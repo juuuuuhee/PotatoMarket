@@ -26,10 +26,11 @@
 	
 	ArrayList<FavoriteDTO> list = fdao.getFavoData(loginCode);
 	%>    
+	<button class="mypage" onclick="location='./profileUpdate'">내 정보 수정</button>
+	<button class="mypage" onclick="location='./orderdList'">나의 판매 목록</button>
+	<button class="mypage" onclick="location='./bookingList'">나의 예약 목록</button>
+	<p class="title logo">관심 아이템</p>
 
-		<button class="mypage" onclick="location='./profileUpdate'">내 정보 수정</button>
-		<button class="mypage" onclick="location='./orderdList'">나의 판매 목록</button>
-		<button class="mypage" onclick="location='./bookingList'">나의 예약 목록</button>
     <div class="contents_wrap">
 		<%
 		for (int i = 0; i < list.size(); i++) {
@@ -42,7 +43,6 @@
 			int sellchk = item.getItem_seiling();
 		%>
 
-		<p class="title logo">관심 아이템</p>
 		<article>
 			<form id="favo<%=i + 1%>" method="post" action="./action">
 				<input type="hidden" name="command" value="delfavo">

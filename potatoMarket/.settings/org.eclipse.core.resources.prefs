@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=refs/heads/main
 eclipse.preferences.version=1
+encoding//src/main/webapp/modules/footer.jsp=UTF-8
+encoding//src/main/webapp/modules/header.jsp=UTF-8
 encoding/<project>=UTF-8
-=======
-eclipse.preferences.version=1
-encoding/<project>=UTF-8
->>>>>>> refs/heads/main

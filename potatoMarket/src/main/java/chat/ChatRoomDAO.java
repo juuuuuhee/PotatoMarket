@@ -260,7 +260,7 @@ public class ChatRoomDAO {
 				int seller_code = rs.getInt(2);
 				int buyer_code = rs.getInt(3);
 				int item_code = rs.getInt(4);
-				
+
 				chatRoom = new ChatRoomDTO(chat_code, seller_code, buyer_code, item_code);
 			}
 
@@ -276,6 +276,56 @@ public class ChatRoomDAO {
 		}
 
 		return chatRoom;
-		
+
+	}
+
+	// header.jsp에서 아직 읽지 않은 모든 메시지 개수를 계산해서 반환한다
+	public int getNotReadNum(int userCode) {
+		int cnt = 0;
+
+		// 로그인한 유저의 모든 채팅방 리스트를 불러온다
+		ArrayList<ChatRoomDTO> rooms = ChatRoomDAO.getInstance().bringAllChatRoom(userCode);
+		for (int i = 0; i < rooms.size(); i++) {
+			ChatRoomDTO room = rooms.get(i);
+			System.out.println("시작1");
+			cnt += getNotReadNumInChatRoom(room.getChat_code(), userCode);
+			System.out.println("userCode : " +userCode);
+		}
+
+		return cnt;
+	}
+
+	// 채팅방 하나에서 아직 읽지 않은 채팅의 개수를 구한다
+	public int getNotReadNumInChatRoom(int chatRoom_code, int userCode) {
+		int cnt = 0;
+		String sql = "select count(*) from chatHistory where chatRoom_code = ? and readChat = 1 and addUser != ?";
+		System.out.println("시작2");
+		conn = DbManager.getConnection("potatoMarket");
+		System.out.println("시작3");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, chatRoom_code);
+			pstmt.setInt(2, userCode);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("getNotReadNumInChatRoom - 채팅방 안읽은 개수 불러오기 성공");
+				cnt = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			System.out.println("getNotReadNumInChatRoom - 채팅방 안읽은 개수 불러오기 실패");
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e2) {
+			}
+
+		}
+		return cnt;
 	}
 }

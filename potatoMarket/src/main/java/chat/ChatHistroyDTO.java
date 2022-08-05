@@ -8,12 +8,13 @@ public class ChatHistroyDTO {
 	private String chat_contents;
 	private Date created_at;
 	private Date modified_at;
+	private int readChat; // 0 : 읽은상태, 1 : 안읽은상태
 
-	public ChatHistroyDTO(int chatRoom_code, int addUser, String chat_contents) {
-		super();
+	public ChatHistroyDTO(int chatRoom_code, int addUser, String chat_contents, int readChat) {
 		this.chatRoom_code = chatRoom_code;
 		this.addUser = addUser;
 		this.chat_contents = chat_contents;
+		this.readChat = readChat;
 	}
 
 	public int getChatRoom_code() {
@@ -50,6 +51,14 @@ public class ChatHistroyDTO {
 
 	public Date getModified_at() {
 		return modified_at;
+	}
+
+	public int getReadChat() {
+		return readChat;
+	}
+
+	public void setReadChat(int readChat) {
+		this.readChat = readChat;
 	}
 
 	public void setModified_at(Date modified_at) {

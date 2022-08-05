@@ -26,6 +26,9 @@ public class LoginAction implements Action {
 		if (dto != null) {
 			request.getSession().setAttribute("log", dto);
 			url = "./itemList";
+			
+			// session에 ArrayList<ChatRoomDTO> 
+			
 			request.getRequestDispatcher(url).forward(request, response);
 		} else {
 			url = "./login_page";
