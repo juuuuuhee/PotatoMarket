@@ -21,7 +21,8 @@ public class delfavoriteAction implements Action {
 		
 		boolean chk = dao.delfavodata(favocode);
 		System.out.println("chk"+chk);
-		String url="./favolist?code="+favocode;
+		
+		String url="./favoList?code="+favocode;
 		request.getRequestDispatcher(url).forward(request, response);
 		
 	}
