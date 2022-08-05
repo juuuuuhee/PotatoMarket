@@ -39,3 +39,11 @@ a {
 	color: black;
 	text-decoration: none;
 }
+
+.note-num2 {
+	width: 20px;
+	text-align: center;
+	background-color: #e91e63;
+	border-radius: 15px;
+	display: inline-block;
+}

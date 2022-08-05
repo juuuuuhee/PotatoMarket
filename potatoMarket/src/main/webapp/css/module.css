@@ -90,3 +90,13 @@ p.logo {
 #part{
 	font-weight:bold;
 }
+
+.note-num {
+    position: absolute;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #e91e63;
+    border-radius: 15px;
+    display: inline-block;
+}
