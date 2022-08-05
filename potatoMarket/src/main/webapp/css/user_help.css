@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.ul_box{
+    display: flex;
+    font-size: 2em;
+    padding-top: 13%;
+    justify-content: center;
+    color:gray;
+}
+
+li{
+	cursor: pointer;
+}
+
+.clicked{
+	color:black;
+}
