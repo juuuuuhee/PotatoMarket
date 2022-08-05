@@ -32,8 +32,6 @@
 		<div class="chatList">
 		<%	// 로그인 된 유저의 모든 채팅방을 불러온다
 		ArrayList<ChatRoomDTO> rooms = ChatRoomDAO.getInstance().bringAllChatRoom(loginCode);
-		System.out.println(rooms.size());
-		System.out.println("klasaihlaiefjhaliefhal;iefhlai;fhjlaiehfwlifawlifhawefhawklefhklawehfklaue");
 		
 		for(int i = 0; i < rooms.size(); i++) {
 			ChatRoomDTO room = rooms.get(i);
@@ -50,26 +48,34 @@
 			// 아이템 정보 가져오기
 			ItemDTO itemInfo = ItemDAO.getInstance().getdata(item_code);
 			String item_title = itemInfo.getItem_tilte();
+			String item_pic = "";
+			if (itemInfo.getItem_pic() != null) {
+				item_pic = itemInfo.getItem_pic();
+			}
 			
 			// 채팅 상대 정보 가져오기
 			int partnerCode = seller_code == loginCode ? buyer_code : seller_code;
 			UserDTO userInfo = UserDAO.getInstance().getUser(partnerCode);
 			String userId = userInfo.getId();
 		%>
-		<ul>
 			<a href="./action?command=chatView&chatRoom_code=<%=chat_code%>">
-				<c:if test="<%=count > 0%>">
-					<span class="note-num2"><%=count %></span>
-				</c:if>
-				<div class="chatBlock">
-					<p class="itemTitle">
-						<h1><%=item_title %></h1>
-					</p>
-					<br>
-					<p class="userInfo">
-						상대ID : <%=userId %>
-					</p>
-				</div>
+				<ul class="alert">
+					<c:if test="<%=count > 0%>">
+						<span class="note-num2"><%=count %></span>
+					</c:if>
+					<div class="chatBlock">
+						<div>
+							<p class="itemTitle">
+								<h1><%=item_title %></h1>
+							</p>
+							<br>
+							<p class="userInfo">
+								상대ID : <%=userId %>
+							</p>
+						</div>
+						<img class="itemPic" src="<%=item_pic%>">					
+					</div>
+				</ul>
 			</a>
 			<%	
 			}

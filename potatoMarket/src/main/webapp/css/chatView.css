@@ -35,17 +35,17 @@ ul {
 
 .you {
 	border-radius: 20px;
-	text-align: right;
+	text-align: left;
 }
 
 .me {
 	border-radius: 20px;
-	text-align: left;
+	text-align: right;
 }
 
 div.message {
 	background: #94C2ED;
-	color: white;
+	color: black;
 	padding: 18px 20px;
 	line-height: 26px;
 	font-size: 16px;
@@ -53,7 +53,7 @@ div.message {
 	margin-bottom: 10px;
 	position: relative;
 	clear: both;
-	float: left;
+	float: right;
 }
 
 #sendMessage {
@@ -78,11 +78,12 @@ div.message {
 .you div.message {
 	color: black;
 	background: yellow;
-	float: right;
+	float: left;
 }
 
 main {
 	height: 1000px;
+	  list-style:none;
 }
 
 #chatRoom_name {

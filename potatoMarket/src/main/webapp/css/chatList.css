@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.chatList {
+div.chatList {
 	display: flex;
 	flex-direction: column;
 	padding: 30px 30px 20px;
@@ -13,7 +13,7 @@
 	margin-top: 30px;
 }
 
-.chatBlock {
+div.chatBlock {
 	background: #94C2ED;
 	padding: 18px 20px;
 	line-height: 26px;
@@ -42,8 +42,31 @@ a {
 
 .note-num2 {
 	width: 20px;
+	line-height: 20px;
 	text-align: center;
 	background-color: #e91e63;
+	color: white;
+	font-size: 13px;
 	border-radius: 15px;
 	display: inline-block;
+	position: absolute;
+	margin: -3px;
+	z-index: 2;
+	top: 2px;
+}
+
+.alert {
+	position: relative;
+}
+
+img.itemPic {
+	height: 100px;
+	width: 100px;
+	margin: 10px;
+	
+}
+
+div.chatBlock {
+	display: flex;
+	    justify-content: space-between;
 }

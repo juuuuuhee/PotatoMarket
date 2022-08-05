@@ -59,8 +59,8 @@
 		<!--  채팅 영역 -->
 		<div id="chat">
 			<form>
-				<ul id="chatBlock">
-				</ul>
+				<div id="chatBlock">
+				</div>
 				
 				<br>
 				<div id="inputText">

@@ -104,14 +104,13 @@ p.logo {
 	margin: -3px;
 }
 
-ul{
+ul.headerUL {
    list-style:none;
-   list-style: none;
    display: flex;
    align-items: center;
 }
 
-ul >.alert{
+ul.headerUL >.alert{
     position: relative;
 }
    

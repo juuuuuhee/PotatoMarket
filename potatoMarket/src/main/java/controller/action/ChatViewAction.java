@@ -37,6 +37,7 @@ public class ChatViewAction implements Action {
 		cnt -= cntChange;
 		session.setAttribute("cnt", cnt);
 		
+		// 이동
 		String url = "./chatView";
 		request.getRequestDispatcher(url).forward(request, response);
 	}

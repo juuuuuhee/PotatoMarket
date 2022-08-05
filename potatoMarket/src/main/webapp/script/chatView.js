@@ -21,7 +21,7 @@ socket.onopen = function() {
 
 // 닫혔을때		
 socket.onclose = function() {
-	socket["chatRoom_code"] = chatRoom_code;
+	socket["chatRoom_code"] = chatCode;
 	console.log("브라우저는 서버와 연결이 끊겼다");
 	alert("닫혔다!");
 

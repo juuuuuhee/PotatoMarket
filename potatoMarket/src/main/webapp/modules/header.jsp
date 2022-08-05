@@ -37,7 +37,7 @@
 	</div>
 	
 	<div class="log_join">
-		<ul>
+		<ul class="headerUL">
 			<c:choose>
 				<c:when test="${log == null}">
 					<li><a id="button" href="./login_page"><img src="resource/login.png" width="50px" height="50px"></a></li>
@@ -46,11 +46,13 @@
 				<c:otherwise>
 					<li><c:out value="${sessionScope.log.getId()}님 환영합니다!" /></li>
 					<li><a id="button" href="./myPage"><img src="resource/my.png" width="60px" height="60px"></a></li>
-					<li class="alert"><a id="button" href="./chatList">
-					<%if(cnt > 0){%>
-					<span class="note-num"><%=cnt%></span>
-					<%} %>
-					<img src="resource/chat.png" width="50px" height="50px"></a>			
+					<li class="alert">
+						<a id="button" href="./chatList">
+							<%if(cnt > 0){%>
+							<span class="note-num"><%=cnt%></span>
+							<%} %>
+							<img src="resource/chat.png" width="50px" height="50px">
+						</a>			
 					</li>
 					<li><a id="button" href="./action?command=logout"><img src="resource/logout.png" width="40px" height="40px"></a></li>
 				</c:otherwise>
