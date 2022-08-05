@@ -1,5 +1,6 @@
 package controller;
 
+import controller.action.ChatViewAction;
 import controller.action.IntoChatRoom;
 import controller.action.JoinAction;
 import controller.action.LoginAction;
@@ -21,6 +22,7 @@ public class ActionFactory {
 		else if(command.equals("logout"))action = new LogoutAction();
 		else if(command.equals("intoChatRoom"))action = new IntoChatRoom();
 		else if(command.equals("update"))action = new UpdatedataAction();
+		else if(command.equals("chatView"))action = new ChatViewAction();
 		
 		return action;
 	}

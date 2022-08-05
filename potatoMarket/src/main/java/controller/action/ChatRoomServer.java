@@ -17,7 +17,7 @@ import chat.ChatHistroyDTO;
 import chat.ChatRoomDAO;
 
 @ServerEndpoint(value = "/chatRoom")
-public class chatRoomServer {
+public class ChatRoomServer {
 
 	// 의문점
 	// 1. Collections를 쓸 필요가? 무슨말이지?
@@ -100,29 +100,6 @@ public class chatRoomServer {
 				} else { // 상대방이 접속중이 아닐때
 					
 					ChatHistroyDTO chat = new ChatHistroyDTO(Integer.parseInt(chatRoom_code), logCode, msg, 1);
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println("안녕");
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getAddUser());
-					System.out.println(chat.getReadChat());
-					System.out.println(chat.getReadChat());
-					System.out.println(chat.getReadChat());
-					System.out.println(chat.getReadChat());
-					System.out.println(chat.getReadChat());
 					ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
 					chatHistoryDAO.saveChatHistory(chat);
 				}
@@ -168,26 +145,17 @@ public class chatRoomServer {
 					chatRoomInfo room = chatRoomInfos.get(chatRoomIdx);
 					if (room.user1Code == logCode) {
 						room.user1Socket = userSocket;
-						System.out.println("새로고침했네?");
 					} else if (room.user2Code == logCode) {
 						room.user2Socket = userSocket;
-						System.out.println("새로고침했네?");
 					} else if (room.user1Code == 0) {
 						room.user1Socket = userSocket;
 						room.user1Code = logCode;
-						System.out.println("새로운놈 들어옴");
 					} else if (room.user2Code == 0) {
 						room.user2Socket = userSocket;
 						room.user2Code = logCode;
-						System.out.println("새로운놈 들어옴");
 					}
 
 				}
-				
-				// 채팅방에 들어갈때 알림창을 바꾼다
-				int chat_code = Integer.parseInt(chatRoom_code);
-				int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chat_code, logCode);
-				chatHistoryDAO.changeReadChat(chat_code, partnerCode);
 				
 			}
 		} catch (Exception err) {
