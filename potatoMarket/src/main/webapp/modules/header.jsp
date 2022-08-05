@@ -10,18 +10,13 @@
 <%-- <% String log=(String) session.getAttribute("log"); %> --%>
 
 <c:set var="log" value="${sessionScope.log}" />
-
+	
 	<%
-	// 아직 읽지 않은 채팅 개수를 읽는다
-	// session에 저장된 로그인된 유저 정보를 가져온다
-	Object loginUserObject = session.getAttribute("log");
-	int cnt = -1;
-	if (loginUserObject != null) {
-		UserDTO login_User = (UserDTO) loginUserObject;
-		int login_Code = login_User.getCode();
-		System.out.println("loginCode : " + login_Code);
-		cnt = ChatRoomDAO.getInstance().getNotReadNum(login_Code);
-		System.out.println("안읽은 채팅개수 : " + cnt);
+	// 아직 읽지 않은 채팅 개수를 session에서 읽는다
+	Object cntObj = session.getAttribute("cnt");
+	int cnt = 0;	
+	if (cntObj != null) {
+		cnt = (int) cntObj;
 	}
 	%>
 

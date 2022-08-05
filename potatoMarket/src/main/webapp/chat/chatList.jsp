@@ -56,7 +56,7 @@
 			UserDTO userInfo = UserDAO.getInstance().getUser(partnerCode);
 			String userId = userInfo.getId();
 		%>
-			<a href="./chatView?chatRoom_code=<%=chat_code%>">
+			<a href="./action?command=chatView&chatRoom_code=<%=chat_code%>">
 				<c:if test="<%=count > 0%>">
 					<span class="note-num2"><%=count %></span>
 				</c:if>
