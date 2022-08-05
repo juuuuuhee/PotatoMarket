@@ -15,10 +15,10 @@
 	String kname = request.getParameter("name");
 	%>
 
+	<div>
+		<%@include file="../modules/header.jsp"%>
+	</div>
 	<div class="wrap">
-		<div>
-			<%@include file="../modules/header.jsp"%>
-		</div>
 		<div class="contents_wrap">
 			<div id="join_box">
 				<div class="title_submit">
@@ -68,13 +68,15 @@
 							nname = nname.substring(1, nname.length() - 1);
 							System.out.print(nname);
 						%>
-						<input type="text" id="name" value="<%=nname%>" readonly>
+						<input type="text" id="name" name="name" value="<%=nname%>"
+							readonly>
 						<%
 						} else if (kname != null) {
 						kname = kname.substring(1, kname.length() - 1);
 						%>
 
-						<input type="text" id="name" name="name" value="<%=kname%>" readonly>
+						<input type="text" id="name" name="name" value="<%=kname%>"
+							readonly>
 						<%
 						} else {
 						%>
@@ -98,17 +100,10 @@
 					</div>
 
 					<div class="input">
-						<label>phone</label><br> <select name="contact_1"
-							id="phone_1" class="essential">
-							<option value="010">010</option>
-							<option value="010">011</option>
-							<option value="010">017</option>
-						</select> <span>-</span> <input type="number"
-							class="essential phonePattern" placeholder="0000"
-							name="contact_2" id="phone_2"> <span>-</span> <input
-							type="number" class="essential phonePattern" placeholder="0000"
-							name="contact_3" id="phone_3"> <br> <span
-							class="check"></span> <span id="phone_check"></span>
+						<label>phone</label><br> <input type="text"
+							class="phonePattern" name="phone_number" id="phone_1"
+							class="essential" placeholder="휴대폰번호"> <br>
+						<span class="check"></span> <span id="phone_check"></span>
 					</div>
 
 					<div class="title_submit">
@@ -120,9 +115,9 @@
 				</form>
 			</div>
 		</div>
-		<div class="footer">
-			<%@include file="../modules/footer.jsp"%>
-		</div>
+	</div>
+	<div class="footer">
+		<%@include file="../modules/footer.jsp"%>
 	</div>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

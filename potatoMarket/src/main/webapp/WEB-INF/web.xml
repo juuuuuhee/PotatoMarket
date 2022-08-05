@@ -40,6 +40,15 @@
 		<servlet-name>join_page</servlet-name>
 		<url-pattern>/join_page</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>user_help</servlet-name>
+		<jsp-file>/user/user_help.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>user_help</servlet-name>
+		<url-pattern>/user_help_page</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>chatView</servlet-name>

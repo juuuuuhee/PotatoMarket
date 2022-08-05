@@ -3,6 +3,7 @@
 $('#id').change(e => {
 
 	let check = $('#id').val();
+	
 	console.log(check);
 	$.ajax({
 
@@ -91,20 +92,19 @@ $('#bnt').click(e => {
 
 
 $('.phonePattern').focusout(e => {
-	let phonePattern = /^\d{4}/;
+	let phonePattern = /^(01[0]{1})-?[0-9]{4}-?[0-9]{4}$/;
 
-	if (!phonePattern.test($('#phone_2').val()) && $('#phone_2').val() !=="") {
+	if (!phonePattern.test($('#phone_1').val()) && $('#phone_1').val() !=="") {
 		$('#phone_check').css('color', 'red');
-		$('#phone_check').html("숫자 4자리 입력해주세요.");
-	}else if(!phonePattern.test($('#phone_3').val()) && $('#phone_3').val() !==""){
-		$('#phone_check').css('color', 'red');
-		$('#phone_check').html("숫자 4자리 입력해주세요.");		
+		$('#phone_check').html("ex) 010XXXXXXXX<br>공백, - 없이 숫자만 11자리 입력해주세요.");
 	}else {
 		$('#phone_check').html("");
 		
 	}
 
 })
+
+
 
 
 

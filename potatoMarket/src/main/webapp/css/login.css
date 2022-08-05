@@ -23,11 +23,23 @@
 
 
 #bnt_login{
-	width:250px;
-	height: 40px;
+	width:269px;
+	height: 45px;
+}
+
+.bnt_{
+	width:269px;
+	height: 45px;
 }
 
 .bnt_size{
-	width:120px;
-	height:40px;
+    cursor: pointer;
+    background-color: #d8b57a;
+    border: none;
+    width: 79px;
+    height: 44px;
+}
+
+.input_box{
+	margin:5px;
 }
