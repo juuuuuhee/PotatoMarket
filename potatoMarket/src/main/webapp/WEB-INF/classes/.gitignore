@@ -1,7 +1,8 @@
-/item/
-/favo/
-<<<<<<< HEAD
-=======
+/booking/
 /chat/
->>>>>>> refs/remotes/origin/#1_juhee
 /controller/
+/favo/
+/item/
+/myServlet/
+/user/
+/util/
