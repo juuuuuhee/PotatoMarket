@@ -42,22 +42,23 @@
 	</div>
 	
 	<div class="log_join">
-		<c:choose>
-			<c:when test="${log == null}">
-				<button id="button" onclick="location.href='./login_page'">로그인</button>
-				<button id="button" onclick="location.href='./join_page'">회원가입</button>
-			</c:when>
-			
-			<c:otherwise>
-				<c:out value="${sessionScope.log.getId()}님 환영합니다!"/>
-				<button id="button" onclick="location.href='./myPage'">마이페이지</button>
-				<button id="button" onclick="location.href='./chatList'">채팅</button>
-				<c:if test="<%=cnt > 0%>">
-					<span class="note-num"><%=cnt %></span>
-				</c:if>
-				<button id="button" onclick="location.href='./action?command=logout'">로그아웃</button>
-			</c:otherwise>
-		</c:choose>
+		<ul>
+			<c:choose>
+				<c:when test="${log == null}">
+					<li><a id="button" href="./login_page"><img src="resource/login.png" width="50px" height="50px"></a></li>
+					<li><a id="button" href="./join_page"><img src="resource/join.png" width="50px" height="50px"></a></li>
+				</c:when>
+				<c:otherwise>
+					<li><c:out value="${sessionScope.log.getId()}님 환영합니다!" /></li>
+					<li><a id="button" href="./myPage"><img src="resource/my.png" width="60px" height="60px"></a></li>
+					<li><a id="button" href="./chatList"><img src="resource/chat.png" width="50px" height="50px"></a></li>
+					<c:if test="<%=cnt > 0%>">
+						<li><span class="note-num"><%=cnt%></span></li>
+					</c:if>
+					<li><a id="button" href="./action?command=logout"><img src="resource/logout.png" width="40px" height="40px"></a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
 	</div>
 	
 </div>

@@ -21,6 +21,7 @@
 		<div class="footer">
 			<%@include file="modules/footer.jsp" %>
 		</div>
+		
 	</div>
 </body>
 </html>	

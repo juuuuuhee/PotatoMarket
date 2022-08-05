@@ -14,7 +14,13 @@
 	String kid = request.getParameter("k_id");
 	String kname = request.getParameter("name");
 	%>
-
+	<%
+	if(request.getParameter("join_check") != null){%>
+	<script>
+		alert("회원가입 실패.");
+	</script>
+	
+	<%}%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
 	</div>
@@ -32,14 +38,14 @@
 						<label>ID</label><br>
 						<%
 						if (nid != null) {
-							nid = nid.substring(1, nid.length() - 11);
+							nid = nid.substring(1, nid.length() - 1);
 							System.out.print(nid + ": naver");
 						%>
 						<input type="text" id="id" name="id" value='<%=nid%>' readonly>
 						<%
 						} else if (kid != null) {
 						%>
-						<input type="text" id="k_id" name="k_id" value='<%=kid%>' readonly>
+						<input type="text" id="id" name="id" value='<%=kid%>' readonly>
 						<%
 						} else {
 						%>
@@ -66,7 +72,6 @@
 						<%
 						if (nname != null) {
 							nname = nname.substring(1, nname.length() - 1);
-							System.out.print(nname);
 						%>
 						<input type="text" id="name" name="name" value="<%=nname%>"
 							readonly>

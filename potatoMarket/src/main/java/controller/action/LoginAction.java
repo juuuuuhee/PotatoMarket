@@ -31,7 +31,7 @@ public class LoginAction implements Action {
 			
 			request.getRequestDispatcher(url).forward(request, response);
 		} else {
-			url = "./login_page";
+			url = "./login_page?check=check";
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}

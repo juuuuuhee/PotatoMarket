@@ -34,7 +34,7 @@ public class JoinAction implements Action {
 			url="./login_page";
 		}else {
 			System.out.print("ddddddddd");
-			url="./join_page";
+			url="./join_page?join_check=join_check";
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

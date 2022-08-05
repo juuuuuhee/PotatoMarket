@@ -100,3 +100,11 @@ p.logo {
     border-radius: 15px;
     display: inline-block;
 }
+
+ul{
+   list-style:none;
+   list-style: none;
+   display: flex;
+   align-items: center;
+}
+   

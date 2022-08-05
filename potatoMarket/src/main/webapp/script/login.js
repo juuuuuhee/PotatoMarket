@@ -39,3 +39,4 @@ const naverLogin = new naver.LoginWithNaverId({
 	}
 });
 naverLogin.init(); // 로그인 설정
+

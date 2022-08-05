@@ -81,7 +81,6 @@ $('#bnt').click(e => {
 			$($ess.get(i)).siblings('.check').text("");
 		}
 	}
-	console.log(check);
 	if (check === false) {
 		e.preventDefault();
 	}
