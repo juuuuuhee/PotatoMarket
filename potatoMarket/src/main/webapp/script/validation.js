@@ -109,5 +109,3 @@ $('.phonePattern').focusout(e => {
 
 
 
-
-

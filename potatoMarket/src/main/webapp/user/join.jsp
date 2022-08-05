@@ -28,6 +28,7 @@
 		<div class="contents_wrap">
 			<div id="join_box">
 				<div class="title_submit">
+			
 					<span class="join_font">회원가입</span>
 				</div>
 
