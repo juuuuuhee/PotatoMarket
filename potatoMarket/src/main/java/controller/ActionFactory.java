@@ -1,10 +1,12 @@
 package controller;
 
+import controller.action.AddfavoriteAction;
 import controller.action.IntoChatRoom;
 import controller.action.JoinAction;
 import controller.action.LoginAction;
 import controller.action.LogoutAction;
 import controller.action.UpdatedataAction;
+import controller.action.delfavoriteAction;
 
 public class ActionFactory {
 	private ActionFactory() {} ; 
@@ -21,7 +23,8 @@ public class ActionFactory {
 		else if(command.equals("logout"))action = new LogoutAction();
 		else if(command.equals("intoChatRoom"))action = new IntoChatRoom();
 		else if(command.equals("update"))action = new UpdatedataAction();
-		
+		else if(command.equals("addFavo"))action = new AddfavoriteAction();
+		else if(command.equals("delfavo"))action = new delfavoriteAction();
 		return action;
 	}
 	
