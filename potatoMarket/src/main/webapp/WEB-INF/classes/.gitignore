@@ -3,6 +3,11 @@
 /controller/
 /favo/
 /item/
+<<<<<<< HEAD
 /myServlet/
 /user/
 /util/
+=======
+/favo/
+/controller/
+>>>>>>> refs/remotes/origin/#4_hyung

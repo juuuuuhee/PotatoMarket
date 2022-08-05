@@ -1,5 +1,3 @@
-<%@page import="favo.FavoriteDAO"%>
-<%@page import="favo.FavoriteDTO"%>
 <%@page import="user.UserDTO"%>
 <%@page import="user.UserDAO"%>
 <%@page import="item.ItemDTO"%>
@@ -22,8 +20,6 @@
 	if (loginUser != null) {
 		loginCode = loginUser.getCode();
 	}
-	FavoriteDAO fDao = FavoriteDAO.getInstance();
-	boolean check = fDao.favoCheck(loginCode, Integer.parseInt(item_code));
 	%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
@@ -56,34 +52,23 @@
 			%>
 			<h3>이미 판매가 완료된 상품입니다.</h3>
 			<%
+			} else if (user_code != loginCode && loginCode != -1) {
+			%>
+			<form action="./action" method="post">
+				<input type="hidden" name="command" id="command" value="intoChatRoom"> 
+				<input type="hidden" name="item_code" value="<%=item_code%>"> 
+				<input type="hidden" name = "user_code" value="<%=loginCode %>">
+				<input id="button_chat" type="submit" value="채팅하기">
+				<button type="button" class="button_changeCommand" onclick="changeFavo()">찜하기</button>
+			</form>
+			<%
 			} else if (user_code == loginCode) {
 			%>
 			<form action="./action">
 				<input type="hidden" name="command" value="intoChatRoom"> <input
 					type="hidden" name="item_code" value="<%=item_code%>"> <input
 					id="button_chat" type="submit" value="채팅하기">
-				<button type="button" class="button_changeCommand"
-					onclick="changeBooking()">예약하기</button>
-			</form>
-			<%
-			} else if (user_code != loginCode && loginCode != -1) {
-			%>
-			<form action="./action">
-				<input type="hidden" name="command" value="intoChatRoom"> <input
-					type="hidden" name="item_code" value="<%=item_code%>"> <input
-					id="button_chat" type="submit" value="채팅하기">
-				<%
-				if (check == false) {
-				%>
-				<button type="button" class="button_changeCommand"
-					onclick="addFavo()">찜하기</button>
-				<%
-				} else {
-				%>
-				<button type="button" class="button">찜한 상품</button>
-				<%
-				}
-				%>
+				<button type="button" class="button_changeCommand" onclick="changeBooking()">예약하기</button>
 			</form>
 			<%
 			}
