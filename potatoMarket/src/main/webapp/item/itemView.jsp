@@ -1,3 +1,5 @@
+<%@page import="favo.FavoriteDAO"%>
+<%@page import="favo.FavoriteDTO"%>
 <%@page import="user.UserDTO"%>
 <%@page import="user.UserDAO"%>
 <%@page import="item.ItemDTO"%>
@@ -5,7 +7,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-	<link rel="stylesheet" href="css/itemView.css"><title>Title</title>
+<link rel="stylesheet" href="./css/itemView.css">
+<title>Title</title>
 </head>
 <body>
 	<%
@@ -16,10 +19,11 @@
 	int user_code = dao.getdata(Integer.parseInt(item_code)).getUser_code();
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");
 	int loginCode = -1;
-	if(loginUser != null) {
+	if (loginUser != null) {
 		loginCode = loginUser.getCode();
-		
 	}
+	FavoriteDAO fDao = FavoriteDAO.getInstance();
+	boolean check = fDao.favoCheck(loginCode, Integer.parseInt(item_code));
 	%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
@@ -48,14 +52,42 @@
 			<%
 			System.out.println(loginCode);
 			System.out.println(user_code);
-			if (user_code != loginCode && loginCode != -1 && thisItem.getItem_seiling() != 2) {
+			if (thisItem.getItem_seiling() == 2) {
 			%>
-		<form action="./action" >
-			<input type="hidden" name="command" value="intoChatRoom"> <input
-				type="hidden" name="item_code" value="<%=item_code%>">
-			<input id="button_chat" type="submit" value="채팅하기">
-			<%}%>
-		</form>
+			<h3>이미 판매가 완료된 상품입니다.</h3>
+			<%
+			} else if (user_code == loginCode) {
+			%>
+			<form action="./action">
+				<input type="hidden" name="command" value="intoChatRoom"> <input
+					type="hidden" name="item_code" value="<%=item_code%>"> <input
+					id="button_chat" type="submit" value="채팅하기">
+				<button type="button" class="button_changeCommand"
+					onclick="changeBooking()">예약하기</button>
+			</form>
+			<%
+			} else if (user_code != loginCode && loginCode != -1) {
+			%>
+			<form action="./action">
+				<input type="hidden" name="command" value="intoChatRoom"> <input
+					type="hidden" name="item_code" value="<%=item_code%>"> <input
+					id="button_chat" type="submit" value="채팅하기">
+				<%
+				if (check == false) {
+				%>
+				<button type="button" class="button_changeCommand"
+					onclick="addFavo()">찜하기</button>
+				<%
+				} else {
+				%>
+				<button type="button" class="button">찜한 상품</button>
+				<%
+				}
+				%>
+			</form>
+			<%
+			}
+			%>
 		</div>
 
 	</div>
@@ -63,4 +95,15 @@
 		<%@include file="../modules/footer.jsp"%>
 	</div>
 </body>
+<script>
+	function changeFavo() {
+		$('#command').val('addFavo');
+		$('form').submit();
+	}
+
+	function changeBooking() {
+		$('#command').val('changeBooking');
+		$('form').submit();
+	}
+</script>
 </html>

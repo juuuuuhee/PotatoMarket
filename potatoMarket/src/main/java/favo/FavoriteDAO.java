@@ -43,25 +43,44 @@ public class FavoriteDAO {
 		}
 		return null;
 	}
-	
-	public boolean delfavodata(int favo_code) {
-		String sql = "delete from favo where favo_code =? ";
-		conn=DbManager.getConnection("potatoMarket");
+
+	// 이미 찜 한 게시글인지 아닌지 검증용, itemView에서 사용
+	public boolean favoCheck(int usercode, int itemcode) {
+		String sql = "select * from favo where user_code =? and item_code =?";
+		FavoriteDTO dto = null;
+		conn = DbManager.getConnection("potatoMarket");
 		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, favo_code);
-			boolean chk = pstmt.execute();
-			if(!chk) {
-				System.out.println("삭제 성공");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, usercode);
+			pstmt.setInt(2, itemcode);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				return true;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("삭제 실패");
-			e.printStackTrace();
-			
 		}
 		return false;
 	}
-	
+
+	public boolean delfavodata(int favo_code) {
+		String sql = "delete from favo where favo_code =? ";
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, favo_code);
+			boolean chk = pstmt.execute();
+			if (!chk) {
+				System.out.println("삭제 성공");
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("삭제 실패");
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+
 }
