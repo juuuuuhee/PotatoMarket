@@ -4,8 +4,3 @@ function showMenu(menuName, targetMenu){
 	
 	$('.'+menuName).show();
 }
-
-
-$('.menuName').click(e=>{
-	
-})
