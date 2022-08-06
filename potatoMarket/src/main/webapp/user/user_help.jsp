@@ -13,9 +13,9 @@
 	</div>
 	<div class="contents_wrap">
 		<ul class="li_box">
-			<li class="menuName clicked" id="menuTitle" onclick="showMenu('user_help_id','user_help_menu')">아이디 찾기</li>
+			<li class="menuName" id="menuTitle" onclick="showMenu('user_help_id','user_help_menu')">아이디 찾기</li>
 			<p>|</p>
-			<li class="menuName clicked" id="menuTitle" onclick="showMenu('user_help_pw','user_help_menu')">비밀번호 찾기</li>
+			<li class="menuName" id="menuTitle" onclick="showMenu('user_help_pw','user_help_menu')">비밀번호 찾기</li>
 		</ul>
 		<div id="help_box">
 			<div class="user_help_id user_help_menu" style="display: none">

@@ -16,7 +16,7 @@ li{
 	display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10%;
+    padding-top: 7%;
 }
 
 .check_box input[type="text" i]{
