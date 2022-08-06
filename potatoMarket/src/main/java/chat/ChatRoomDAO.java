@@ -3,6 +3,8 @@ package chat;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -156,6 +158,7 @@ public class ChatRoomDAO {
 		return chatRoomCode;
 	}
 
+	// 나, 상대방, 상품 세가지를 조합해서 데이터베이스에 채팅방을 만든다
 	private void makeChatRoom(int chatRoomCode, int userCode, int sellerCode, int itemCode) {
 		String sql = "insert into chatRoom values (?, ?, ?, ?, sysdate(), sysdate())";
 		conn = DbManager.getConnection("potatoMarket");
@@ -287,9 +290,7 @@ public class ChatRoomDAO {
 		ArrayList<ChatRoomDTO> rooms = ChatRoomDAO.getInstance().bringAllChatRoom(userCode);
 		for (int i = 0; i < rooms.size(); i++) {
 			ChatRoomDTO room = rooms.get(i);
-			System.out.println("시작1");
 			cnt += getNotReadNumInChatRoom(room.getChat_code(), userCode);
-			System.out.println("userCode : " +userCode);
 		}
 
 		return cnt;
@@ -299,23 +300,21 @@ public class ChatRoomDAO {
 	public int getNotReadNumInChatRoom(int chatRoom_code, int userCode) {
 		int cnt = 0;
 		String sql = "select count(*) from chatHistory where chatRoom_code = ? and readChat = 1 and addUser != ?";
-		System.out.println("시작2");
 		conn = DbManager.getConnection("potatoMarket");
-		System.out.println("시작3");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, chatRoom_code);
 			pstmt.setInt(2, userCode);
-			
+
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				System.out.println("getNotReadNumInChatRoom - 채팅방 안읽은 개수 불러오기 성공");
+				System.out.println("채팅방 안읽은 개수 불러오기 성공");
 				cnt = rs.getInt(1);
 			}
 
 		} catch (Exception e) {
-			System.out.println("getNotReadNumInChatRoom - 채팅방 안읽은 개수 불러오기 실패");
+			System.out.println("채팅방 안읽은 개수 불러오기 실패");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -327,5 +326,82 @@ public class ChatRoomDAO {
 
 		}
 		return cnt;
+	}
+	
+	// 테스트 메소드
+	public ArrayList<String> bringChatList(int chatRoom_code, int userCode) throws SQLException {
+		ArrayList<String> listInfo = new ArrayList<>();
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			String chatNum = bringChatNum(chatRoom_code, userCode);
+			ItemDTO itemInfo = getData(chatRoom_code);
+			
+			
+			System.out.println("채팅리스트의 모든 정보를 담는데 실패");
+		} catch (Exception e) {
+			System.out.println("채팅리스트의 모든 정보를 담는데 실패");
+		} finally {
+			conn.close();
+		}
+		
+		
+		
+		return listInfo;
+	}
+
+	private ItemDTO getData(int chatRoom_code) {
+		ItemDTO item = null;
+		conn = DbManager.getConnection("potatoMarket");
+
+		try {
+			String sql = "select * from items where item_code = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, itemcode);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				itemcode = rs.getInt(1);
+				int booking_code = rs.getInt(2);
+				int user_code = rs.getInt(3);
+				String item_title = rs.getString(4);
+				String item_contents = rs.getString(5);
+				int item_price = rs.getInt(6);
+				Timestamp created_At = rs.getTimestamp(7);
+				Timestamp modified_At = rs.getTimestamp(8);
+				int item_seiling = rs.getInt(9);
+				String item_pic = rs.getString(10);
+				int cate_code = rs.getInt(11);
+
+				item = new ItemDTO(itemcode, booking_code, cate_code, item_price, item_seiling, user_code, item_title,
+						item_contents, item_pic, created_At, modified_At);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+
+	private String bringChatNum(int chatRoom_code, int userCode) {
+		int cnt = 0;
+		String sql = "select count(*) from chatHistory where chatRoom_code = ? and readChat = 1 and addUser != ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, chatRoom_code);
+			pstmt.setInt(2, userCode);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("채팅방 안읽은 개수 불러오기 성공");
+				cnt = rs.getInt(1);
+			}
+			System.out.println("안읽은 채팅개수 가져오기 성공");
+		} catch (Exception e) {
+			System.out.println("안읽은 채팅개수 가져오기 실패");
+		}
+		
+		return String.valueOf(cnt);
 	}
 }

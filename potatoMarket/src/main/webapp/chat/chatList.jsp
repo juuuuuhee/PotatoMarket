@@ -57,7 +57,7 @@
 			int partnerCode = seller_code == loginCode ? buyer_code : seller_code;
 			UserDTO userInfo = UserDAO.getInstance().getUser(partnerCode);
 			String userId = userInfo.getId();
-		%>
+			%>
 			<a href="./action?command=chatView&chatRoom_code=<%=chat_code%>">
 				<ul class="alert">
 					<c:if test="<%=count > 0%>">
