@@ -4,7 +4,7 @@ $('#id_bnt').click(e=>{
 	let checkPhone = $('#help_phone').val();
 	
 	$.ajax({
-		url: 'http://localhost:8080/potatoMarket/ajaxFindId?help_name=김사과&help_phone=01012341234',
+		url: 'http://localhost:8080/potatoMarket/ajaxFindId?help_name='+ checkName +'&help_phone='+checkPhone,
 		method: "POST",
 
 		success: function(data) {

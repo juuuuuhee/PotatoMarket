@@ -39,6 +39,7 @@ public class findId extends HttpServlet {
 		UserDAO user = UserDAO.getInstance();
 		if (user.findId(name, phone) == null) {
 			obj.put("check", 1);
+			return;
 		} else {
 			obj.put("check", 2);
 		}

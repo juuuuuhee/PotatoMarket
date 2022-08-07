@@ -53,15 +53,14 @@
 						<input class="bnt_size" type="button" value="비밀번호 찾기"
 							onclick="location.href='./user_help_page'">
 					</div>
-					<div>
+					<div class="social_login">
 						<div class="login-area">
 							<div id="button_area">
 								<div id="naverIdLogin"></div>
 							</div>
 						</div>
 					</div>
-
-					<div>
+					<div class="social_login">
 						<a href="javascript:kakaoLogin();"><img
 							src="resource/kakao_login.png" alt="카카오계정 로그인"
 							style="height: 60px;" /> </a>
