@@ -1,3 +1,5 @@
+<%@page import="chat.ChatRoomDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="user.UserDTO"%>
 <%@page import="chat.ChatRoomDAO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,11 +14,14 @@
 <c:set var="log" value="${sessionScope.log}" />
 	
 	<%
-	// 아직 읽지 않은 채팅 개수를 session에서 읽는다
-	Object cntObj = session.getAttribute("cnt");
-	int cnt = 0;	
-	if (cntObj != null) {
-		cnt = (int) cntObj;
+	int logincode = -1;
+	Object loginCodeObject = session.getAttribute("log");
+	int cnt = 0;
+	
+	if (loginCodeObject != null) {
+		UserDTO user = (UserDTO) loginCodeObject;
+		cnt = ChatRoomDAO.getInstance().getNotReadNum(user.getCode());
+		System.out.println("안읽은 채팅개수 : " + cnt);
 	}
 	%>
 

@@ -106,7 +106,7 @@ function addMyMsg(message) {
 	let tmp = `
 				<li class="me"> 
 					<div class="name">
-						<h2>나</h2>
+						<h4>나</h4>
 					</div>
 					<div class="message">
 						` + message + `
@@ -120,7 +120,7 @@ function addYourMsg(message) {
 	let tmp = `
 				<li class="you"> 
 					<div class="name">
-						<h2>상대방</h2>
+						<h4>상대방</h4>
 					</div>
 					<div class="message">
 						` + message + `
