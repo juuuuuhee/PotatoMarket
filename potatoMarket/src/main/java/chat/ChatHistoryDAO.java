@@ -39,9 +39,15 @@ public class ChatHistoryDAO {
 			System.out.println("채팅기록 반환 실패");
 
 		} finally {
-			rs = null;
-			pstmt = null;
-			conn = null;
+			try {
+				if (rs != null)
+					rs.close();
+				else if (pstmt != null)
+					pstmt.close();
+				else if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
 		}
 
 		return history;
@@ -58,7 +64,7 @@ public class ChatHistoryDAO {
 			pstmt.setInt(2, chat.getAddUser());
 			pstmt.setString(3, chat.getChat_contents());
 			pstmt.setInt(4, chat.getReadChat());
-			
+
 			if (pstmt.executeUpdate() != 0) {
 				chk = true;
 			}
@@ -69,9 +75,15 @@ public class ChatHistoryDAO {
 			System.out.println("채팅기록 저장 실패");
 
 		} finally {
-			rs = null;
-			pstmt = null;
-			conn = null;
+			try {
+				if (rs != null)
+					rs.close();
+				else if (pstmt != null)
+					pstmt.close();
+				else if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
 		}
 
 		return chk;
@@ -93,9 +105,51 @@ public class ChatHistoryDAO {
 			System.out.println("changeReadChat - 채팅 읽음처리 실패");
 
 		} finally {
-			rs = null;
-			pstmt = null;
-			conn = null;
+			try {
+				if (rs != null)
+					rs.close();
+				else if (pstmt != null)
+					pstmt.close();
+				else if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
 		}
+	}
+
+	public void changeNotRead_num(int chatRoom_code, int loginCode) {
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			String sql = "select recentAdd_code from chatRoom where chat_code = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, chatRoom_code);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int recentAdd_code = rs.getInt(1);
+
+			if (recentAdd_code != loginCode) {
+				sql = "update chatRoom set notRead_num = 0 where chat_code = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, chatRoom_code);
+				pstmt.execute();
+
+				System.out.println("읽음처리 완료");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("읽음처리 실패");
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				else if (pstmt != null)
+					pstmt.close();
+				else if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
+
 	}
 }

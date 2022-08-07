@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import chat.ChatHistoryDAO;
 import chat.ChatHistroyDTO;
+import chat.ChatRoomDAO;
 
 @ServerEndpoint(value = "/chatRoom")
 public class ChatRoomServer {
@@ -97,13 +98,16 @@ public class ChatRoomServer {
 					ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
 					chatHistoryDAO.saveChatHistory(chat);
 				} else { // 상대방이 접속중이 아닐때
+					// 메시지를 데이터베이스에 저장한다
 
 					ChatHistroyDTO chat = new ChatHistroyDTO(Integer.parseInt(chatRoom_code), logCode, msg, 1);
 					ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();
 					chatHistoryDAO.saveChatHistory(chat);
+					
+					int chat_code = Integer.parseInt(chatRoom_code);
+					ChatRoomDAO.getInstance().plusNotRead_Num(chat_code, logCode);
 				}
 
-				// 메시지를 데이터베이스에 저장한다
 
 			} else if (type.equals("open")) {
 				// 처음으로 채팅창을 열었을때 DB에서 채팅내역을 불러와서 저장한다
