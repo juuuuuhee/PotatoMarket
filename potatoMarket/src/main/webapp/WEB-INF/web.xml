@@ -17,10 +17,18 @@
 		<servlet-name>ajaxCon</servlet-name>
 		<servlet-class>myServlet.joinDupl</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>ajaxCon</servlet-name>
 		<url-pattern>/ajaxCon</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ajaxFindId</servlet-name>
+		<servlet-class>myServlet.findId</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ajaxFindId</servlet-name>
+		<url-pattern>/ajaxFindId</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

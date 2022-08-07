@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+.contents_box{
+	margin: 10%;
+    height: 400px;
+    padding-bottom: 21%;
+    background-color: #d8b57a;
+}
+
 li{
 	cursor: pointer;
 }
@@ -10,13 +17,14 @@ li{
     padding-top: 13%;
     justify-content: space-evenly;
     color: gray;
+    list-style:none;
 }
 
 .title_box{
 	display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 7%;
+    padding-top: 10%;
 }
 
 .check_box input[type="text" i]{
@@ -24,6 +32,13 @@ li{
 	height: 40px;
 }
 
-h2{
-	padding-top:10px;
+
+.submit_box{
+	width:304px;
+	height:40px;
+	font-size:20px;
+}
+
+.check_box{
+	padding-top:20px;
 }

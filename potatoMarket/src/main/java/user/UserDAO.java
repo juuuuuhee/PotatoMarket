@@ -262,18 +262,72 @@ public class UserDAO {
 			e.printStackTrace();
 			System.out.println("실패");
 		}finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
-		}
-		try {
-			conn.close();
-			pstmt.close();
-			rs.close();
-		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		return false;
-		
+	}
+	
+	// id 찾기
+	public String findId(String name, String phone) {
+		String id = null;
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			String sql = "select user_id from users where user_name=? and user_phone=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getString(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return id;
+	}
+	// pw 찾기
+	public String findPw(String id, String phone) {
+		String pw = null;
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			String sql = "select user_id from users where user_id=? and user_phone=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				pw = rs.getString(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return pw;
 	}
 
 }
