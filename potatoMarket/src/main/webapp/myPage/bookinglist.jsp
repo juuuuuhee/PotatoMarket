@@ -7,30 +7,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-	<link rel="stylesheet" href="css/orderdList.css">
-	<link rel="stylesheet" href="css/mypage.css">
-	<link rel="stylesheet" href="css/favolist.css">
-	<title>예약목록</title>
+<link rel="stylesheet" href="css/orderdList.css">
+<link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="css/favolist.css">
+<title>예약목록</title>
 </head>
 <body>
 	<%
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");
 	int loginCode = loginUser.getCode();
-	
+
 	ItemDAO idao = ItemDAO.getInstance();
-	
-	
+
 	ArrayList<ItemDTO> list = idao.getBookingList(loginCode);
-	
 	%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
 	</div>
 	<button class="mypage" onclick="location='./myPage'">내 정보</button>
-	<input  class="mypage" type="button" value="나의 판매 목록" onclick="location='./orderdList'">
-	<input  class="mypage" type="button" value="나의 구매 목록" onclick="location='./bookingList'">
-	<input  class="mypage" type="button" value="나의 찜 목록" onclick="location='./favoList'">
-	
+	<input class="mypage" type="button" value="나의 판매 목록"
+		onclick="location='./orderdList'">
+	<input class="mypage" type="button" value="나의 구매 목록"
+		onclick="location='./bookingList'">
+	<input class="mypage" type="button" value="나의 찜 목록"
+		onclick="location='./favoList'">
+
 	<p class="logo title">나의 구매목록</p>
 
 	<div class="contents_wrap">

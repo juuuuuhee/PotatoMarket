@@ -9,6 +9,7 @@ import controller.action.LoginAction;
 import controller.action.LogoutAction;
 import controller.action.SoldOutAction;
 import controller.action.UpdatedataAction;
+import controller.action.UploadPicAction;
 import controller.action.delfavoriteAction;
 
 public class ActionFactory {
@@ -30,6 +31,7 @@ public class ActionFactory {
 		else if(command.equals("addFavo"))action = new AddfavoriteAction();
 		else if(command.equals("delfavo"))action = new delfavoriteAction();
 		else if(command.equals("soldOut"))action = new SoldOutAction();
+		else if(command.equals("uploadPic"))action = new UploadPicAction();
 		return action;
 	}
 	
