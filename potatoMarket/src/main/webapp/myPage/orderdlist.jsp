@@ -61,6 +61,11 @@
 						<%
 						} 
 						%>
+						<form action="./action" method="post">
+							<input type="hidden" name="command" value="deleteItem">
+							<input type="hidden" name="item_code" value="<%=list.get(i).getItem_code()%>">
+							<input type="submit" value="삭제하기">
+						</form>
 					</div>
 				</a>
 			</div>

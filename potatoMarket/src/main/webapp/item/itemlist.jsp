@@ -36,7 +36,16 @@
 						<div class="card-top">
 							<a class="img_href" href="./itemView?code=<%=i.getItem_code()%>">
 								<div class="card-photo">
+								<%
+									if(i.getItem_seiling() == 0){%>
 									<img id="img_size" src="<%=i.getItem_pic()%>">
+									<div>판매중</div>
+									<%}else if(i.getItem_seiling() == 1){%>
+									<img id="img_size" src="<%=i.getItem_pic()%>" style="filter: brightness(35%)">
+									<div>판매완료</div>
+									<% 
+									}
+									%>
 								</div>
 								<div id="item_contents">
 									<div><%=i.getItem_tilte() %></div>
