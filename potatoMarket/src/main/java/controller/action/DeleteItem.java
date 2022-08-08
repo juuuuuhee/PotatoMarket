@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Action;
 import item.ItemDAO;
@@ -16,7 +17,8 @@ public class DeleteItem implements Action {
 		int item_code = Integer.parseInt(request.getParameter("item_code"));
 		System.out.println("item_code : " + item_code);
 		
-		ItemDAO.getInstance().deleteItem(item_code);
+		boolean chk = ItemDAO.getInstance().deleteItem(item_code);
+		request.setAttribute("delete", chk);
 		
 		request.getRequestDispatcher("/").forward(request, response);
 		

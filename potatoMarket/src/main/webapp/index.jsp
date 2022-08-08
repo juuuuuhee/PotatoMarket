@@ -6,6 +6,12 @@
 	<link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
+	<%
+	Object deleteChk = request.getAttribute("delete");
+	if (deleteChk != null) {
+		%> <script>alert("삭제완료");</script> <%
+	}
+	%>
 	<div class="wrap">
 		<div>
 			<%@include file="modules/header.jsp" %>
