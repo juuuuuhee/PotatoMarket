@@ -63,10 +63,14 @@ img.itemPic {
 	height: 100px;
 	width: 100px;
 	margin: 10px;
-	
 }
 
 div.chatBlock {
 	display: flex;
-	    justify-content: space-between;
+	justify-content: space-between;
+}
+
+.soldOut {
+	color: grey;
+	filter: brightness(0.5);
 }

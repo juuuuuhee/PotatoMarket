@@ -26,6 +26,7 @@ public class ItemDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
+	// 모든 아이템 정보를 불러온다
 	public ArrayList<ItemDTO> getAllItemList() {
 		ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 		ItemDTO item;
@@ -72,6 +73,7 @@ public class ItemDAO {
 		return null;
 	}
 
+	// 아이템코드를 이용해서 아이템정보를 불러온다
 	public ItemDTO getItem(int itemcode) {
 		ItemDTO item = null;
 		conn = DbManager.getConnection("potatoMarket");
@@ -114,6 +116,7 @@ public class ItemDAO {
 		return null;
 	}
 
+	// 키워드를 포함하고 있는 모든 아이템들을 불러온다
 	public ArrayList<ItemDTO> getSearchResult(String keyword) {
 
 		ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();

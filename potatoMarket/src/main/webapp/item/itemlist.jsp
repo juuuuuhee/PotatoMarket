@@ -15,8 +15,17 @@
 	if (request.getParameter("keyword") == null) {
 		list = ItemDAO.getInstance().getAllItemList();
 	} else {
+		// 검색창에 키워드를 입력했다면 해당 키워드에 해당하는 아이템들을 불러온다
 		String keyword = request.getParameter("keyword");
 		list = ItemDAO.getInstance().getSearchResult(keyword);
+	}
+	
+	// session에서 로그인코드loginCode를 가져온다
+	int loginCode = -1;
+	Object loginObj = session.getAttribute("log");
+	if (loginObj != null) {
+		UserDTO user = (UserDTO) loginObj;
+		loginCode = user.getCode();
 	}
 	%>
 	<c:set var="itemList" value="<%=list%>" />
@@ -36,26 +45,27 @@
 						<div class="card-top">
 							<a class="img_href" href="./itemView?code=<%=i.getItem_code()%>">
 								<div class="card-photo">
-								<%
-									if(i.getItem_seiling() == 0){%>
-									<img id="img_size" src="<%=i.getItem_pic()%>">
-									<%}else if(i.getItem_seiling() == 1){%>
-									<img id="img_size" src="<%=i.getItem_pic()%>" style="filter: brightness(35%)">
-									<% 
-									}
-									%>
+									<% if(loginCode == i.getUser_code()) { %>
+										<span class="note"></span>
+									<% }
+									
+									if(i.getItem_seiling() == 0) { %>
+										<img id="img_size" src="<%=i.getItem_pic()%>">
+									<% } else if(i.getItem_seiling() == 1) { %>
+										<img id="img_size" src="<%=i.getItem_pic()%>" style="filter: brightness(35%)">
+									<% } %>
+									
 								</div>
 								<div id="item_contents">
-									
 									<%
-									if(i.getItem_seiling() == 0){%>
-									<div><%=i.getItem_tilte() %></div>
-									<div><%=i.getItem_price() %>원</div>
-									<div>판매중</div>
-									<%}else if(i.getItem_seiling() == 1){%>
-									<div class="sell" ><%=i.getItem_tilte() %></div>
-									<div class="sell" ><%=i.getItem_price() %>원</div>
-									<div class="sell" >판매완료</div>
+									if(i.getItem_seiling() == 0) { %>
+										<div><%=i.getItem_tilte() %></div>
+										<div><%=i.getItem_price() %>원</div>
+										<div>판매중</div>
+									<% } else if(i.getItem_seiling() == 1) { %>
+										<div class="sell" ><%=i.getItem_tilte() %></div>
+										<div class="sell" ><%=i.getItem_price() %>원</div>
+										<div class="sell" >판매완료</div>
 									<% 
 									}
 									%>

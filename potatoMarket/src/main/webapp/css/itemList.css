@@ -40,6 +40,23 @@
 	padding-top: 6%;
 	text-align: center;
 }
+
 .sell{
 	color: grey;
+}
+
+span.note {
+	width: 20px;
+	height: 20px;
+    line-height: 25px;
+    text-align: center;
+    background-color: #ffc107;
+    color: white;
+    font-size: 13px;
+    border-radius: 15px;
+    display: inline-block;
+    position: absolute;
+    margin: -3px;
+    top: 10px;
+    left: 10px;
 }
