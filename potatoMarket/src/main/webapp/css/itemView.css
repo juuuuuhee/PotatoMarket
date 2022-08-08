@@ -49,3 +49,8 @@ button{
 	width:100px;
 	height: 40px;
 }
+
+input[type="submit"] {
+	width: 100px;
+    height: 40px;
+}

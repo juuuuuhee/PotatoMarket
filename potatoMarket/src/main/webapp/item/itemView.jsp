@@ -68,8 +68,9 @@
 			} else if (user_code == loginCode) {
 			%>
 			<form action="./action" method="post">
-				<input type="hidden" name="command" value="intoChatRoom">
+				<input type="hidden" name="command" value="deleteItem">
 				<input type="hidden" name="item_code" value="<%=item_code%>">
+				<input type="submit" value="삭제하기">
 			</form>
 			<%
 			}
@@ -87,9 +88,5 @@
 		$('form').submit();
 	}
 
-	function changeBooking() {
-		$('#command').val('changeBooking');
-		$('form').submit();
-	}
 </script>
 </html>

@@ -2,6 +2,7 @@ package controller;
 
 
 import controller.action.ChatViewAction;
+import controller.action.DeleteItem;
 import controller.action.AddfavoriteAction;
 import controller.action.IntoChatRoom;
 import controller.action.JoinAction;
@@ -34,6 +35,7 @@ public class ActionFactory {
 		else if(command.equals("soldOut"))action = new SoldOutAction();
 		else if(command.equals("uploadPic"))action = new UploadPicAction();
 		else if(command.equals("updatePic"))action = new UpdatePicAction();
+		else if(command.equals("deleteItem"))action = new DeleteItem();
 		return action;
 	}
 	

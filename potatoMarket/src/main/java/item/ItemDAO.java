@@ -335,4 +335,23 @@ public class ItemDAO {
 
 	}
 
+	public void deleteItem(int item_code) {
+		conn = DbManager.getConnection("potatoMarket");
+		String sql = "delete from items where item_code = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, item_code);
+			pstmt.execute();
+			System.out.println("삭제 완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("삭제 실패");
+
+		}
+
+	}
+
 }
