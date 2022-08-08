@@ -14,13 +14,13 @@
 	<div class="contents_wrap">
 		<div class="contents_box">
 			<ul class="li_box">
-				<li class="menuName" id="menuTitle"
+				<li class="menuName" id="menuTitle_id"
 					onclick="showMenu('user_help_id','user_help_menu')">아이디 찾기</li>
 				<p>|</p>
-				<li class="menuName" id="menuTitle"
+				<li class="menuName" id="menuTitle_pw"
 					onclick="showMenu('user_help_pw','user_help_menu')">비밀번호 찾기</li>
 			</ul>
-			<div id="help_box">
+			<div>
 				<div class="user_help_id user_help_menu" style="display: none">
 					<div class="title_box">
 						<div class="check_box">
@@ -37,7 +37,6 @@
 						<span id="result_id"></span>
 					</div>
 				</div>
-				
 			</div>
 			<div>
 				<div class="user_help_pw user_help_menu" style="display: none">

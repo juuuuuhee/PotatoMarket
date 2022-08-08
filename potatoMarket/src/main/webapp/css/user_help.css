@@ -52,3 +52,7 @@ li{
 	padding-top: 5%;
     font-size: 26px;
 }
+
+.selected{
+	color: black;
+}

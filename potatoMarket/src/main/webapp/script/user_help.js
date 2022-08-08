@@ -42,3 +42,16 @@ $('#pw_bnt').click(e=>{
 	})
 	
 })
+
+
+$('#menuTitle_id').click(e=>{
+	document.getElementById('menuTitle_id').className = 'menuName selected';
+	document.getElementById('menuTitle_pw').className = 'menuName';
+})
+
+$('#menuTitle_pw').click(e=>{
+	document.getElementById('menuTitle_id').className = 'menuName';
+	document.getElementById('menuTitle_pw').className = 'menuName selected';
+	
+})
+

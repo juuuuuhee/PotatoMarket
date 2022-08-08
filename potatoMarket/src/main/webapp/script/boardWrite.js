@@ -79,7 +79,7 @@ function dataUpload() {
 		method: "POST",
 		success: function(data) {
 			alert("글쓰기 성공!");
-			location.href='./';
+			location.href='./itemList';
 		}
 	})
 }
