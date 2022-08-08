@@ -10,9 +10,12 @@
 </head>
 <body>
 	<%
+	// 아이템 정보 읽어오기
 	ItemDAO dao = ItemDAO.getInstance();
 	String item_code = request.getParameter("code");
 	ItemDTO thisItem = dao.getItem(Integer.parseInt(item_code));
+	
+	// session에서 유저코드 읽어오기
 	UserDAO uDao = UserDAO.getInstance();
 	int user_code = dao.getdata(Integer.parseInt(item_code)).getUser_code();
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");

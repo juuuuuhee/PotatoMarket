@@ -5,14 +5,21 @@
 <link rel="stylesheet" href="css/itemWrite.css">
 </head>
 <body>
+	<%
+		UserDTO loginUser = (UserDTO) session.getAttribute("log");
+		int loginCode = -1;
+		if (loginUser != null) {
+			loginCode = loginUser.getCode();
+		}
+	%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
 	</div>
 	<div class="contents_wrap">
 		<div id="board_box">
-			<form method="post" action="./action" id="form">
+			<form method="post" id="form">
 				<input type="hidden" name="command" value="writeBoard">
-				<input type="hidden" id="user_code" value="<%=logincode%>">
+				<input type="hidden" id="user_code" value="<%=loginCode%>">
 				<div id="img_box"></div>
 				<div class="filebox">
 					<label for="ex_file">업로드</label>
@@ -23,7 +30,7 @@
 				<div id="form_div"><input type="number" id="price" placeholder="가격"></div>
 				<div class="button_box">
 					<input class="bnt_input" type="button" onclick="location.href='./itemView'" value="뒤로가기">
-					<input class="bnt_input" id="button_chat" type="submit"onclick="uploadImg()" value="작성하기">
+					<input class="bnt_input" id="button_chat" type="button" onclick="uploadImg()" value="작성하기">
 				</div>
 			</form>
 		</div>
