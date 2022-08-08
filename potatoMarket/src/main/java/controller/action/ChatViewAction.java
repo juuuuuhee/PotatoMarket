@@ -24,9 +24,6 @@ public class ChatViewAction implements Action {
 		UserDTO loginUser = (UserDTO) session.getAttribute("log");
 		int loginCode = loginUser.getCode();
 		
-		// 읽음 처리되는 채팅의 개수를 구한다
-		int cntChange = ChatRoomDAO.getInstance().getNotReadNumInChatRoom(chatRoom_code, loginCode);
-		
 		// chatHistory에서 채팅 읽음 처리를 한다(DB)
 		int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chatRoom_code, loginCode);
 		ChatHistoryDAO chatHistoryDAO = new ChatHistoryDAO();

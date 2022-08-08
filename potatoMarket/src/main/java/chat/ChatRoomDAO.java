@@ -311,13 +311,13 @@ public class ChatRoomDAO {
 		String sql = "select notRead_num from chatRoom where chat_code = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, chatRoom_code);
 			rs = pstmt.executeQuery();
 			rs.next();
-			
+
 			cnt = rs.getInt(1);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -333,7 +333,7 @@ public class ChatRoomDAO {
 		try {
 			int chatNum = getNotReadNumInChatRoom(chatRoom_code, userCode);
 			String partnerId = bringPartnerId(chatRoom_code, partnerCode);
-			
+
 			ItemDTO itemInfo = getItemData(chatRoom_code);
 			String itemTitle = itemInfo.getItem_tilte();
 			String itemPic = itemInfo.getItem_pic();
@@ -401,6 +401,30 @@ public class ChatRoomDAO {
 
 		return item;
 	}
+	
+	public ItemDTO getItemDTO(int chatRoom_code) {
+		ItemDTO item = null;
+		conn = DbManager.getConnection("potatoMarket");
+		try {
+			item = getItemData(chatRoom_code);
+			System.out.println("아이템 데이터 가져오기 성공");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("아이템 데이터 가져오기 실패");
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				else if (pstmt != null)
+					pstmt.close();
+				else if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
+		return item;
+	}
 
 	// chatRoom에서 아직 읽지 않은 모든 메시지의 개수를 구한다;
 
@@ -426,8 +450,12 @@ public class ChatRoomDAO {
 				int seller_code = room.getSeller_code();
 				int buyer_code = room.getBuyer_code();
 				int partnerCode = seller_code == loginCode ? buyer_code : seller_code;
-
+				
+				ItemDTO item = getItemData(room.getChat_code());
+				int item_selling = item.getItem_seiling();
+				
 				ChatRoomInfo chatRoomInfo = bringChatList(rooms.get(i).getChat_code(), loginCode, partnerCode);
+				chatRoomInfo.setItem_selling(item_selling);
 				chatRoomInfos.add(chatRoomInfo);
 
 			}
@@ -460,7 +488,7 @@ public class ChatRoomDAO {
 			for (int i = 0; i < rooms.size(); i++) {
 				ChatRoomDTO room = rooms.get(i);
 				cnt += getNotReadNumInChatRoom(room.getChat_code(), userCode);
-				System.out.println("cnt : "+ cnt);
+				System.out.println("cnt : " + cnt);
 			}
 
 			System.out.println("header 안읽은 채팅개수 불러오기 성공");
@@ -494,11 +522,11 @@ public class ChatRoomDAO {
 			pstmt.setInt(3, chatRoom_code);
 			pstmt.execute();
 			System.out.println("cnt : " + cnt);
-			
+
 			System.out.println("안읽은 개수 하나 늘리기 성공");
 		} catch (Exception e) {
 			System.out.println("안읽은 개수 하나 늘리기 실패");
-			
+
 		} finally {
 			try {
 				if (rs != null)
@@ -510,7 +538,54 @@ public class ChatRoomDAO {
 			} catch (Exception e2) {
 			}
 		}
-		
+
 	}
+
+	// 채팅창에서 '판매완료' 버튼을 눌렀을때 아이템이 판매완료 처리가 된다
+	public boolean updateSoldOut(int chatRoom_code) {
+		conn = DbManager.getConnection("potatoMarket");
+		boolean chk = false;
+		try {
+			ChatRoomDTO room = getData(chatRoom_code);
+			int buyer_code = room.getBuyer_code();
+			int item_code = room.getItem_code();
+	
+			// test
+			System.out.println("buyer_code : "+ buyer_code);
+			System.out.println("item_code : "+ item_code);
+			
+			chk = updateItemSoldOut(item_code, buyer_code);
+			if (chk) 
+				System.out.println("판매완료 처리 완료");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("판매완료 처리 실패");
+		}
+
+		return chk;
+	}
+	
+	// Db에 '판매완료'로 업데이트 한다
+	public boolean updateItemSoldOut(int item_code ,int buyer_code) {
+		boolean chk = false;
+		String sql = "update items set item_selling = 1, orderuser_code = ? where item_code = ?";
+		conn = DbManager.getConnection("potatoMarket");
+		System.out.println("item_code : " + item_code);
+		System.out.println("buyer_code : " + buyer_code);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, buyer_code);
+			pstmt.setInt(2, item_code);
+			pstmt.execute();
+			chk = true;
+			System.out.println("판매완료 Db업데이트 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("판매완료 Db업데이트 실패");
+		}
+		return chk;
+	}
+
 
 }

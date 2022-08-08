@@ -25,6 +25,12 @@
 	UserDTO loginUser = (UserDTO) session.getAttribute("log");
 	int loginCode = loginUser.getCode();
 	System.out.println("loginCode : " + loginCode);
+	
+	// 판매완료가 되었다면 알림창을 띄운다
+	Object chkObj =  request.getAttribute("chk");
+	if (chkObj != null) {
+		%> <script> alert("판매완료로 수정되었습니다"); </script> <%
+	}
 	%>
 
 	<div class="main">
@@ -45,24 +51,39 @@
 				String title = chatRoomInfo.getItemTitle();
 				String id = chatRoomInfo.getPartnerId();
 				String pic = chatRoomInfo.getItemPic();
-
+				int item_selling = chatRoomInfo.getItem_selling();
+				
+				System.out.println("item_selling : " + item_selling);
+				
 				%>
 				<a href="./action?command=chatView&chatRoom_code=<%=chat_code%>">
-					<ul class="alert">
+						<ul class="alert">
 						<c:if test="<%=count > 0%>">
 							<span class="note-num2"><%=count%></span>
 						</c:if>
-						<div class="chatBlock">
+						<% if (item_selling == 1) { %>
+							<div class="chatBlock soldOut" style="color : grey;">
 							<div>
 								<p class="itemTitle">
-								<h1><%=title%></h1>
+									<h1> 판매 완료된 제품</h1>
 								</p>
 								<br>
 								<p class="userInfo">
-									상대ID :
-									<%=id%>
+									상대ID : <%=id%>
 								</p>
 							</div>
+						<% } else if (item_selling == 0) { %>
+							<div class="chatBlock">
+							<div>
+								<p class="itemTitle">
+									<h1><%=title%></h1>
+								</p>
+								<br>
+								<p class="userInfo">
+									상대ID : <%=id%>
+								</p>
+							</div>
+						<% } %>					
 							<img class="itemPic" src="<%=pic%>">
 						</div>
 					</ul>
