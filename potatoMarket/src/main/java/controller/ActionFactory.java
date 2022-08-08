@@ -7,6 +7,7 @@ import controller.action.IntoChatRoom;
 import controller.action.JoinAction;
 import controller.action.LoginAction;
 import controller.action.LogoutAction;
+import controller.action.SoldOutAction;
 import controller.action.UpdatedataAction;
 import controller.action.delfavoriteAction;
 
@@ -28,6 +29,7 @@ public class ActionFactory {
 		else if(command.equals("chatView"))action = new ChatViewAction();
 		else if(command.equals("addFavo"))action = new AddfavoriteAction();
 		else if(command.equals("delfavo"))action = new delfavoriteAction();
+		else if(command.equals("soldOut"))action = new SoldOutAction();
 		return action;
 	}
 	

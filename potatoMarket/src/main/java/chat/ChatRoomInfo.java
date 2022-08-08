@@ -5,6 +5,7 @@ public class ChatRoomInfo {
 	private String partnerId;
 	private String itemTitle;
 	private String itemPic;
+	private int item_selling;
 
 	public int getNotRead_num() {
 		return notRead_num;
@@ -36,5 +37,13 @@ public class ChatRoomInfo {
 
 	public void setItemPic(String itemPic) {
 		this.itemPic = itemPic;
+	}
+
+	public int getItem_selling() {
+		return item_selling;
+	}
+
+	public void setItem_selling(int item_selling) {
+		this.item_selling = item_selling;
 	}
 }

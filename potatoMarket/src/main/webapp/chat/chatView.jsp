@@ -28,7 +28,7 @@
 	int chatRoom_code = Integer.parseInt((String) session.getAttribute("chatRoom_code"));
 	System.out.println("chatRoom_code : " + chatRoom_code);
 	
-	// 채팅방 코드를 이용해서 아이템 코드를 불러온다. '상품으로' 버튼에 사용된다
+	// 채팅방 코드를 이용해서 채팅방 코드를 불러온다. '상품으로' 버튼에 사용된다
 	ChatRoomDTO chatRoomInfo = ChatRoomDAO.getInstance().getData(chatRoom_code);
 	
 	// session에 저장된 로그인된 유저 정보를 가져온다
@@ -41,6 +41,7 @@
 	int partnerCode = ChatRoomDAO.getInstance().bringPartnerCode(chatRoom_code, loginCode);
 	UserDTO partnerDTO = UserDAO.getInstance().getUserData(partnerCode);
 
+	ItemDTO item = ChatRoomDAO.getInstance().getItemDTO(chatRoom_code);
 	%>
 	
 	<input type="hidden" name="chatRoom_code" value="<%=chatRoom_code %>">
@@ -52,7 +53,9 @@
 			<h1><%=partnerDTO.getId() %>님과의 채팅방</h1> 
 			<div>
 				<input type="button" value="상품으로" onclick="location.href='./itemView?code=<%=chatRoomInfo.getItem_code()%>'">
-				<input type="button" value="뒤로가기" onclick="location.href=`./chatList`">
+				<% if (loginCode == item.getUser_code()) { %>
+					<input type="button" value="판매완료" onclick="location.href=`./action?command=soldOut&chatRoom_code=<%=chatRoom_code%>`">
+				<% } %>
 			</div>
 		</div>
 		<br>
