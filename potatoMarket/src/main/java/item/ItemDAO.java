@@ -120,7 +120,7 @@ public class ItemDAO {
 		conn = DbManager.getConnection("potatoMarket");
 
 		try {
-			String sql = "select * from items where (item_title like ? and item_contents like ?)";
+			String sql = "select * from items where (item_title like ? or item_contents like ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, '%' + keyword + '%');
 			pstmt.setString(2, '%' + keyword + '%');

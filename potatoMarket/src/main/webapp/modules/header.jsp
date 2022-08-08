@@ -36,7 +36,7 @@
 	
 	<div>
 		<form class="main_form" action="./itemList">
-			<input type="text" placeholder="물품을 검색해보세요.">
+			<input type="text" name="keyword" placeholder="물품을 검색해보세요.">
 			<input id="button" type="submit" value="검색">
 		</form>
 	</div>
