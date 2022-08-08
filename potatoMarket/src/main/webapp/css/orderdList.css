@@ -35,13 +35,11 @@
 	width: inherit;
 	height: inherit;
 	object-fit: cover;
-	filter: brightness(50%);
 }
 
 #orderd_contents {
 	padding-top: 6%;
 	text-align: center;
-	
 }
 
 p.title {

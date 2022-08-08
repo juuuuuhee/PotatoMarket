@@ -5,6 +5,8 @@ div.pagedetail{
     flex-grow: 1;
 	flex-direction: column;
     background-color: white;
+    align-items: center;
+    padding-top: 10%;
 }
 
  .mypage {

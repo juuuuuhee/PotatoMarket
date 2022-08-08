@@ -7,7 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<link rel="stylesheet" href="css/orderdList.css">
+
 <link rel="stylesheet" href="css/mypage.css">
 <link rel="stylesheet" href="css/favolist.css">
 <title>예약목록</title>
@@ -35,7 +35,7 @@
 	<p class="logo title">나의 구매목록</p>
 
 	<div class="contents_wrap">
-		<div class="pagedetail">
+		
 			<%
 			for (int i = 0; i < list.size(); i++) {
 				ItemDTO idto = list.get(i);
@@ -45,21 +45,23 @@
 				String title = item.getItem_tilte();
 				int price = item.getItem_price();
 				int sellchk = item.getItem_seiling();
+				int code = item.getItem_code();
 			%>
-			<article onclick="">
-				<div id="pic">
-					<img src="<%=pic%>">
+			<div class ="contents_top">
+			<a class="contents_img_href" href="./itmeView?code=<%=code %>" style="cursor: pointer">
+				<div class="contents-photo">
+					<img id="contents_img_size"src="<%=pic%>">
 				</div>
+				<div id="contents">
 				<div><%=title%></div>
-				<div><%=price%></div>
-				<div><%=sellchk%></div>
-
-			</article>
+				<div><%=price%>원</div>
+				</div>
+			</a>
+			</div>
 			<%
 			}
 			%>
-		</div>
-	</div>
+		</div>	
 	<div class="footer">
 		<%@include file="../modules/footer.jsp"%>
 	</div>
