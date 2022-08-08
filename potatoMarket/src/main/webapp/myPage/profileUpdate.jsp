@@ -4,6 +4,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/join.css">
 <title>Title</title>
 </head>
 <body>
@@ -75,17 +78,10 @@
 					</div>
 
 					<div class="input">
-						<label>phone</label><br> <select name="contact_1"
-							id="phone_1" class="essential">
-							<option value="010">010</option>
-							<option value="010">011</option>
-							<option value="010">017</option>
-						</select> <span>-</span> <input type="number" class="essential"
-							value="<%=ph1 %>" name="contact_2" id="phone_2" pattern=".{3,4}"
-							title="전화번호를 3자리에서 4자리 입력해주세요"> <span>-</span> <input
-							type="number" class="essential" value="<%=ph2 %>"
-							name="contact_3" id="phone_3" pattern=".{4,4}"
-							title="전화번호를 4자리 입력해주세요"><br> <span class="check"></span>
+						<label>phone</label><br> <input type="text"
+							class="phonePattern" name="phone_number" id="phone_1"
+							class="essential" placeholder="휴대폰번호" value="<%=ph%>"> <br>
+						<span class="check"></span> <span id="phone_check"></span>
 					</div>
 
 					<div class="title_submit">
@@ -113,5 +109,6 @@
 			}).open();
 		}
 	</script>
+	<script src="script/validation.js"></script>
 </body>
 </html>
