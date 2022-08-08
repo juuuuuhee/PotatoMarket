@@ -19,11 +19,9 @@ function uploadImg() {
 	};
 
 	callUploadApi(settings);
-	dataUpload();
 }
 
-let img_Url = "";
-
+// 사이트에 업로드하고, 해당 url을 받아온다 
 function callUploadApi(settings) {
 	
 	$.ajax(settings)
@@ -31,11 +29,14 @@ function callUploadApi(settings) {
 			console.log(response);
 			let jx = JSON.parse(response);
 			// jx.data.id의 값도 저장해야함 - 삭제 시 필요
-			$('#img_url').val(jx.data.url);
+			let url = $('#img_url').val(jx.data.url);
 			$('#del_url').val(jx.data.delete_url);
-			let tmp = $('#img_url').val()
-			console.log(typeof jx);
 			
+			// 받아온 데이터(response)를 JSON화 시켜서 img_Url에 저장한다
+			let tmp = JSON.parse(response);
+			img_Url = tmp.data.url;
+			
+			/*				
 			let boardJson = {
 				"url": "/upload",
 				"method": "POST",
@@ -49,15 +50,16 @@ function callUploadApi(settings) {
 					//"delete_url": $('#del_url').val()
 				})
 			};
-
-			//img_Url =  $('#img_url').val();
 	 		console.log(boardJson.data+"?");
+
 			$.ajax(boardJson)
 				.done(result => {
 					console.log("uploadImg success");
 				}).fail(error=>{
 					console.log(error+"에러냐");
 				})
+			*/
+			dataUpload();
 		})
 		.fail(error => {
 			console.log(error);
@@ -69,17 +71,16 @@ function dataUpload() {
 	let title = $('#title').val();
 	let contents= $('#contents').val();
 	let price = $('#price').val();
+	
+	alert(user_code);
 
+	let url = `http://localhost:8080/potatoMarket/action?command=uploadPic&user_code=${user_code}&title=${title}&contents=${contents}&price=${price}&img_Url=${img_Url}`;
 	$.ajax({
-
-		url: 'http://localhost:8080/potatoMarket/action?command=uploadPic',
+		url: url,
 		method: "POST",
-
+		
 		success: function(data) {
-			console.log("넘어 오나여ㅛ?");
-		
-		
-
+			alert("글쓰기 성공!");		
 		}
 	})
 }

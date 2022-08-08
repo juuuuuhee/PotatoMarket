@@ -1,5 +1,4 @@
 
-
 package item;
 
 import java.sql.Timestamp;
@@ -63,6 +62,16 @@ public class ItemDTO {
 		this.modified_At = modified_At;
 	}
 
+	public ItemDTO(int item_code, int user_code, String item_tilte, String item_contents, String item_pic,
+			int item_price) {
+		this.item_code = item_code;
+		this.item_price = item_price;
+		this.user_code = user_code;
+		this.item_tilte = item_tilte;
+		this.item_contents = item_contents;
+		this.item_pic = item_pic;
+	}
+
 	public int getItem_code() {
 		return item_code;
 	}
@@ -108,4 +117,3 @@ public class ItemDTO {
 	}
 
 }
-
