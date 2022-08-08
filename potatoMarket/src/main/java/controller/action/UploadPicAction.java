@@ -14,7 +14,7 @@ public class UploadPicAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		int item_code = ItemDAO.getInstance().getRCode();
 		int user_code = Integer.parseInt(request.getParameter("user_code"));
 		String item_title = request.getParameter("title");
@@ -25,17 +25,8 @@ public class UploadPicAction implements Action {
 		System.out.println("userCode : ");
 		System.out.println("userCode : " + user_code);
 		ItemDTO item = new ItemDTO(item_code, user_code, item_title, item_contents, item_pic, item_price);
-		boolean chk = ItemDAO.getInstance().uploadItem(item);
-
-		String url = "";
-		if (chk) {
-			url = "/itemView?code=" + item_code;
-		} else {
-			url = "/index";
-		}
-
-		request.setAttribute("chkWrite", chk);
-		request.getRequestDispatcher(url).forward(request, response);
+		ItemDAO.getInstance().uploadItem(item);
+		
 	}
 
 }
