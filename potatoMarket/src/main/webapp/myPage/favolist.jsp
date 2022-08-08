@@ -31,7 +31,7 @@
 		onclick="location='./orderdList'">
 	<input class="mypage" type="button" value="나의 구매 목록"
 		onclick="location='./bookingList'">
-	<input class="mypage" type="button" value="나의 찜 목록"
+	<input class="mypage selected" type="button" value="나의 찜 목록"
 		onclick="location='./favoList'">
 	<p class="title logo">관심 아이템</p>
 
