@@ -238,6 +238,45 @@ public class ItemDAO {
 			return null;
 		}
 		
-
-
+		// user가 구매하는 아이템 목록 메소드
+				public ArrayList<ItemDTO> getBookingList(int user_code){
+					ArrayList<ItemDTO> orderItemList = new ArrayList<ItemDTO>();
+					String sql = "select * from items where orderuser_code = ?";
+					conn = DbManager.getConnection("potatoMarket");
+					try {
+						pstmt=conn.prepareStatement(sql);
+						pstmt.setInt(1, user_code);
+						rs=pstmt.executeQuery();
+						while(rs.next()) {
+							int code = rs.getInt(1);
+							int bcode = rs.getInt(2);
+							int usercode = rs.getInt(3);
+							String title = rs.getString(4);
+							String contents = rs.getString(5);
+							int price = rs.getInt(6);
+							int sellchk = rs.getInt(9);
+							String picture = rs.getString(10);
+							int catecode = rs.getInt(11);
+							int orderusercode = rs.getInt(12);
+							
+							ItemDTO dto = new ItemDTO(code,bcode,usercode,title,contents,price,sellchk,picture,catecode,orderusercode);
+						
+							orderItemList.add(dto);
+						}
+						return orderItemList;
+					}catch (Exception e) {
+						e.printStackTrace();
+					}finally {
+						try {
+							conn.close();
+							pstmt.close();
+							rs.close();
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
+					}
+					return null;
+				}
+		
+		
 }
