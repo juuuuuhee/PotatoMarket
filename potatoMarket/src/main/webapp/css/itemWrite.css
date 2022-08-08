@@ -1,0 +1,81 @@
+#board_box {
+	display: flex;
+    margin: 8%;
+    background-color: #d8b57a;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 7%;
+    padding-bottom: 8%;
+}
+
+
+#contents{
+	width:100%;
+	height:600px;
+}
+
+.img_thumbnail{
+	width: 150px;
+	height:150px;
+}
+
+#form_div{
+	padding-top:2%
+}
+
+#form{
+	width:75%;
+}
+
+#title{
+	width: 100%;
+    height: 40px;
+}
+
+#price{
+	width: 30%;
+    height: 40px;
+}
+
+.button_box{
+	padding-top:3%;
+}
+
+.bnt_input{
+	width: 10%;
+    height: 40px;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #5cb85c;
+  cursor: pointer;
+  border: 1px solid #4cae4c;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+  background-color: #6ed36e;
+}
+
+.filebox label:active {
+  background-color: #367c36;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

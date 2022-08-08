@@ -167,12 +167,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>itemWirte</servlet-name>
-		<jsp-file>/item/itemWirte.jsp</jsp-file>
+		<servlet-name>itemWrite</servlet-name>
+		<jsp-file>/item/itemWrite.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>itemWirte</servlet-name>
-		<url-pattern>/itemWirte</url-pattern>
+		<servlet-name>itemWrite</servlet-name>
+		<url-pattern>/itemWrite</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -7,6 +7,7 @@
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<link rel="shortcut icon" href="#">
 	<link rel="stylesheet" href="./css/module.css">
 </head>
 <%-- <% String log=(String) session.getAttribute("log"); %> --%>
@@ -50,8 +51,8 @@
 				</c:when>
 				<c:otherwise>
 					<li><c:out value="${sessionScope.log.getId()}님 환영합니다!" /></li>
+					<li><a href='./itemWrite'><img src="resource/write.png" width="50px" height="50px"></a></li>
 					<li><a id="button" href="./myPage"><img src="resource/my.png" width="60px" height="60px"></a></li>
-
 					<li class="alert">
 						<a id="button" href="./chatList">
 							<%if(cnt > 0){%>
