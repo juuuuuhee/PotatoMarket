@@ -39,22 +39,23 @@
 								<%
 									if(i.getItem_seiling() == 0){%>
 									<img id="img_size" src="<%=i.getItem_pic()%>">
-									<div>판매중</div>
 									<%}else if(i.getItem_seiling() == 1){%>
 									<img id="img_size" src="<%=i.getItem_pic()%>" style="filter: brightness(35%)">
-									<div>판매완료</div>
 									<% 
 									}
 									%>
 								</div>
 								<div id="item_contents">
-									<div><%=i.getItem_tilte() %></div>
-									<div><%=i.getItem_price() %>원</div>
+									
 									<%
 									if(i.getItem_seiling() == 0){%>
+									<div><%=i.getItem_tilte() %></div>
+									<div><%=i.getItem_price() %>원</div>
 									<div>판매중</div>
 									<%}else if(i.getItem_seiling() == 1){%>
-									<div>판매완료</div>
+									<div class="sell" ><%=i.getItem_tilte() %></div>
+									<div class="sell" ><%=i.getItem_price() %>원</div>
+									<div class="sell" >판매완료</div>
 									<% 
 									}
 									%>

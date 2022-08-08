@@ -27,7 +27,7 @@
 	<button class="mypage" onclick="location='./myPage'">내 정보</button>
 	<input class="mypage" type="button" value="나의 판매 목록"
 		onclick="location='./orderdList'">
-	<input class="mypage" type="button" value="나의 구매 목록"
+	<input class="mypage selected" type="button" value="나의 구매 목록"
 		onclick="location='./bookingList'">
 	<input class="mypage" type="button" value="나의 찜 목록"
 		onclick="location='./favoList'">

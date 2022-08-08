@@ -17,6 +17,14 @@ div.pagedetail{
     color: white;
     border: solid 1px;
 }
+.mypage:hover{
+	background: #d8b53a;
+	border: solid 2px black;
+}
+.selected{
+	background: #c63c3c;
+    color: #f8f9fa;
+}
 
 .mydetail{
 	height:50px;
@@ -27,5 +35,6 @@ div.pagedetail{
     justify-content: center;
     padding-left: 10px;
 }
+
 
 
