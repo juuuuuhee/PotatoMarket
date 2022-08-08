@@ -4,9 +4,11 @@ package item;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import util.Code;
 import util.DbManager;
 
 public class ItemDAO {
@@ -277,6 +279,60 @@ public class ItemDAO {
 			}
 		}
 		return null;
+	}
+
+	// 아이템 '등록하기' 버튼을 눌렀을때 데이터베이스에 아이템이 저장된다
+	public boolean uploadItem(ItemDTO item) {
+		boolean chk = false;
+		String sql = "insert into items values (?, null, ?, ?, ?, ?, sysdate(), sysdate(), 0, ?, 1, null)";
+		try {
+			conn = DbManager.getConnection("potatoMarket");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, item.getItem_code());
+			pstmt.setInt(2, item.getUser_code());
+			pstmt.setString(3, item.getItem_tilte());
+			pstmt.setString(4, item.getItem_contents());
+			pstmt.setInt(5, item.getItem_price());
+			pstmt.setString(6, item.getItem_pic());
+
+			pstmt.execute();
+			chk = true;
+			System.out.println("아이템 업데이트 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("아이템 업데이트 실패");
+		}
+
+		return chk;
+	}
+
+	// 아이템 랜덤코드를 반환한다
+	public int getRCode() {
+		Code code = new Code();
+		int rCode = -1;
+		conn = DbManager.getConnection("potatoMarket");
+		String sql = "select * from items where item_code = ?";
+
+		try {
+			while (true) {
+				pstmt = conn.prepareStatement(sql);
+
+				rCode = code.rCode();
+				pstmt.setInt(1, rCode);
+				rs = pstmt.executeQuery();
+				if (!rs.next()) {
+					break;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("아이템 랜덤코드 반환 실패");
+
+		}
+
+		System.out.println("아이템 랜덤코드 반환 성공");
+		return rCode;
+
 	}
 
 }

@@ -8,6 +8,7 @@ import controller.action.JoinAction;
 import controller.action.LoginAction;
 import controller.action.LogoutAction;
 import controller.action.SoldOutAction;
+import controller.action.UpdatePicAction;
 import controller.action.UpdatedataAction;
 import controller.action.UploadPicAction;
 import controller.action.delfavoriteAction;
@@ -32,6 +33,7 @@ public class ActionFactory {
 		else if(command.equals("delfavo"))action = new delfavoriteAction();
 		else if(command.equals("soldOut"))action = new SoldOutAction();
 		else if(command.equals("uploadPic"))action = new UploadPicAction();
+		else if(command.equals("updatePic"))action = new UpdatePicAction();
 		return action;
 	}
 	

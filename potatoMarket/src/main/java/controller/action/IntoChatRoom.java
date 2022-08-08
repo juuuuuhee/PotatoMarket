@@ -31,6 +31,8 @@ public class IntoChatRoom implements Action {
 
 		ChatRoomDAO chatRoomDAO = ChatRoomDAO.getInstance();
 		int chatRoomCode = chatRoomDAO.getChatRoomCode(loginCode, itemCode);
+		
+		System.out.println("chatRoomCode : " + chatRoomCode);
 
 		String url = "./chatView?chatRoom_code=" + chatRoomCode;
 		request.getRequestDispatcher(url).forward(request, response);

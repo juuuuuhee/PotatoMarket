@@ -4,6 +4,13 @@
 <title>Title</title>
 </head>
 <body>
+	<%
+		UserDTO loginUser = (UserDTO) session.getAttribute("log");
+		int loginCode = -1;
+		if (loginUser != null) {
+			loginCode = loginUser.getCode();
+		}
+	%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
 	</div>
@@ -11,7 +18,7 @@
 		<div class="board_wrap">
 			<form method="post" action="./action">
 				<input type="hidden" name="command" value="writeBoard">
-				<input type="hidden" id="user_code" value="<%=logincode%>">
+				<input type="hidden" id="user_code" name="user_code" value="<%=loginCode%>">
 				<div id="img_box"> </div>
 				<input type="file" onchange="setSom(this)">
 				<input type="button" onclick="uploadImg()">

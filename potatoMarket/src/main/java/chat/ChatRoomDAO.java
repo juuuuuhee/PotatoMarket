@@ -160,7 +160,7 @@ public class ChatRoomDAO {
 
 	// 나, 상대방, 상품 세가지를 조합해서 데이터베이스에 채팅방을 만든다
 	private void makeChatRoom(int chatRoomCode, int userCode, int sellerCode, int itemCode) {
-		String sql = "insert into chatRoom values (?, ?, ?, ?, sysdate(), sysdate())";
+		String sql = "insert into chatRoom values (?, ?, ?, ?, 0, 0, sysdate(), sysdate())";
 		conn = DbManager.getConnection("potatoMarket");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -168,10 +168,9 @@ public class ChatRoomDAO {
 			pstmt.setInt(2, sellerCode);
 			pstmt.setInt(3, userCode);
 			pstmt.setInt(4, itemCode);
+			pstmt.execute();
 
-			if (pstmt.executeUpdate() == 1) {
-				System.out.println("랜덤한 코드로 채팅방 생성 성공");
-			}
+			System.out.println("랜덤한 코드로 채팅방 생성 성공");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -226,9 +225,9 @@ public class ChatRoomDAO {
 				rCode = rand.nextInt(8999) + 1000;
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, rCode);
-				int cnt = pstmt.executeUpdate();
+				rs = pstmt.executeQuery();
 				// 중복된 코드가 없다면 해당 코드를 가진채로 반환한다
-				if (cnt == 0) {
+				if (!rs.next()) {
 					break;
 				}
 			}
@@ -401,14 +400,14 @@ public class ChatRoomDAO {
 
 		return item;
 	}
-	
+
 	public ItemDTO getItemDTO(int chatRoom_code) {
 		ItemDTO item = null;
 		conn = DbManager.getConnection("potatoMarket");
 		try {
 			item = getItemData(chatRoom_code);
 			System.out.println("아이템 데이터 가져오기 성공");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("아이템 데이터 가져오기 실패");
@@ -450,10 +449,10 @@ public class ChatRoomDAO {
 				int seller_code = room.getSeller_code();
 				int buyer_code = room.getBuyer_code();
 				int partnerCode = seller_code == loginCode ? buyer_code : seller_code;
-				
+
 				ItemDTO item = getItemData(room.getChat_code());
 				int item_selling = item.getItem_seiling();
-				
+
 				ChatRoomInfo chatRoomInfo = bringChatList(rooms.get(i).getChat_code(), loginCode, partnerCode);
 				chatRoomInfo.setItem_selling(item_selling);
 				chatRoomInfos.add(chatRoomInfo);
@@ -549,13 +548,13 @@ public class ChatRoomDAO {
 			ChatRoomDTO room = getData(chatRoom_code);
 			int buyer_code = room.getBuyer_code();
 			int item_code = room.getItem_code();
-	
+
 			// test
-			System.out.println("buyer_code : "+ buyer_code);
-			System.out.println("item_code : "+ item_code);
-			
+			System.out.println("buyer_code : " + buyer_code);
+			System.out.println("item_code : " + item_code);
+
 			chk = updateItemSoldOut(item_code, buyer_code);
-			if (chk) 
+			if (chk)
 				System.out.println("판매완료 처리 완료");
 
 		} catch (Exception e) {
@@ -565,9 +564,9 @@ public class ChatRoomDAO {
 
 		return chk;
 	}
-	
+
 	// Db에 '판매완료'로 업데이트 한다
-	public boolean updateItemSoldOut(int item_code ,int buyer_code) {
+	public boolean updateItemSoldOut(int item_code, int buyer_code) {
 		boolean chk = false;
 		String sql = "update items set item_selling = 1, orderuser_code = ? where item_code = ?";
 		conn = DbManager.getConnection("potatoMarket");
@@ -586,6 +585,5 @@ public class ChatRoomDAO {
 		}
 		return chk;
 	}
-
 
 }
