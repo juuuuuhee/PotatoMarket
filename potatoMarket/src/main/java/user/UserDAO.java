@@ -197,9 +197,7 @@ public class UserDAO {
 		return id;
 	}
 
-
-	
-	//유저의 정보 가져오기(mypage)
+	// 유저의 정보 가져오기(mypage)
 
 	public UserDTO getUserData(int code) {
 		String sql = "select * from users where user_code =?";
@@ -217,7 +215,7 @@ public class UserDAO {
 				// String time = rs.getString(6);
 				// String time2 = rs.getString(7);
 				String phone = rs.getString(8);
-				
+
 				System.out.println(add);
 				UserDTO dto = new UserDTO(ucode, id, pw, name, add, phone);
 				System.out.println(dto.getAddress());
@@ -240,28 +238,27 @@ public class UserDAO {
 		}
 		return null;
 	}
-	
+
 	public boolean updateUserData(UserDTO userdto) {
-		String sql = "update users set user_pw =? ,user_address =?, user_phone =?"
-				+ " where user_code = ? ";
+		String sql = "update users set user_pw =? ,user_address =?, user_phone =?" + " where user_code = ? ";
 		conn = DbManager.getConnection("potatoMarket");
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userdto.getPw());
-			pstmt.setString(2,userdto.getAddress());
+			pstmt.setString(2, userdto.getAddress());
 			pstmt.setString(3, userdto.getPhone());
-			pstmt.setInt(4,userdto.getCode());
-			int chk =pstmt.executeUpdate();
+			pstmt.setInt(4, userdto.getCode());
+			int chk = pstmt.executeUpdate();
 			System.out.println(chk);
-			if(chk!=0) {
+			if (chk != 0) {
 				System.out.println("변경");
 				return true;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			System.out.println("실패");
-		}finally {
+		} finally {
 			try {
 				conn.close();
 				pstmt.close();
@@ -271,27 +268,25 @@ public class UserDAO {
 			}
 
 		}
-		
+
 		return false;
 	}
-	
+
 	// id 찾기
 	public String findId(String name, String phone) {
 		String id = null;
 		conn = DbManager.getConnection("potatoMarket");
 		try {
-			String sql = "select user_id from users where user_name=? and user_phone=?";
+			String sql = "select user_id from users where user_name= '" + name + "' and user_phone= '" + phone+"'";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, phone);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				id = rs.getString(1);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				conn.close();
 				pstmt.close();
@@ -302,23 +297,22 @@ public class UserDAO {
 		}
 		return id;
 	}
+
 	// pw 찾기
 	public String findPw(String id, String phone) {
 		String pw = null;
 		conn = DbManager.getConnection("potatoMarket");
 		try {
-			String sql = "select user_id from users where user_id=? and user_phone=?";
+			String sql = "select user_pw from users where user_id= '" + id + "' and user_phone= '" + phone+"'";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, phone);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				pw = rs.getString(1);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				conn.close();
 				pstmt.close();

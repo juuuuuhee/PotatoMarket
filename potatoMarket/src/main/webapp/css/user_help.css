@@ -42,3 +42,13 @@ li{
 .check_box{
 	padding-top:20px;
 }
+
+#result_id{
+	padding-top: 5%;
+    font-size: 26px;
+}
+
+#result_pw{
+	padding-top: 5%;
+    font-size: 26px;
+}

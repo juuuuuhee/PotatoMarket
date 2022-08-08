@@ -1,8 +1,8 @@
 package myServlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,16 +12,16 @@ import org.json.JSONObject;
 import user.UserDAO;
 
 /**
- * Servlet implementation class findId
+ * Servlet implementation class findPw
  */
-//@WebServlet("/findId")
-public class findId extends HttpServlet {
+//@WebServlet("/findPw")
+public class findPw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public findId() {
+    public findPw() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +31,19 @@ public class findId extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONObject obj = new JSONObject();
-		String name = request.getParameter("help_name");
-		String phone = request.getParameter("help_phone");
+		String id = request.getParameter("help_id");
+		String phone = request.getParameter("help_phone1");
 		
-		System.out.println(name);
-		System.out.println(phone);
 		UserDAO user = UserDAO.getInstance();
-		String id = user.findId(name, phone);
-		if (user.findId(name, phone) == null) {
-			obj.put("id", "");
+		String pw = user.findPw(id, phone);
+		if (user.findPw(id, phone) == null) {
+			obj.put("pw", "");
 		} else {
-			obj.put("id", id);
+			obj.put("pw", pw);
 		}
 		response.setContentType("application/json");
 		response.getWriter().print(obj);
+	
 	}
 
 	/**

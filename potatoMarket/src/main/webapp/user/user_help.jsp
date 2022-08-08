@@ -28,7 +28,7 @@
 							<input type="text" id="help_name" name="help_name" placeholder="이름">
 						</div>
 						<div class="check_box">
-							<h2>회원 번호</h2>
+							<h2>회원 핸드폰번호</h2>
 							<input type="text" id="help_phone" name="help_phone" placeholder="핸드폰번호">
 						</div>
 						<div class="check_box">
@@ -47,12 +47,15 @@
 								<input type="text" id="help_id" name="help_id" placeholder="아이디">
 							</div>
 							<div class="check_box">
-								<h2>회원 번호</h2>
-								<input type="text" id="help_phone" name="help_phone" placeholder="핸드폰번호">
+								<h2>회원 핸드폰번호</h2>
+								<input type="text" id="help_phone1" name="help_phone1" placeholder="핸드폰번호">
 							</div>
 							<div class="check_box">
-								<input type="button" value="찾기" class="submit_box">
+							
+								<input type="button" id="pw_bnt" value="찾기" class="submit_box">
 							</div>
+							<span id="result_pw"></span
+							>
 					</div>
 				</div>
 			</div>

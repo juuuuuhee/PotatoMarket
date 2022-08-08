@@ -20,6 +20,10 @@ div.pagedetail{
 	height:50px;
 	border : solid 1px #d8b57a ;
 	width : 500px;
-	
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
 }
+
 

@@ -32,6 +32,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>ajaxFindPw</servlet-name>
+		<servlet-class>myServlet.findPw</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ajaxFindPw</servlet-name>
+		<url-pattern>/ajaxFindPw</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>login_page</servlet-name>
 		<jsp-file>/user/login.jsp</jsp-file>
 	</servlet>
@@ -56,6 +65,15 @@
 	<servlet-mapping>
 		<servlet-name>user_help</servlet-name>
 		<url-pattern>/user_help_page</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>resetPw</servlet-name>
+		<jsp-file>/user/resetPw.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resetPw</servlet-name>
+		<url-pattern>/resetPw_page</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

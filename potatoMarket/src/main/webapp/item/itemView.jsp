@@ -64,11 +64,9 @@
 			<%
 			} else if (user_code == loginCode) {
 			%>
-			<form action="./action">
-				<input type="hidden" name="command" value="intoChatRoom"> <input
-					type="hidden" name="item_code" value="<%=item_code%>"> <input
-					id="button_chat" type="submit" value="채팅하기">
-				<button type="button" class="button_changeCommand" onclick="changeBooking()">예약하기</button>
+			<form action="./action" method="post">
+				<input type="hidden" name="command" value="intoChatRoom">
+				<input type="hidden" name="item_code" value="<%=item_code%>">
 			</form>
 			<%
 			}
