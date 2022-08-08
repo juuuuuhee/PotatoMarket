@@ -15,12 +15,14 @@
 	background-color: #F8F9FA;
 	box-shadow: 0px 0px 0px 6px rgb(0 0 0/ 15%);
 	box-sizing: border-box;
+	
 }
 
 .orderd_img_href {
 	width: 150px;
 	display: block;
 	margin: 0 auto;
+	
 }
 
 .orderds_wrap {
@@ -33,11 +35,13 @@
 	width: inherit;
 	height: inherit;
 	object-fit: cover;
+	filter: brightness(50%);
 }
 
 #orderd_contents {
 	padding-top: 6%;
 	text-align: center;
+	
 }
 
 p.title {
