@@ -37,10 +37,17 @@
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<div class="orderd-top">
-				<a class="orderd_img_href" href="./itemView?code=<%=list.get(i).getItem_code()%>"
-					style="cursor: pointer">
+				<a class="orderd_img_href" href="./itemView?code=<%=list.get(i).getItem_code()%>" style="cursor: pointer">
 					<div class="orderd-photo">
+					<%
+						if (list.get(i).getItem_seiling() == 0) {
+						%>
 						<img id="orderd_img_size" src="<%=list.get(i).getItem_pic()%>">
+						<%} else if (list.get(i).getItem_seiling() == 1) {%>
+						<img id="orderd_img_size" src="<%=list.get(i).getItem_pic()%>" style="filter: brightness(35%)">
+						<%
+						} 
+						%>
 					</div>
 					<div id="orderd_contents">
 						<div><%=list.get(i).getItem_tilte()%></div>
