@@ -62,9 +62,9 @@
 							<span class="note-num2"><%=count%></span>
 						</c:if>
 						<% if (item_selling == 1) { %>
-							<div class="chatBlock soldOut" style="color : grey;">
+							<div class="chatBlock soldOut" style="color : grey; filter: brightness(0.5);">
 							<div>
-								<p class="itemTitle">
+								<p class="itemTitle" >
 									<h1> 판매 완료된 제품</h1>
 								</p>
 								<br>
@@ -73,7 +73,7 @@
 								</p>
 							</div>
 						<% } else if (item_selling == 0) { %>
-							<div class="chatBlock">
+							<div class="chatBlock" >
 							<div>
 								<p class="itemTitle">
 									<h1><%=title%></h1>

@@ -335,7 +335,9 @@ public class ItemDAO {
 
 	}
 
-	public void deleteItem(int item_code) {
+	// 아이템을 데이터베이스에서 지운다
+	public boolean deleteItem(int item_code) {
+		boolean chk = false;
 		conn = DbManager.getConnection("potatoMarket");
 		String sql = "delete from items where item_code = ?";
 
@@ -344,6 +346,7 @@ public class ItemDAO {
 
 			pstmt.setInt(1, item_code);
 			pstmt.execute();
+			chk = true;
 			System.out.println("삭제 완료");
 
 		} catch (SQLException e) {
@@ -351,6 +354,7 @@ public class ItemDAO {
 			System.out.println("삭제 실패");
 
 		}
+		return chk;
 
 	}
 
