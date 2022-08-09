@@ -41,6 +41,7 @@ window.onclick = function (event) {
         modal.style.display = "none";
       }
    }
+
 $(document).keypress(function(e) {
             if (e.keyCode == 13)
                 e.preventDefault();

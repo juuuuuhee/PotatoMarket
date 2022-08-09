@@ -13,7 +13,7 @@
 		<div class="contents_wrap">
 			<div class="banner_image_fir">
 				<img src="./resource/indexDOLOGIN.jpg" >
-				<img src="./resource/indexDOSEARCH.jpg">
+				<img src="./resource/mainSearch.jpg">
 				<img src="./resource/indexDOCHAT.jpg">
 				<img src="./resource/indexDOMYINFO.jpg">
 			</div>
