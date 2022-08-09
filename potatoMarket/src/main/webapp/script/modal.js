@@ -12,12 +12,11 @@ function openmodal() {
 	$('#chk').val("");
 	modal.style.display = "block"; 	
 }
-//여백클릭시 모달꺼짐
+
+  // x 클릭시 모달꺼짐
 span.onclick = function () {
-	$('#chk').val("");
     modal.style.display = "none";
   }
-  // x 클릭시 모달꺼짐
  function closemodal(){
 	$('#chk').val("");
       modal.style.display="none";
@@ -35,7 +34,15 @@ span.onclick = function () {
 	  }else{
 		form.submit();
 	  }
-	
-	
-	  
   }
+window.onclick = function (event) {
+      if (event.target == modal) {
+		$('#chk').val("");
+        modal.style.display = "none";
+      }
+   }
+$(document).keypress(function(e) {
+            if (e.keyCode == 13)
+                e.preventDefault();
+});
+
