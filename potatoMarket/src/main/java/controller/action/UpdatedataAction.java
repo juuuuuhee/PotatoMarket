@@ -19,10 +19,10 @@ public class UpdatedataAction implements Action {
 		UserDTO user = null;
 		String codeS = request.getParameter("code");
 		int code =Integer.parseInt(codeS);
-		String phone_1=request.getParameter("contact_1");
-		String phone_2=request.getParameter("contact_2");
-		String phone_3=request.getParameter("contact_3");
-		String phone=phone_1+phone_2+phone_3;
+//		String phone_1=request.getParameter("contact_1");
+//		String phone_2=request.getParameter("contact_2");
+//		String phone_3=request.getParameter("contact_3");
+		String phone= request.getParameter("phone_number");
 		
 		String id=request.getParameter("id");
 		String password=request.getParameter("password");
