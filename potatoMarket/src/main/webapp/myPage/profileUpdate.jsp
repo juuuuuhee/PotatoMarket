@@ -78,9 +78,7 @@
 					</div>
 
 					<div class="input">
-						<label>phone</label><br> <input type="text"
-							class="phonePattern" name="phone_number" id="phone_1"
-							class="essential" placeholder="휴대폰번호" value="<%=ph%>"> <br>
+						<label>phone</label><br> <input type="text" class="phonePattern" name="phone_number" id="phone_1" class="essential" placeholder="휴대폰번호" value="<%=ph%>"> <br>
 						<span class="check"></span> <span id="phone_check"></span>
 					</div>
 
