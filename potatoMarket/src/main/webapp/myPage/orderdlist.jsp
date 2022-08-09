@@ -24,7 +24,7 @@
 		<%@include file="../modules/header.jsp"%>
 	</div>
 
-		<div>
+		<div class="mypage_bnt">
 			<button class="mypage" onclick="location='./myPage'">내 정보</button>
 			<input class="mypage selected" type="button" value="나의 판매 목록" onclick="location='./orderdList'">
 			<input class="mypage" type="button" value="나의 구매 목록" onclick="location='./bookingList'">
@@ -64,7 +64,7 @@
 						<form action="./action" method="post">
 							<input type="hidden" name="command" value="deleteItem">
 							<input type="hidden" name="item_code" value="<%=list.get(i).getItem_code()%>">
-							<input type="submit" value="삭제하기">
+							<input type="submit" value="삭제하기" id="delete_bnt">
 						</form>
 					</div>
 				</a>

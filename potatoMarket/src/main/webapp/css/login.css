@@ -7,7 +7,7 @@
 #login_box {
 	display: flex;
     margin: 8%;
-    background-color: #d8b57a;
+    background-color: #cfc0a7;
     flex-direction: column;
     align-items: center;
     padding-top: 7%;
@@ -36,7 +36,7 @@
 
 .bnt_size{
     cursor: pointer;
-    background-color: #d8b57a;
+    background-color: #cfc0a7;
     border: none;
     width: 79px;
     height: 44px;

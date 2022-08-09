@@ -60,11 +60,17 @@
 									<%
 									if(i.getItem_seiling() == 0) { %>
 										<div><%=i.getItem_tilte() %></div>
-										<div><%=i.getItem_price() %>원</div>
+										<div>
+											<%String str = decFormat.format(i.getItem_price()); %>
+											<%=str%>원
+										</div>
 										<div>판매중</div>
 									<% } else if(i.getItem_seiling() == 1) { %>
 										<div class="sell" ><%=i.getItem_tilte() %></div>
-										<div class="sell" ><%=i.getItem_price() %>원</div>
+										<div class="sell" >
+											<%String str = decFormat.format(i.getItem_price()); %>
+											<%=str%>원
+										</div>
 										<div class="sell" >판매완료</div>
 									<% 
 									}

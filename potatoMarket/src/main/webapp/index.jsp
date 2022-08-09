@@ -18,10 +18,9 @@
 		</div>
 		<div class="contents_wrap">
 			<div class="banner_image_fir">
-				<img src="./resource/indexDOLOGIN.jpg" >
-				<img src="./resource/indexDOSEARCH.jpg">
-				<img src="./resource/indexDOCHAT.jpg">
-				<img src="./resource/indexDOMYINFO.jpg">
+				<img src="./resource/mainSearch.jpg" class="img_b">
+				<img src="./resource/mainChat.jpg" class="img_b">
+				<img src="./resource/mainMypage.jpg" class="img_b">
 			</div>
 		</div>
 		<div class="footer">

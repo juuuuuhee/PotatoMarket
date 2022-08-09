@@ -80,3 +80,25 @@ function setSom(imgFile) {
 		reader.readAsDataURL(file);
 	}
 }
+
+$('#title').keyup(e=>{
+	let title = $('#title').val();
+	
+	
+    if (title.length > 50) {
+        $('#title').val($('#title').val().substring(0, 50));
+        alert('글자수는 50자까지 입력 가능합니다.');
+    };
+})
+
+$('#contents').keyup(e=>{
+	let contents = $('#contents').val();
+	
+    if (contents.length > 2000) {
+        $('#contents').val($('#contents').val().substring(0, 2000));
+        alert('글자수는 2000자까지 입력 가능합니다.');
+    };
+})
+
+
+

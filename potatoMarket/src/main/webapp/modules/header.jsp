@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="chat.ChatRoomDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.UserDTO"%>
@@ -24,6 +25,7 @@
 		cnt = ChatRoomDAO.getInstance().getNotReadNum(user.getCode());
 		System.out.println("안읽은 채팅개수 : " + cnt);
 	}
+	DecimalFormat decFormat = new DecimalFormat("###,###,###");
 	%>
 
 
