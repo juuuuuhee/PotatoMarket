@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="user.UserDTO"%>
 <%@page import="user.UserDAO"%>
 <%@page import="item.ItemDTO"%>
@@ -5,8 +6,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<link rel="stylesheet" href="./css/itemView.css">
 <title>Title</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" href="./css/itemView.css">
 </head>
 <body>
 	<%
@@ -14,6 +16,7 @@
 	ItemDAO dao = ItemDAO.getInstance();
 	String item_code = request.getParameter("code");
 	ItemDTO thisItem = dao.getItem(Integer.parseInt(item_code));
+	int sell = thisItem.getItem_seiling();
 	
 	// session에서 유저코드 읽어오기
 	UserDAO uDao = UserDAO.getInstance();
@@ -23,6 +26,7 @@
 	if (loginUser != null) {
 		loginCode = loginUser.getCode();
 	}
+	
 	%>
 	<div>
 		<%@include file="../modules/header.jsp"%>
@@ -35,17 +39,19 @@
 				</div>
 			</div>
 			<div id="contents_d">
-				<div>
-					<%=uDao.getUser(user_code).getId()%>님 물건
+				<div class="user_id_name">
+					<%=uDao.getUser(user_code).getId()%>님 상품
 				</div>
+				<hr>
 				<div class="detail_text_text">
 					<%=thisItem.getItem_contents()%>
 				</div>
+				<div class="detail_item_price" id="result2">
+				<%String str = decFormat.format(thisItem.getItem_price()); %>
+					<%=str%>원
+				</div>
 				<div class="detail_item_name">
 					<%=thisItem.getItem_tilte()%>
-				</div>
-				<div class="detail_item_price">
-					<span>₩<%=thisItem.getItem_price()%></span>
 				</div>
 			</div>
 			<%
@@ -55,9 +61,9 @@
 			%>
 			<h3>이미 판매가 완료된 상품입니다.</h3>
 			<%
-			} else if (user_code != loginCode && loginCode != -1) {
+			} else if (user_code != loginCode && loginCode != -1 && sell != 1) {
 			%>
-			<form action="./action" method="post">
+			<form action="./action" method="post" class="submit_form">
 				<input type="hidden" name="command" id="command" value="intoChatRoom"> 
 				<input type="hidden" name="item_code" value="<%=item_code%>"> 
 				<input type="hidden" name = "user_code" value="<%=loginCode %>">
@@ -67,7 +73,7 @@
 			<%
 			} else if (user_code == loginCode) {
 			%>
-			<form action="./action" method="post">
+			<form action="./action" method="post" class="submit_form">
 				<input type="hidden" name="command" value="deleteItem">
 				<input type="hidden" name="item_code" value="<%=item_code%>">
 				<input type="submit" value="삭제하기">
@@ -82,11 +88,5 @@
 		<%@include file="../modules/footer.jsp"%>
 	</div>
 </body>
-<script>
-	function changeFavo() {
-		$('#command').val('addFavo');
-		$('form').submit();
-	}
-
-</script>
+<script src="script/itemView.js"></script>
 </html>
