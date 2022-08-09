@@ -3,4 +3,9 @@ div.banner_image_fir {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
+    padding-top: 5%;
+}
+
+.img_b{
+	width:80%;
 }
