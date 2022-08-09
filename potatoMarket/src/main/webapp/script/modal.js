@@ -23,8 +23,9 @@ span.onclick = function () {
   }
   //비밀번호 입력 후 체크
   function chkpw(form){ 
+	event.preventDefault();
 	let userpw = $('#chkpw1').val();
-	let chkpw = $('#chk').val();
+	let chkpw = $('#chk').val(); 	
 	  console.log(userpw);
 	  console.log(chkpw);
 	  if($('#chkpw1').val()!==$('#chk').val()){
@@ -35,15 +36,23 @@ span.onclick = function () {
 		form.submit();
 	  }
   }
+//모달창 외에 클릭시 사라짐
 window.onclick = function (event) {
       if (event.target == modal) {
 		$('#chk').val("");
         modal.style.display = "none";
       }
    }
-
-$(document).keypress(function(e) {
-            if (e.keyCode == 13)
-                e.preventDefault();
-});
+function enter(){
+	if(event.keyCode ==13){
+		chkpw('#frm');
+		return false;
+	}
+	return true;
+}
+//$(document).keypress(function(e) {
+        //    if (e.keyCode == 13){
+      //          chkpw('#frm');	
+//}
+//});
 

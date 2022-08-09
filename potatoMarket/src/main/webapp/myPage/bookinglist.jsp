@@ -48,7 +48,7 @@
 				int code = item.getItem_code();
 			%>
 			<div class ="contents_top">
-			<a class="contents_img_href" href="./itmeView?code=<%=code %>" style="cursor: pointer">
+			<a class="contents_img_href" href="./itemView?code=<%=code %>" style="cursor: pointer">
 				<div class="contents-photo">
 					<img id="contents_img_size"src="<%=pic%>">
 				</div>
