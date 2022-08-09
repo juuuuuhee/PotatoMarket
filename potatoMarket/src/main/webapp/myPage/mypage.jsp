@@ -37,10 +37,14 @@
     <form action="profileUpdate" method="post">
       <span class="close">&times;</span>
       <p>비밀번호를 입력해주세요.</p>
+      <div>
       <input type="password" id="chk" name="chk">
       <input type="hidden" id="chkpw1" value="<%=pw%>">
-      <input type="button" class="mypage" id="ok" onclick="chkpw(form)" value="확인">
-      <input type="button" class="mypage" id="back" onclick="closemodal()" value="취소">
+      </div>
+      <div>
+      <input type="button" class="modalbut" id="ok" onclick="chkpw(form)" value="확인">
+      <input type="button" class="modalbut" id="back" onclick="closemodal()" value="취소">
+      </div>      
 	</form>
     </div>
   </div>

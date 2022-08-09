@@ -36,5 +36,12 @@ div.pagedetail{
     padding-left: 10px;
 }
 
-
+ .modalbut {
+   	width: 100px;
+    height: 30px;
+    font-size: 12px;
+    background: #d8b57a;
+    color: white;
+    border: solid 1px;
+}
 
