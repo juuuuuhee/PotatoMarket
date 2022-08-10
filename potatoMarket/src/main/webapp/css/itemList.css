@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 .contents_wrap .card-top, .cards-wrap {
-	width: calc(25% - 44px);
-	margin-right: 40px;
-	margin-bottom: 56px;
+width: calc(25% - 44px);
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 48px;
 }
 
 .contents_wrap .card-top .card-photo, .contents_wrap .card-photo {
@@ -69,7 +70,7 @@ span.note {
 }
 
 .card-top {
-	border: solid;
+	border: solid 2px;
 	border-radius: 10px;
 	padding-top: 1%;
 	display: flex;
