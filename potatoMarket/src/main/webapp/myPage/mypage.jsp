@@ -28,8 +28,7 @@
 		<%@include file="../modules/header.jsp"%>
 	</div>
 	<div class="mypage_bnt">
-		<button class="mypage" id="update " onclick="openmodal()">내
-			정보 수정</button>
+		<button class="mypage" id="update " onclick="openmodal()">내 정보 수정</button>
 
 		<!-- Modal content -->
 		<div id="myModal" class="modal">
