@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
+ <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/1538/1538920.png">
 <title>Main</title>
 	<link rel="stylesheet" href="./css/index.css">
 </head>

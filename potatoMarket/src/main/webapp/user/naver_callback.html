@@ -15,9 +15,10 @@
 	<script>
       const naverLogin = new naver.LoginWithNaverId({
         clientId: 'Qc5AuIfVqlnmCqi8oeYe',
-        callbackUrl: 'http://localhost:8080/potatoMarket/user/naver_callback.html',
+        callbackUrl: 'http://13.125.228.16/potatoMarket/user/naver_callback.html',
         isPopup: true,
         callbackHandle: true,
+        method: "POST",
         /* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
       });
 

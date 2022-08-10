@@ -11,12 +11,13 @@ function kakaoLogin() {
 			saveToDos(response.access_token)
 			window.Kakao.API.request({ // 사용자 정보 가져오기 
 				url: '/v2/user/me',
+				method: "POST",
 				success: (res) => {
 					const kakao_account = res.kakao_account;
 					//console.log(kakao_account)
 					console.log(typeof JSON.stringify(kakao_account.profile.nickname) + "여기야~~");
 
-					window.location.href = '/potatoMarket/join_page?id=' + JSON.stringify(res.id) + '&name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
+					window.location.href = 'http://13.125.228.16/potatoMarket/join_page?id=' + JSON.stringify(res.id) + '&name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
 
 				}
 			});
@@ -31,7 +32,7 @@ function kakaoLogin() {
 
 const naverLogin = new naver.LoginWithNaverId({
 	clientId: "Qc5AuIfVqlnmCqi8oeYe",
-	callbackUrl: "http://localhost:8080/potatoMarket/user/naver_callback.html",
+	callbackUrl: "http://13.125.228.16/potatoMarket/user/naver_callback.html",
 	loginButton: {
 		color: "green",
 		type: 3,
