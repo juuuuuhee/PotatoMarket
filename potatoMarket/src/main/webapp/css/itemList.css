@@ -28,7 +28,7 @@ width: calc(25% - 44px);
 	display: flex;
 	flex-wrap: wrap;
 	margin: 7%;
-	justify-content: center;
+	
 }
 
 #img_size {

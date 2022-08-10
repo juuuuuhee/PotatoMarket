@@ -31,7 +31,7 @@
         <br>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="member">정의형</span>&nbsp;&nbsp;&nbsp;&nbsp; <span id="part">E-MAIL : ahanggo @ naver.com</span></span>
         <br>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 마이페이지</span></span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="part">담당파트 : 마이페이지(내정보수정,판매목록 삭제,찜목록 추가/삭제)</span></span>
     	<br>
     </div>
 </div>

@@ -43,15 +43,15 @@
 					<%=uDao.getUser(user_code).getId()%>님 상품
 				</div>
 				<hr>
-				<div class="detail_text_text">
-					<%=thisItem.getItem_contents()%>
+				<div class="detail_item_name">
+					<%=thisItem.getItem_tilte()%>
 				</div>
 				<div class="detail_item_price" id="result2">
 				<%String str = decFormat.format(thisItem.getItem_price()); %>
 					<%=str%>원
 				</div>
-				<div class="detail_item_name">
-					<%=thisItem.getItem_tilte()%>
+				<div class="detail_text_text">
+					<%=thisItem.getItem_contents()%>
 				</div>
 			</div>
 			<%

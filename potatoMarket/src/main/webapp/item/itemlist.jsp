@@ -39,7 +39,7 @@
 			<div class="cards_wrap">
 				<c:choose>
 					<c:when test="${empty itemList}">
-					<h3 class="null_text">해당 판매글이 존재하지 않습니다</h3>
+					<div><span class="null_text">해당 판매글이 존재하지 않습니다</span></div>
 					</c:when>
 					<c:otherwise>
 						<%

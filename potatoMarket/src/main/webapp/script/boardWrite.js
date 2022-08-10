@@ -49,7 +49,7 @@ function callUploadApi(settings) {
 function dataUpload() {
 	let user_code = $('#user_code').val();
 	let title = $('#title').val();
-	let contents = $('#contents').val();
+	let contents = $('#contents').val().replace(/\n/g,'<br/>');
 	let price = $('#price').val();
 
 	let url = `http://localhost:8080/potatoMarket/action?command=uploadPic&user_code=${user_code}&title=${title}&contents=${contents}&price=${price}&img_Url=${img_Url}`;

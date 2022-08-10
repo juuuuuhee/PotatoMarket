@@ -66,7 +66,7 @@
 						<%
 						} 
 						%>
-						<input type="submit" value="삭제"> 
+						<input type="submit" value="삭제" id="delete_bnt"> 
 						<input type="hidden" value="<%=favorite.getFavoCode()%>" name="favocode">
 					</form>
 				</div>

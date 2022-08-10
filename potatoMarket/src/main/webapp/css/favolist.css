@@ -52,3 +52,10 @@ p.title {
 	justify-content: center;
 	align-items: center;
 }
+
+#delete_bnt {
+	border: 0;
+	background-color: white;
+	cursor: pointer;
+	padding-top: 10px;
+}

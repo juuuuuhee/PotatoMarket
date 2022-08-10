@@ -62,16 +62,18 @@ input[type="submit"] {
 	font-weight: 700;
 }
 
-.detail_text_text {
+.detail_item_name {
 	font-size: 23px;
 	FONT-WEIGHT: 600;
 	padding-top: 20px;
 	width: 500px;
 }
 
-.detail_item_name {
+.detail_text_text {
 	padding-top: 10px;
 	font-size: 18px;
+	padding-top: 20px;
+	width: 500px;
 }
 
 .submit_form {
