@@ -59,6 +59,7 @@
 						<input type="text" id="id" name="id" value='<%=nid%>' readonly>
 						<%
 						} else if (kid != null) {
+							System.out.println(kid);
 						%>
 						<input type="text" id="id" name="id" value='<%=kid%>' readonly>
 						<%
