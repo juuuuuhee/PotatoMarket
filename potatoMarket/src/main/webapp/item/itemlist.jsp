@@ -33,10 +33,13 @@
 		<%@include file="../modules/header.jsp"%>
 	</div>
 		<div class="contents_wrap">
+			<div>
+				<span class="list_text">중고거래 목록</span>
+			</div>
 			<div class="cards_wrap">
 				<c:choose>
 					<c:when test="${empty itemList}">
-						<h3>해당 판매글이 존재하지 않습니다</h3>
+					<h3 class="null_text">해당 판매글이 존재하지 않습니다</h3>
 					</c:when>
 					<c:otherwise>
 						<%

@@ -69,7 +69,7 @@ p.logo {
 .project {
 	display: flex;
     flex-direction: column;
-    height: 43vh;
+    height: 38vh;
     justify-content: center;
 }
 
