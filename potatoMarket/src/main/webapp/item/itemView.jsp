@@ -1,3 +1,4 @@
+<%@page import="favo.FavoriteDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="user.UserDTO"%>
 <%@page import="user.UserDAO"%>
@@ -15,6 +16,7 @@
 	// 아이템 정보 읽어오기
 	ItemDAO dao = ItemDAO.getInstance();
 	String item_code = request.getParameter("code");
+	int itemCode = Integer.parseInt(item_code);
 	ItemDTO thisItem = dao.getItem(Integer.parseInt(item_code));
 	int sell = thisItem.getItem_seiling();
 	
@@ -26,6 +28,8 @@
 	if (loginUser != null) {
 		loginCode = loginUser.getCode();
 	}
+	FavoriteDAO fdao = FavoriteDAO.getInstance();
+	int favo_code = fdao.chkfavo(itemCode, loginCode);
 	
 	%>
 	<div>
@@ -65,6 +69,7 @@
 			%>
 			<form action="./action" method="post" class="submit_form">
 				<input type="hidden" name="command" id="command" value="intoChatRoom"> 
+				<input type="hidden" id="favocode" value="<%=favo_code %>">
 				<input type="hidden" name="item_code" value="<%=item_code%>"> 
 				<input type="hidden" name = "user_code" value="<%=loginCode %>">
 				<input id="button_chat" type="submit" value="채팅하기">
