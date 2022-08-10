@@ -20,7 +20,7 @@ public class DeleteItem implements Action {
 		boolean chk = ItemDAO.getInstance().deleteItem(item_code);
 		request.setAttribute("delete", chk);
 		
-		request.getRequestDispatcher("/").forward(request, response);
+		request.getRequestDispatcher("./itemList").forward(request, response);
 		
 	}
 
