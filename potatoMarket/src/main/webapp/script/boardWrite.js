@@ -101,5 +101,14 @@ $('#contents').keyup(e=>{
     };
 })
 
+$('#price').keyup(e=>{
+	let price = $('#price').val();
+	
+    if (price.length > 8) {
+        $('#price').val($('#price').val().substring(0, 8));
+        alert('금액은 최대 99,999,999원 까지 가능합니다.');
+    };
+})
+
 
 
