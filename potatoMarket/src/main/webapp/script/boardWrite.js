@@ -53,7 +53,7 @@ function dataUpload() {
 	let price = $('#price').val();
 
 //	let url = `http://localhost:8080/potatoMarket/action?command=uploadPic&user_code=${user_code}&title=${title}&contents=${contents}&price=${price}&img_Url=${img_Url}`;
-	let url = `http://13.125.228.16/potatoMarket/action?command=uploadPic&user_code=${user_code}&title=${title}&contents=${contents}&price=${price}&img_Url=${img_Url}`;
+	let url = `http://potatomarket.site/potatoMarket/action?command=uploadPic&user_code=${user_code}&title=${title}&contents=${contents}&price=${price}&img_Url=${img_Url}`;
 	$.ajax({
 		url: url,
 		method: "POST",
