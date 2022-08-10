@@ -5,7 +5,8 @@ $('#id').change(e => {
 	console.log(check);
 	$.ajax({
 
-		url: 'http://localhost:8080/potatoMarket/ajaxCon?id=' + check,
+//		url: 'http://localhost:8080/potatoMarket/ajaxCon?id=' + check,
+		url: 'http://13.125.228.16/potatoMarket/ajaxCon?id=' + check,
 		method: "POST",
 
 		success: function(data) {

@@ -7,6 +7,7 @@ console.log(chatCode);
 console.log("안녕");
 
 const socket = new WebSocket("ws://13.125.228.16/potatoMarket/chatRoom");
+// const socket = new WebSocket("ws://location:8080/potatoMarket/chatRoom");
 
 const chatBlock = document.getElementById("chatBlock");
 let message = document.getElementById("textMessage");
