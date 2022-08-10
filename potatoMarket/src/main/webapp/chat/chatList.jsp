@@ -40,6 +40,12 @@
 			// 로그인 된 유저의 모든 채팅방을 불러온다
 			ArrayList<ChatRoomDTO> rooms = ChatRoomDAO.getInstance().bringAllChatRoom(loginCode);
 			ChatRoomDAO chatRoomDAO = ChatRoomDAO.getInstance();
+			%>
+			<c:if test="<%=rooms.size() == 0 %>">
+				<h1> 채팅방이 없습니다 </h1>
+			</c:if>
+			
+			<%
 			// ##3
 			ArrayList<ChatRoomInfo> chatRoomInfos = chatRoomDAO.bringAllChatRoomInfos(rooms, loginCode);
 
