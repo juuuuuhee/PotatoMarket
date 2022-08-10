@@ -29,12 +29,12 @@
 			<div class="banner_image_fir">
 			<c:choose>
 				<c:when test="<%=logCode == -1 %>">
-					<a href="./itemList"><img src="./resource/mainSearch.jpg" class="img_b"></a>
+					<a href="./itemList?keyword=고양"><img src="./resource/mainSearch.jpg" class="img_b"></a>
 					<a href="./login_page"><img src="./resource/mainChat.jpg" class="img_b"></a>
 					<a href="./login_page"><img src="./resource/mainMypage.jpg" class="img_b"></a>
 				</c:when>
 				<c:otherwise>
-					<a href="./itemList"><img src="./resource/mainSearch.jpg" class="img_b"></a>
+					<a href="./itemList?keyword=고양"><img src="./resource/mainSearch.jpg" class="img_b"></a>
 					<a href="./chatList"><img src="./resource/mainChat.jpg" class="img_b"></a>
 					<a href="./myPage"><img src="./resource/mainMypage.jpg" class="img_b"></a>
 				</c:otherwise>
