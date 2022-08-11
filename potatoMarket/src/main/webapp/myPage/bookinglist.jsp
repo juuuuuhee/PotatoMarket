@@ -31,11 +31,13 @@
 		<input class="mypage" type="button" value="나의 찜 목록" onclick="location='./favoList'">
 	</div>
 
-	<p class="logo title">나의 구매목록</p>
+	<p class="logo title">나의 구매 목록</p>
 
 	<div class="contents_wrap">
-		
-			<%
+		<%
+			if(list.size()==0){%>
+				<div class="noitem">아직 구매한 아이템이 없어요</div>
+			<%}else{
 			for (int i = 0; i < list.size(); i++) {
 				ItemDTO idto = list.get(i);
 				ItemDTO item = idao.getdata(idto.getItem_code());
@@ -58,6 +60,7 @@
 			</a>
 			</div>
 			<%
+			}
 			}
 			%>
 		</div>	
