@@ -18,7 +18,7 @@ function kakaoLogin() {
 					console.log(typeof JSON.stringify(kakao_account.profile.nickname) + "여기야~~");
 
 //					window.location.href = 'http://localhost:8080/potatoMarket/join_page?id=' + JSON.stringify(res.id) + '&name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
-					window.location.href = 'http://13.125.228.16/potatoMarket/join_page?id=' + JSON.stringify(res.id) + '&name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
+					window.location.href = 'http://potatomarket.site/join_page?id=' + JSON.stringify(res.id) + '&name=' + JSON.stringify(kakao_account.profile.nickname); //리다이렉트 되는 코드
 
 				}
 			});
