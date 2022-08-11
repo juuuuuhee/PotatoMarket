@@ -40,6 +40,9 @@
 		<p class="title logo">나의 판매 목록</p>
 		<div class="orderds_wrap">
 			<%
+			if(list.size()==0){%>
+				<a class="noitem">아직 판매중인 아이템이 없어요</a>
+			<%}else{
 			for (int i = 0; i < list.size(); i++) {
 			%>
 			<div class="orderd-top">
@@ -77,6 +80,7 @@
 				</a>
 			</div>
 			<%
+			}
 			}
 			%>
 		</div>

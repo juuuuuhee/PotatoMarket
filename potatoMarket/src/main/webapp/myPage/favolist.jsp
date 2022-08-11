@@ -36,6 +36,9 @@
 
 	<div class="contents_wrap">
 		<%
+			if(list.size()==0){%>
+				<div class="noitem">아직 찜한 아이템이 없어요</div>
+			<%}else{
 		for (int i = 0; i < list.size(); i++) {
 			FavoriteDTO favorite = list.get(i);
 			ItemDTO item = idao.getdata(favorite.getItemCode());
@@ -73,6 +76,7 @@
 			</a>
 			</div>
 			<%
+		}
 			}
 			%>
 		</div>
