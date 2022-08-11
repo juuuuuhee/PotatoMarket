@@ -33,7 +33,7 @@
 		<!-- Modal content -->
 		<div id="myModal" class="modal">
 			<div class="modal-content">
-				<form action="profileUpdate" method="post">
+				<form action="profileUpdate" method="post" id="frm">
 					<span class="close">&times;</span>
 					<p>비밀번호를 입력해주세요.</p>
 					<div>
@@ -41,7 +41,8 @@
 						<input type="hidden" id="chkpw1" value="<%=pw%>">
 					</div>
 					<div>
-						<input type="button" class="modalbut" id="ok" onclick="chkpw(form)" value="확인">
+						<input type="submit" class="modalbut" id="ok" onkeydown="enter()" onclick="chkpw(form)" value="확인">
+						<!-- <input type="button" class="modalbut" id="ok" onkeydown="enter()" onclick="chkpw(form)" value="확인">  -->
 						<input type="button" class="modalbut" id="back" onclick="closemodal()" value="취소">
 					</div>
 				</form>

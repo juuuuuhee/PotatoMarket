@@ -11,6 +11,13 @@
 </head>
 <body>
 	<%
+	
+	// 게시글 삭제했을때 알림창을 띄운다
+		Object deleteChk = request.getAttribute("delete");
+		if (deleteChk != null) {
+			%> <script>alert("삭제완료");</script> <%
+		}
+		
 	ArrayList<ItemDTO> list;
 	if (request.getParameter("keyword") == null) {
 		list = ItemDAO.getInstance().getAllItemList();

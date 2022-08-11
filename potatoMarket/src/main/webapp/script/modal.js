@@ -36,13 +36,7 @@ span.onclick = function () {
 		form.submit();
 	  }
   }
-//모달창 외에 클릭시 사라짐
-window.onclick = function (event) {
-      if (event.target == modal) {
-		$('#chk').val("");
-        modal.style.display = "none";
-      }
-   }
+
 function enter(){
 	if(event.keyCode ==13){
 		chkpw('#frm');
@@ -50,6 +44,13 @@ function enter(){
 	}
 	return true;
 }
+//모달창 외에 클릭시 사라짐
+window.onclick = function (event) {
+      if (event.target == modal) {
+		$('#chk').val("");
+        modal.style.display = "none";
+      }
+   }
 //$(document).keypress(function(e) {
         //    if (e.keyCode == 13){
       //          chkpw('#frm');	
