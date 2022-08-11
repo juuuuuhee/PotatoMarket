@@ -11,7 +11,6 @@ function kakaoLogin() {
 			saveToDos(response.access_token)
 			window.Kakao.API.request({ // 사용자 정보 가져오기 
 				url: '/v2/user/me',
-				method: "POST",
 				success: (res) => {
 					const kakao_account = res.kakao_account;
 					//console.log(kakao_account)
