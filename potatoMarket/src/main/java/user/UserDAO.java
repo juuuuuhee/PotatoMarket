@@ -37,7 +37,7 @@ public class UserDAO {
 
 			String sql = "insert into users(user_code,user_id,user_pw,user_name, user_address,created_At,user_phone) values(?,?,?,?,?,?,?)";
 			this.pstmt = conn.prepareStatement(sql);
-			// code, id, pw, name, add, create, modifi, phone
+			// code, id, password, name, add, create, modified, phone
 			pstmt.setInt(1, userDto.getCode());
 			pstmt.setString(2, userDto.getId());
 			pstmt.setString(3, userDto.getPw());
@@ -100,9 +100,9 @@ public class UserDAO {
 	public UserDTO getUser(String id, String password) {
 		UserDTO user = null;
 		conn = DbManager.getConnection("potatoMarket");
+		String sql = "select * from users where user_id = ? and user_pw = ?";
 
 		try {
-			String sql = "select * from users where  user_id = ? and user_pw = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);

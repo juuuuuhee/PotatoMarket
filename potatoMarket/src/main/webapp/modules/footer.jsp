@@ -12,7 +12,11 @@
             </span>
             <br>
         	<span style="font-weight:bold" id="project_font">
-                &nbsp;&nbsp;&nbsp;&nbsp;git 주소 : <a href="https://github.com/juuuuuhee/PotatoMarket.git" target="_blank"> https://github.com/juuuuuhee/PotatoMarket.git</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;GITHUB : <a href="https://github.com/juuuuuhee/PotatoMarket.git" target="_blank"> https://github.com/juuuuuhee/PotatoMarket.git</a>
+        	</span>
+        	<br>
+        	<span style="font-weight:bold" id="project_font">
+                &nbsp;&nbsp;&nbsp;&nbsp;PPT주소 : <a href="https://onedrive.live.com/view.aspx?resid=16C13196AF9C9F68!5285&ithint=file%2cpptx&authkey=!AGX2fPoRX2qjllk" target="_blank">https://bit.ly/3zXvCgW</a>
         	</span>
         </div>
     </div>

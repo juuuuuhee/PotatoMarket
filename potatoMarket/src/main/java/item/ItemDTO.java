@@ -14,6 +14,7 @@ public class ItemDTO {
 		return orderuser_code;
 	}
 
+	// 생성자
 	public ItemDTO(int item_code, int booking_code, int user_code, String item_tilte, String item_contents,
 			int item_price, int item_seiling, String item_pic, int cate_code, int orderuser_code) {
 		super();

@@ -4,8 +4,8 @@ $('#id_bnt').click(e=>{
 	let checkPhone = $('#help_phone').val();
 	
 	$.ajax({
-//		url: 'http://localhost:8080/potatoMarket/ajaxFindId?help_name='+ checkName +'&help_phone='+checkPhone,
-		url: 'http://13.125.228.16/potatoMarket/ajaxFindId?help_name='+ checkName +'&help_phone='+checkPhone,
+		url: 'http://localhost:8080/potatoMarket/ajaxFindId?help_name='+ checkName +'&help_phone='+checkPhone,
+//		url: 'http://13.125.228.16/potatoMarket/ajaxFindId?help_name='+ checkName +'&help_phone='+checkPhone,
 		method: "POST",
 
 		success: function(data) {
@@ -26,8 +26,8 @@ $('#pw_bnt').click(e=>{
 	
 	
 	$.ajax({
-	//	url: 'http://localhost:8080/potatoMarket/ajaxFindPw?help_id='+ checkId +'&help_phone1='+checkPhone,
-		url: 'http://13.125.228.16/potatoMarket/ajaxFindPw?help_id='+ checkId +'&help_phone1='+checkPhone,
+		url: 'http://localhost:8080/potatoMarket/ajaxFindPw?help_id='+ checkId +'&help_phone1='+checkPhone,
+	//	url: 'http://13.125.228.16/potatoMarket/ajaxFindPw?help_id='+ checkId +'&help_phone1='+checkPhone,
 		method: "POST",
 
 		success: function(data) {

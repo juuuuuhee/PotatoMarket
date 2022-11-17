@@ -5,7 +5,7 @@ function saveToDos(token) { //item을 localStorage에 저장합니다.
 window.Kakao.init('c0c7d97ba874ef5115ea0b140bedc728');
 
 function kakaoLogin() {
-	window.Kakao.Auth.login({
+	window.Kakao.Auth.login({	
 		scope: 'profile_nickname,account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
 		success: function(response) {
 			saveToDos(response.access_token)
@@ -33,7 +33,7 @@ function kakaoLogin() {
 const naverLogin = new naver.LoginWithNaverId({
 	clientId: "Qc5AuIfVqlnmCqi8oeYe",
 //	callbackUrl: "http://localhost:8080/potatoMarket/user/naver_callback.html",
-	callbackUrl: "http://13.125.228.16/potatoMarket/user/naver_callback.html",
+	callbackUrl: "http://potatomarket.site/potatoMarket/user/naver_callback.html",
 	loginButton: {
 		color: "green",
 		type: 3,
