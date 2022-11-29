@@ -20,7 +20,6 @@ public class IntoChatRoom implements Action {
 
 		// 해당 아이템 코드를 불러온다
 		int itemCode = Integer.parseInt(request.getParameter("item_code"));
-
 		// session에 저장된 로그인된 '유저 정보'를 가져온다
 		UserDTO loginUser = (UserDTO) session.getAttribute("log");
 		int loginCode = loginUser.getCode();
